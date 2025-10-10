@@ -404,12 +404,13 @@ Date: ${testResults.completionDate}
             
             <div className="flex space-x-3">
               <Button
-                onClick={() => setShowAiHelp(true)}
+                onClick={() => alert("AI Help is currently under maintenance. Please try again later.")}
                 variant="ghost"
-                className="px-4 text-color-primary hover:text-blue-800"
+                className="px-4 text-gray-500 cursor-not-allowed"
+                disabled
               >
                 <Lightbulb className="mr-2 h-4 w-4" />
-                AI Help
+                AI Help (Maintenance)
               </Button>
               {currentQuestionIndex === questions.length - 1 ? (
                 <Button

@@ -1,5 +1,5 @@
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto+Mono:wght@400;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -21,7 +21,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif; /* Modern, clean font */
+  font-family: 'Montserrat', sans-serif; /* Modern, clean font */
   background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-background-dark) 100%);
   color: var(--color-text-dark);
   min-height: 100vh;
@@ -34,7 +34,7 @@ body {
 
 .container {
   width: 100%;
-  max-width: 52rem; /* Increased max-width for better desktop layout */
+  max-width: 56rem; /* Increased max-width for better desktop layout */
   margin: auto;
 }
 
@@ -256,7 +256,7 @@ body {
   padding: 12mm;
   box-sizing: border-box;
   background: linear-gradient(45deg, #e0f2f7 0%, #ffffff 100%); /* Light gradient background */
-  font-family: 'Inter', sans-serif; /* Clean, modern font */
+  font-family: 'Montserrat', sans-serif; /* Clean, modern font */
   color: var(--color-text-dark);
   text-align: center;
   display: flex;
@@ -462,6 +462,9 @@ body {
   .certificate-container {
     border: 10mm solid var(--color-primary);
     padding: 8mm;
+  }
+  .card-content {
+    padding: 1rem;
   }
 }
 
