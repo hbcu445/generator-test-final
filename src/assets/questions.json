@@ -112,11 +112,9 @@
     "number": 10,
     "question": "The proper sequence for determining if a circuit is de-energized is:",
     "options": [
-      "1) verify meter operation with known good source",
-      "2) test circuit",
-      "3) verify meter operation after testing source",
-      "A-1,2,3",
-      "B- 2,3,1"
+      "A- 1) verify meter operation with known good source, 2) test circuit, 3) verify meter operation after testing source",
+      "B- 1) test circuit, 2) verify meter operation with known good source, 3) verify meter operation after testing source",
+      "C- 1) verify meter operation with known good source, 2) verify meter operation after testing source, 3) test circuit"
     ],
     "correct_answer_letter": "A"
   },
