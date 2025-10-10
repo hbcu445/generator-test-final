@@ -288,17 +288,15 @@ Date: ${testResults.completionDate}
   // Welcome Screen
   if (currentScreen === 'welcome') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-        <Card className="w-full max-w-2xl">
-          <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-bold text-gray-800 mb-4">
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <Card className="w-full max-w-2xl card">
+          <CardHeader className="card-header">
+            <CardTitle className="card-title">
               Generator Technician Knowledge Test
             </CardTitle>
-            <p className="text-gray-600 text-lg">
-              </p>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="bg-blue-50 p-4 rounded-lg">
+          <CardContent className="card-content space-y-6">
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
               <h3 className="font-semibold text-blue-800 mb-2">Test Instructions</h3>
               <ul className="text-sm text-blue-700 space-y-1">
                 <li>• You have 75 minutes to complete {questions.length} questions.</li>
@@ -317,14 +315,14 @@ Date: ${testResults.completionDate}
                 placeholder="Your full name"
                 value={applicantName}
                 onChange={(e) => setApplicantName(e.target.value)}
-                className="text-lg p-3"
+                className="text-lg p-3 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
               />
             </div>
 
             <Button 
               onClick={startTest}
               disabled={!applicantName.trim()}
-              className="w-full text-lg py-3 bg-blue-600 hover:bg-blue-700"
+              className="w-full button button-primary"
             >
               <User className="mr-2 h-5 w-5" />
               Start Test
@@ -341,35 +339,37 @@ Date: ${testResults.completionDate}
     const progress = ((currentQuestionIndex + 1) / questions.length) * 100
 
     return (
-      <div className="min-h-screen bg-gray-50 p-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+          <div className="test-header mb-6">
             <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center space-x-4">
-                <User className="h-5 w-5 text-gray-600" />
+              <div className="flex items-center space-x-4 text-color-text-dark">
+                <User className="h-5 w-5" />
                 <span className="font-medium">{applicantName}</span>
               </div>
               <div className="flex items-center space-x-2 text-lg font-mono">
-                <Clock className="h-5 w-5 text-red-500" />
-                <span className={timeRemaining < 300 ? 'text-red-500' : 'text-gray-700'}>
+                <Clock className="h-5 w-5 text-color-danger" />
+                <span className={timeRemaining < 300 ? 'text-color-danger' : 'text-color-text-dark'}>
                   {formatTime(timeRemaining)}
                 </span>
               </div>
             </div>
-            <Progress value={progress} className="h-2" />
-            <p className="text-sm text-gray-600 mt-2">
+            <Progress value={progress} className="progress-background h-2">
+              <div className="progress-bar" style={{ width: `${progress}%` }}></div>
+            </Progress>
+            <p className="text-sm text-color-secondary mt-2">
               Question {currentQuestionIndex + 1} of {questions.length}
             </p>
           </div>
 
           {/* Question Card */}
-          <Card className="mb-6">
+          <Card className="mb-6 test-question-card">
             <CardHeader>
-              <div className="text-sm text-blue-600 font-medium mb-2">
+              <div className="test-question-category mb-2">
                 {currentQuestion.category}
               </div>
-              <CardTitle className="text-xl leading-relaxed">
+              <CardTitle className="test-question-title leading-relaxed">
                 {currentQuestion.question}
               </CardTitle>
             </CardHeader>
@@ -382,9 +382,9 @@ Date: ${testResults.completionDate}
                 {currentQuestion.options.map((option, index) => {
                   const optionLetter = String.fromCharCode(65 + index) // A, B, C, D
                   return (
-                    <div key={index} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 border border-gray-200">
-                      <RadioGroupItem value={optionLetter} id={`option-${index}`} />
-                      <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer text-base">
+                    <div key={index} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 border border-color-border">
+                      <RadioGroupItem value={optionLetter} id={`option-${index}`} className="radio-group-item" />
+                      <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer radio-group-label">
                         {option}
                       </Label>
                     </div>
@@ -400,7 +400,7 @@ Date: ${testResults.completionDate}
               onClick={previousQuestion}
               disabled={currentQuestionIndex === 0}
               variant="outline"
-              className="px-6"
+              className="button button-outline"
             >
               <ChevronLeft className="mr-2 h-4 w-4" />
               Previous
@@ -410,7 +410,7 @@ Date: ${testResults.completionDate}
               <Button
                 onClick={() => setShowAiHelp(true)}
                 variant="ghost"
-                className="px-4 text-blue-600 hover:text-blue-800"
+                className="px-4 text-color-primary hover:text-blue-800"
               >
                 <Lightbulb className="mr-2 h-4 w-4" />
                 AI Help
@@ -418,14 +418,14 @@ Date: ${testResults.completionDate}
               {currentQuestionIndex === questions.length - 1 ? (
                 <Button
                   onClick={handleTestSubmit}
-                  className="px-8 bg-green-600 hover:bg-green-700"
+                  className="button button-primary bg-color-accent hover:bg-green-700"
                 >
                   Submit Test
                 </Button>
               ) : (
                 <Button
                   onClick={nextQuestion}
-                  className="px-6"
+                  className="button button-primary"
                 >
                   Next
                   <ChevronRight className="ml-2 h-4 w-4" />
@@ -437,9 +437,9 @@ Date: ${testResults.completionDate}
           {/* AI Help Modal */}
           {showAiHelp && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-              <Card className="w-full max-w-md">
-                <CardHeader>
-                  <CardTitle className="flex items-center">
+              <Card className="w-full max-w-md ai-help-modal">
+                <CardHeader className="card-header">
+                  <CardTitle className="flex items-center card-title">
                     <Lightbulb className="mr-2 h-5 w-5" /> AI Help
                   </CardTitle>
                 </CardHeader>
