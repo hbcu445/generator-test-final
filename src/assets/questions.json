@@ -927,5 +927,245 @@
       "the system should not be turned off"
     ],
     "correct_answer_letter": "C"
+  },
+  {
+    "category": "GENERATOR MAINTENANCE",
+    "number": 78,
+    "question": "What is the recommended frequency for changing the oil in a diesel generator under normal operating conditions?",
+    "options": [
+      "A-Every 50 hours of operation",
+      "B-Every 100 hours of operation",
+      "C-Every 200 hours of operation",
+      "D-Every 500 hours of operation"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "category": "GENERATOR MAINTENANCE",
+    "number": 79,
+    "question": "Which component is responsible for converting mechanical energy to electrical energy in a generator?",
+    "options": [
+      "A-Stator",
+      "B-Rotor",
+      "C-Alternator",
+      "D-Exciter"
+    ],
+    "correct_answer_letter": "C"
+  },
+  {
+    "category": "TROUBLESHOOTING",
+    "number": 80,
+    "question": "If a generator fails to start, what should be the first item to check?",
+    "options": [
+      "A-Spark plugs",
+      "B-Fuel level",
+      "C-Battery voltage",
+      "D-Air filter"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "category": "TROUBLESHOOTING",
+    "number": 81,
+    "question": "What is the most common cause of generator overheating?",
+    "options": [
+      "A-Low fuel quality",
+      "B-Blocked air intake or cooling system",
+      "C-Faulty voltage regulator",
+      "D-Worn spark plugs"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "category": "ELECTRICAL SYSTEMS",
+    "number": 82,
+    "question": "What is the purpose of a voltage regulator in a generator system?",
+    "options": [
+      "A-To control engine speed",
+      "B-To maintain constant output voltage",
+      "C-To regulate fuel flow",
+      "D-To control cooling system temperature"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "category": "ELECTRICAL SYSTEMS",
+    "number": 83,
+    "question": "In a three-phase generator system, what is the phase angle between each phase?",
+    "options": [
+      "A-90 degrees",
+      "B-120 degrees",
+      "C-180 degrees",
+      "D-360 degrees"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "category": "SAFETY PROCEDURES",
+    "number": 84,
+    "question": "Before performing maintenance on a generator, what is the most critical safety step?",
+    "options": [
+      "A-Check fuel levels",
+      "B-Lockout/Tagout procedures",
+      "C-Test voltage output",
+      "D-Check oil pressure"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "category": "SAFETY PROCEDURES",
+    "number": 85,
+    "question": "What is the minimum safe distance to maintain from energized electrical equipment rated 600V or less?",
+    "options": [
+      "A-1 foot",
+      "B-2 feet",
+      "C-3 feet",
+      "D-4 feet"
+    ],
+    "correct_answer_letter": "C"
+  },
+  {
+    "category": "FUEL SYSTEMS",
+    "number": 86,
+    "question": "What type of fuel treatment is recommended for diesel generators in long-term storage?",
+    "options": [
+      "A-Fuel stabilizer additive",
+      "B-Water removal only",
+      "C-Octane booster",
+      "D-No treatment needed"
+    ],
+    "correct_answer_letter": "A"
+  },
+  {
+    "category": "FUEL SYSTEMS",
+    "number": 87,
+    "question": "What is the primary cause of fuel system contamination in diesel generators?",
+    "options": [
+      "A-Poor fuel quality",
+      "B-Water infiltration",
+      "C-Bacterial growth",
+      "D-All of the above"
+    ],
+    "correct_answer_letter": "D"
+  },
+  {
+    "category": "CONTROL SYSTEMS",
+    "number": 88,
+    "question": "What does an automatic transfer switch (ATS) do in a generator system?",
+    "options": [
+      "A-Controls fuel flow",
+      "B-Switches between utility and generator power",
+      "C-Regulates voltage output",
+      "D-Monitors engine temperature"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "category": "CONTROL SYSTEMS",
+    "number": 89,
+    "question": "In a generator control panel, what does a 'low oil pressure' alarm typically indicate?",
+    "options": [
+      "A-Need for oil change",
+      "B-Potential engine damage risk",
+      "C-Normal operating condition",
+      "D-Fuel system problem"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "category": "COOLING SYSTEMS",
+    "number": 90,
+    "question": "What is the typical operating temperature range for a diesel generator engine?",
+    "options": [
+      "A-120-140\u00b0F",
+      "B-160-180\u00b0F",
+      "C-180-200\u00b0F",
+      "D-200-220\u00b0F"
+    ],
+    "correct_answer_letter": "C"
+  },
+  {
+    "category": "COOLING SYSTEMS",
+    "number": 91,
+    "question": "What component circulates coolant through the engine block?",
+    "options": [
+      "A-Thermostat",
+      "B-Radiator",
+      "C-Water pump",
+      "D-Cooling fan"
+    ],
+    "correct_answer_letter": "C"
+  },
+  {
+    "category": "LOAD TESTING",
+    "number": 92,
+    "question": "What percentage of rated load should a generator be tested at during routine maintenance?",
+    "options": [
+      "A-25%",
+      "B-50%",
+      "C-75%",
+      "D-100%"
+    ],
+    "correct_answer_letter": "C"
+  },
+  {
+    "category": "LOAD TESTING",
+    "number": 93,
+    "question": "How long should a generator run during a monthly test cycle?",
+    "options": [
+      "A-5-10 minutes",
+      "B-15-30 minutes",
+      "C-45-60 minutes",
+      "D-2-3 hours"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "category": "BATTERY SYSTEMS",
+    "number": 94,
+    "question": "What is the typical voltage of a generator starting battery system?",
+    "options": [
+      "A-6 volts",
+      "B-12 volts",
+      "C-24 volts",
+      "D-48 volts"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "category": "BATTERY SYSTEMS",
+    "number": 95,
+    "question": "How often should generator battery electrolyte levels be checked?",
+    "options": [
+      "A-Weekly",
+      "B-Monthly",
+      "C-Quarterly",
+      "D-Annually"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "category": "ENVIRONMENTAL COMPLIANCE",
+    "number": 96,
+    "question": "What emission standard typically applies to stationary diesel generators?",
+    "options": [
+      "A-EPA Tier 1",
+      "B-EPA Tier 2",
+      "C-EPA Tier 4",
+      "D-No standards apply"
+    ],
+    "correct_answer_letter": "C"
+  },
+  {
+    "category": "ENVIRONMENTAL COMPLIANCE",
+    "number": 97,
+    "question": "What is the maximum allowable noise level for most residential generator installations?",
+    "options": [
+      "A-55 dB",
+      "B-65 dB",
+      "C-75 dB",
+      "D-85 dB"
+    ],
+    "correct_answer_letter": "B"
   }
 ]
