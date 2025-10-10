@@ -1,20 +1,23 @@
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Modern Industrial Color Palette (Blue & Yellow) */
 :root {
-  --color-primary: #004085; /* Deep Industrial Blue */
-  --color-secondary: #FFD700; /* Bright Industrial Yellow (Gold) */
-  --color-accent: #28a745; /* Green for success/highlights */
-  --color-danger: #dc3545; /* Red for warnings/errors */
-  --color-background-light: #f0f2f5; /* Very Light Gray */
-  --color-background-dark: #e0e4e8; /* Light Gray */
-  --color-text-dark: #212529; /* Dark Gray */
+  --color-primary: #0056b3; /* Strong Blue */
+  --color-secondary: #FFD700; /* Gold/Yellow */
+  --color-accent: #28a745; /* Green for success */
+  --color-danger: #dc3545; /* Red for errors */
+  --color-background-light: #f0f4f8; /* Lightest Gray-Blue */
+  --color-background-dark: #e0e7ef; /* Light Gray-Blue */
+  --color-text-dark: #2c3e50; /* Dark Slate Blue */
   --color-text-light: #ffffff; /* White */
   --color-card-bg: #ffffff;
-  --color-border: #ced4da;
+  --color-border: #cdd5df;
+  --color-shadow: rgba(0, 0, 0, 0.15);
 }
 
 body {
@@ -25,34 +28,47 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem; /* Increased padding for better spacing */
+  padding: 1.5rem;
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 52rem; /* Increased max-width for better desktop layout */
+  margin: auto;
 }
 
 .card {
-  border-radius: 0.75rem; /* Consistent rounding */
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+  border-radius: 1rem; /* More rounded corners */
+  box-shadow: 0 15px 40px var(--color-shadow); /* Deeper shadow */
   border: 1px solid var(--color-border);
   background-color: var(--color-card-bg);
   overflow: hidden;
-  width: 100%; /* Ensure card takes full width on small screens */
-  max-width: 48rem; /* Max width for larger screens */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
 }
 
 .card-header {
-  background-color: var(--color-primary); /* Deep blue header */
+  background-color: var(--color-primary); /* Strong blue header */
   color: var(--color-text-light);
-  padding: 2rem 2.5rem; /* Generous padding */
+  padding: 2.5rem 3rem; /* More generous padding */
   text-align: center;
   position: relative;
   z-index: 1;
+  border-bottom: 5px solid var(--color-secondary); /* Yellow accent line */
 }
 
 .card-title {
   color: var(--color-text-light);
-  font-size: 2.5rem; /* Larger, more impactful title */
+  font-size: 2.8rem; /* Even larger, more impactful title */
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 0.75rem;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 .card-content {
@@ -60,25 +76,28 @@ body {
 }
 
 .button {
-  border-radius: 0.6rem;
+  border-radius: 0.75rem; /* More rounded buttons */
   font-weight: 700;
   transition: all 0.3s ease-in-out;
-  padding: 0.8rem 1.8rem;
-  font-size: 1.05rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .button-primary {
   background-color: var(--color-primary);
   color: var(--color-text-light);
-  box-shadow: 0 5px 15px rgba(0, 64, 133, 0.25);
+  box-shadow: 0 6px 18px rgba(0, 86, 179, 0.3);
 }
 
 .button-primary:hover {
-  background-color: #003366; /* Even darker blue on hover */
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 64, 133, 0.35);
+  background-color: #004085; /* Darker blue on hover */
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 86, 179, 0.4);
 }
 
 .button-outline {
@@ -90,13 +109,57 @@ body {
 .button-outline:hover {
   background-color: var(--color-primary);
   color: var(--color-text-light);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+}
+
+.input-field {
+  width: 100%;
+  box-sizing: border-box;
+  height: 3.8rem; /* Significantly increased height for better UX */
+  font-size: 1.3rem; /* Larger font size */
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.6rem;
+  border: 2px solid var(--color-border);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
+  outline: none;
+}
+
+.instruction-box {
+  background-color: #e6f2ff; /* Light blue background for instructions */
+  border-left: 6px solid var(--color-primary); /* Stronger left border */
+  padding: 1.8rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.instruction-box h3 {
+  color: var(--color-primary);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.instruction-box ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.instruction-box li {
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  font-size: 1rem;
 }
 
 .radio-group-item {
   border-color: var(--color-primary);
-  width: 1.35rem;
-  height: 1.35rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-width: 2px;
 }
 
@@ -106,51 +169,52 @@ body {
 }
 
 .radio-group-label {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: var(--color-text-dark);
   font-weight: 500;
 }
 
 .progress-bar {
-  height: 0.8rem;
-  border-radius: 0.4rem;
+  height: 1rem; /* Thicker progress bar */
+  border-radius: 0.5rem;
   background-color: var(--color-secondary); /* Yellow progress bar */
   transition: width 0.4s ease-in-out;
 }
 
 .progress-background {
   background-color: var(--color-border);
-  border-radius: 0.4rem;
+  border-radius: 0.5rem;
 }
 
 /* Specific styles for the test screen header */
 .test-header {
   background-color: var(--color-card-bg);
-  border-radius: 0.75rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  padding: 1.8rem;
-  margin-bottom: 1.8rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
 }
 
 .test-question-card {
-  border-radius: 0.75rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.8rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }
 
 .test-question-category {
   color: var(--color-primary);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
 }
 
 .test-question-title {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--color-text-dark);
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .ai-help-modal .card-header {
@@ -172,15 +236,15 @@ body {
 
 .results-score-percentage {
   color: var(--color-accent);
-  font-size: 4.2rem;
+  font-size: 4.5rem;
   font-weight: 800;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  text-shadow: 3px 3px 7px rgba(0,0,0,0.15);
 }
 
 .results-skill-level {
   color: var(--color-primary);
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
 }
 
 /* Certificate Styling */
@@ -188,11 +252,11 @@ body {
   position: relative;
   width: 297mm; /* A4 landscape width */
   height: 210mm; /* A4 landscape height */
-  border: 15mm solid var(--color-primary); /* Industrial Blue border */
-  padding: 10mm;
+  border: 18mm solid var(--color-primary); /* Thicker Industrial Blue border */
+  padding: 12mm;
   box-sizing: border-box;
   background: linear-gradient(45deg, #e0f2f7 0%, #ffffff 100%); /* Light gradient background */
-  font-family: 'Roboto', sans-serif; /* Clean, modern font */
+  font-family: 'Inter', sans-serif; /* Clean, modern font */
   color: var(--color-text-dark);
   text-align: center;
   display: flex;
@@ -210,150 +274,194 @@ body {
   top: 0;
   left: 0;
   pointer-events: none;
-  border: 2mm solid var(--color-secondary); /* Inner yellow border */
+  border: 3mm solid var(--color-secondary); /* Inner yellow border */
   box-sizing: border-box;
 }
 
 .certificate-container::after {
-  border: 1mm dashed var(--color-primary); /* Dashed inner blue border */
-  padding: 5mm;
+  border: 1.5mm dashed var(--color-primary); /* Dashed inner blue border */
+  padding: 6mm;
 }
 
 .certificate-header {
-  font-size: 52pt; /* Adjusted title size */
+  font-size: 58pt; /* Larger title */
   font-weight: bold;
   color: var(--color-primary); /* Primary blue */
-  margin-bottom: 5mm;
+  margin-bottom: 6mm;
   text-transform: uppercase;
-  letter-spacing: 3pt;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  letter-spacing: 4pt;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
 }
 
 .certificate-subheader {
-  font-size: 23pt;
-  margin-bottom: 10mm;
+  font-size: 24pt;
+  margin-bottom: 12mm;
   color: var(--color-text-dark);
 }
 
 .certificate-text {
-  font-size: 17pt;
-  margin-bottom: 3mm;
+  font-size: 18pt;
+  margin-bottom: 4mm;
   color: var(--color-text-dark);
 }
 
 .certificate-name {
-  font-size: 44pt;
+  font-size: 48pt; /* Larger name */
   font-weight: bold;
   color: var(--color-secondary); /* Yellow accent for name */
-  margin-bottom: 10mm;
+  margin-bottom: 12mm;
   text-transform: capitalize;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
 }
 
 .certificate-score {
-  font-size: 32pt;
+  font-size: 36pt;
   font-weight: bold;
   color: var(--color-accent); /* Green for score */
-  margin-bottom: 5mm;
+  margin-bottom: 6mm;
 }
 
 .certificate-level {
-  font-size: 21pt;
+  font-size: 22pt;
   font-weight: bold;
   color: var(--color-primary); /* Blue for level */
-  margin-bottom: 15mm;
+  margin-bottom: 18mm;
 }
 
 .certificate-date {
-  font-size: 16pt;
-  margin-top: 15mm;
+  font-size: 17pt;
+  margin-top: 18mm;
   border-top: 1px solid var(--color-border);
-  padding-top: 5mm;
-  width: 60%;
+  padding-top: 6mm;
+  width: 65%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .certificate-signature {
-  font-size: 16pt;
-  margin-top: 8mm;
+  font-size: 17pt;
+  margin-top: 10mm;
   border-top: 1px solid var(--color-border);
-  padding-top: 5mm;
-  width: 60%;
+  padding-top: 6mm;
+  width: 65%;
   margin-left: auto;
   margin-right: auto;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
   .card-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+  .card-header {
+    padding: 2rem;
+  }
+  .card-content {
+    padding: 2rem;
+  }
+  .button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+  .input-field {
+    height: 3.2rem;
+    font-size: 1.1rem;
+  }
+  .instruction-box {
+    padding: 1.2rem;
+  }
+  .instruction-box h3 {
+    font-size: 1.1rem;
+  }
+  .instruction-box li {
+    font-size: 0.9rem;
+  }
+  .test-header {
+    padding: 1.5rem;
+  }
+  .test-question-title {
+    font-size: 1.4rem;
+  }
+  .radio-group-label {
+    font-size: 1.05rem;
+  }
+  .results-score-percentage {
+    font-size: 3.8rem;
+  }
+  .certificate-header {
+    font-size: 45pt;
+  }
+  .certificate-name {
+    font-size: 38pt;
+  }
+  .certificate-score {
+    font-size: 30pt;
+  }
+  .certificate-level {
+    font-size: 20pt;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0.8rem;
+  }
+  .card-title {
+    font-size: 1.8rem;
+  }
+  .card-header {
+    padding: 1.5rem;
+  }
+  .card-content {
+    padding: 1.5rem;
   }
   .button {
     padding: 0.7rem 1.2rem;
     font-size: 0.9rem;
   }
-  .test-question-title {
-    font-size: 1.3rem;
-  }
-  .radio-group-label {
+  .input-field {
+    height: 2.8rem;
     font-size: 1rem;
   }
-  .results-score-percentage {
-    font-size: 3.5rem;
+  .instruction-box {
+    padding: 1rem;
   }
-  .certificate-header {
-    font-size: 38pt;
+  .instruction-box h3 {
+    font-size: 1rem;
   }
-  .certificate-name {
-    font-size: 32pt;
-  }
-  .certificate-score {
-    font-size: 26pt;
-  }
-  .certificate-level {
-    font-size: 19pt;
-  }
-  .card-content {
-    padding: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .card-title {
-    font-size: 1.7rem;
-  }
-  .button {
-    padding: 0.6rem 1rem;
+  .instruction-box li {
     font-size: 0.85rem;
   }
+  .test-header {
+    padding: 1.2rem;
+  }
   .test-question-title {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
   .radio-group-label {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
   .results-score-percentage {
-    font-size: 3rem;
+    font-size: 3.2rem;
   }
   .certificate-header {
-    font-size: 30pt;
+    font-size: 35pt;
   }
   .certificate-name {
-    font-size: 26pt;
+    font-size: 30pt;
   }
   .certificate-score {
-    font-size: 22pt;
+    font-size: 25pt;
   }
   .certificate-level {
-    font-size: 17pt;
+    font-size: 18pt;
   }
   .certificate-container {
-    border: 8mm solid var(--color-primary);
-    padding: 5mm;
-  }
-  .card-content {
-    padding: 1rem;
+    border: 10mm solid var(--color-primary);
+    padding: 8mm;
   }
 }
 
@@ -367,35 +475,4 @@ body {
   animation: fade-in 0.6s ease-out forwards;
 }
 
-.input-field {
-  width: 100%; /* Ensure input field takes full width */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  height: 3.5rem; /* Increased height for better tap target and visual presence */
-  font-size: 1.2rem; /* Larger font size for readability */
-  padding: 0.75rem 1rem; /* Adjust padding */
-}
-
-.instruction-box {
-  background-color: #e6f2ff; /* Light blue background for instructions */
-  border-left: 5px solid var(--color-primary); /* Stronger left border */
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-}
-
-.instruction-box h3 {
-  color: var(--color-primary);
-  font-size: 1.2rem;
-  margin-bottom: 0.8rem;
-}
-
-.instruction-box ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.instruction-box li {
-  margin-bottom: 0.5rem;
-  line-height: 1.5;
-  color: #34495e; /* Darker text for instructions */
-}
 
