@@ -264,15 +264,35 @@ Date: ${testResults.completionDate}
     setAiAnswer('')
 
     try {
-      const response = await fetch('/api/ai-help', {
-        method: 'POST',
+      // Directly call OpenAI API from frontend (for demonstration/testing purposes)
+      // In a real application, this should be proxied through a secure backend
+      const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY || process.env.OPENAI_API_KEY; // Assuming key is available via Vite env or process.env
+      if (!OPENAI_API_KEY) {
+        setAiAnswer("AI Help is not configured. Please provide an OpenAI API key.");
+        setAiLoading(false);
+        return;
+      }
+
+      const prompt = `The user is taking a power generation technician knowledge test. They asked: "${aiQuestion}". The current question they are on is: "${questions[currentQuestionIndex].question}". Provide a concise and helpful answer without giving away the direct answer to the current test question. Focus on explaining concepts or providing relevant background information.`;
+
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${OPENAI_API_KEY}`,
         },
-        body: JSON.stringify({ question: aiQuestion, currentQuestion: questions[currentQuestionIndex].question }),
-      })
-      const data = await response.json()
-      setAiAnswer(data.answer)
+        body: JSON.stringify({
+          model: "gpt-4o-mini", // Or another suitable model
+          messages: [{ role: "user", content: prompt }],
+          max_tokens: 150,
+        }),
+      });
+      const data = await response.json();
+      if (response.ok && data.choices && data.choices.length > 0) {
+        setAiAnswer(data.choices[0].message.content);
+      } else {
+        setAiAnswer(data.error ? `Error: ${data.error.message}` : "Failed to get AI help. Please try again.");
+      }
     } catch (error) {
       console.error('Error fetching AI help:', error)
       setAiAnswer('Sorry, I could not fetch an answer at this time. Please try again later.')
