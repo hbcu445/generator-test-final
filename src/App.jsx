@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.jsx'
@@ -5,7 +6,7 @@ import { Input } from '@/components/ui/input.jsx'
 import { Label } from '@/components/ui/label.jsx'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group.jsx'
 import { Progress } from '@/components/ui/progress.jsx'
-import { Clock, User, Award, CheckCircle } from 'lucide-react'
+import { Clock, User, Award, CheckCircle, ChevronLeft, ChevronRight, Lightbulb } from 'lucide-react'
 import questionsData from './assets/questions.json'
 import TestSimulator from './TestSimulator.jsx'
 import './App.css'
@@ -18,6 +19,10 @@ function App() {
   const [timeRemaining, setTimeRemaining] = useState(75 * 60) // 75 minutes in seconds
   const [testStarted, setTestStarted] = useState(false)
   const [testResults, setTestResults] = useState(null)
+  const [showAiHelp, setShowAiHelp] = useState(false)
+  const [aiQuestion, setAiQuestion] = useState('')
+  const [aiAnswer, setAiAnswer] = useState('')
+  const [aiLoading, setAiLoading] = useState(false)
 
   // Filter and prepare questions
   const questions = questionsData.filter(q => q.question && q.options && q.options.length > 0)
@@ -71,7 +76,11 @@ function App() {
     let correctAnswers = 0
     questions.forEach((question, index) => {
       const userAnswer = answers[index]
-      if (userAnswer && userAnswer === question.correct_answer_letter) {
+      // Assuming correct_answer_letter is 'A', 'B', 'C', 'D'
+      // And options are 'A- ...', 'B- ...'
+      const correctOptionPrefix = question.correct_answer_letter + '-'
+      const isCorrect = userAnswer && userAnswer === question.correct_answer_letter
+      if (isCorrect) {
         correctAnswers++
       }
     })
@@ -207,6 +216,29 @@ Location: Jacksonville
     setCurrentScreen('results')
   }
 
+  const handleAiHelp = async () => {
+    if (!aiQuestion.trim()) return
+    setAiLoading(true)
+    setAiAnswer('')
+
+    try {
+      const response = await fetch('/api/ai-help', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question: aiQuestion, currentQuestion: questions[currentQuestionIndex].question }),
+      })
+      const data = await response.json()
+      setAiAnswer(data.answer)
+    } catch (error) {
+      console.error('Error fetching AI help:', error)
+      setAiAnswer('Sorry, I could not fetch an answer at this time. Please try again later.')
+    } finally {
+      setAiLoading(false)
+    }
+  }
+
   // Welcome Screen
   if (currentScreen === 'welcome') {
     return (
@@ -321,18 +353,27 @@ Location: Jacksonville
             </CardContent>
           </Card>
 
-          {/* Navigation */}
-          <div className="flex justify-between">
+          {/* Navigation and Submit */}
+          <div className="flex justify-between items-center">
             <Button
               onClick={previousQuestion}
               disabled={currentQuestionIndex === 0}
               variant="outline"
               className="px-6"
             >
+              <ChevronLeft className="mr-2 h-4 w-4" />
               Previous
             </Button>
             
-            <div className="space-x-3">
+            <div className="flex space-x-3">
+              <Button
+                onClick={() => setShowAiHelp(true)}
+                variant="ghost"
+                className="px-4 text-blue-600 hover:text-blue-800"
+              >
+                <Lightbulb className="mr-2 h-4 w-4" />
+                AI Help
+              </Button>
               {currentQuestionIndex === questions.length - 1 ? (
                 <Button
                   onClick={handleTestSubmit}
@@ -346,10 +387,44 @@ Location: Jacksonville
                   className="px-6"
                 >
                   Next
+                  <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               )}
             </div>
           </div>
+
+          {/* AI Help Modal */}
+          {showAiHelp && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+              <Card className="w-full max-w-md">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <Lightbulb className="mr-2 h-5 w-5" /> AI Help
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-sm text-gray-600">Ask a question related to the current topic. Do not ask for direct answers.</p>
+                  <Input
+                    placeholder="Your question..."
+                    value={aiQuestion}
+                    onChange={(e) => setAiQuestion(e.target.value)}
+                  />
+                  <Button onClick={handleAiHelp} disabled={aiLoading || !aiQuestion.trim()} className="w-full">
+                    {aiLoading ? 'Getting Answer...' : 'Get Answer'}
+                  </Button>
+                  {aiAnswer && (
+                    <div className="bg-gray-100 p-3 rounded-md text-sm">
+                      <p className="font-semibold">AI Response:</p>
+                      <p>{aiAnswer}</p>
+                    </div>
+                  )}
+                  <Button variant="outline" onClick={() => setShowAiHelp(false)} className="w-full">
+                    Close
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          )}
 
           {/* Test Simulator for Demo */}
           <TestSimulator onComplete={simulateTestCompletion} />
@@ -434,3 +509,4 @@ Location: Jacksonville
 }
 
 export default App
+
