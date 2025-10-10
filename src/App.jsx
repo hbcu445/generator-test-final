@@ -124,62 +124,58 @@ function App() {
       // Set up the certificate design
       const pageWidth = doc.internal.pageSize.getWidth()
       const pageHeight = doc.internal.pageSize.getHeight()
-      
-      // Background border
-      doc.setDrawColor(0, 51, 102)
-      doc.setLineWidth(3)
-      doc.rect(10, 10, pageWidth - 20, pageHeight - 20)
-      
-      // Inner border
-      doc.setLineWidth(1)
-      doc.rect(15, 15, pageWidth - 30, pageHeight - 30)
+
+      // Use the new fancy certificate styling
+      // Background gradient and borders are handled by CSS in .certificate-container
 
       // Title
-      doc.setFontSize(28)
-      doc.setFont('helvetica', 'bold')
-      doc.setTextColor(0, 51, 102)
-      doc.text('CERTIFICATE OF COMPLETION', pageWidth / 2, 40, { align: 'center' })
+      doc.setFontSize(56) // Larger title
+      doc.setFont("Playfair Display", "bold") // Elegant font
+      doc.setTextColor("#6a0dad") // Primary Purple
+      doc.text("CERTIFICATE OF COMPLETION", pageWidth / 2, 40, { align: "center" })
 
       // Subtitle
-      doc.setFontSize(18)
-      doc.setFont("helvetica", "normal")
-      doc.setTextColor(0, 0, 0)
-      doc.text("Generator Technician Knowledge Test", pageWidth / 2, 55, { align: "center" })
+      doc.setFontSize(24)
+      doc.setFont("Roboto", "normal")
+      doc.setTextColor("#2c3e50") // Dark Blue-Gray
+      doc.text("Generator Technician Knowledge Test", pageWidth / 2, 65, { align: "center" })
 
       // Certificate text
-      doc.setFontSize(14)
-      doc.text("This certifies that", pageWidth / 2, 85, { align: "center" })
+      doc.setFontSize(18)
+      doc.text("This certifies that", pageWidth / 2, 95, { align: "center" })
 
       // Applicant name
-      doc.setFontSize(24)
-      doc.setFont("helvetica", "bold")
-      doc.setTextColor(0, 102, 51)
-      doc.text(applicantName, pageWidth / 2, 105, { align: "center" })
+      doc.setFontSize(48) // Larger name
+      doc.setFont("Playfair Display", "bold")
+      doc.setTextColor("#ff6f61") // Vibrant Coral
+      doc.text(applicantName, pageWidth / 2, 120, { align: "center" })
 
       // Achievement text
-      doc.setFontSize(14)
-      doc.setFont("helvetica", "normal")
-      doc.setTextColor(0, 0, 0)
-      doc.text("has successfully completed the Generator Technician Knowledge Test", pageWidth / 2, 125, { align: "center" })
+      doc.setFontSize(18)
+      doc.setFont("Roboto", "normal")
+      doc.setTextColor("#2c3e50")
+      doc.text("has successfully completed the", pageWidth / 2, 140, { align: "center" })
+      doc.text("Generator Technician Knowledge Test", pageWidth / 2, 150, { align: "center" })
 
       // Score details
+      doc.setFontSize(32) // Larger score
+      doc.setFont("Playfair Display", "bold")
+      doc.setTextColor("#2ecc71") // Emerald Green
+      doc.text(`Score: ${testResults.percentage}% (${testResults.correctAnswers} of ${testResults.totalQuestions} questions correct)`, pageWidth / 2, 175, { align: "center" })
+      doc.setFontSize(22) // Larger skill level
+      doc.setTextColor("#8d52d9") // Lighter Purple
+      doc.text(`Skill Level: ${testResults.level}`, pageWidth / 2, 185, { align: "center" })
+
+      // Date and Signature
       doc.setFontSize(16)
-      doc.setFont("helvetica", "bold")
-      doc.setTextColor(0, 51, 102)
-      doc.text(`Score: ${testResults.percentage}% (${testResults.correctAnswers} of ${testResults.totalQuestions} questions correct)`, pageWidth / 2, 155, { align: "center" })
-      doc.text(`Skill Level: ${testResults.level}`, pageWidth / 2, 170, { align: "center" })
+      doc.setFont("Roboto", "normal")
+      doc.setTextColor("#2c3e50")
+      doc.text(`Date: ${testResults.completionDate}`, pageWidth / 2, pageHeight - 40, { align: "center" })
 
-      // Date
-      doc.setFontSize(12)
-      doc.setFont("helvetica", "normal")
-      doc.setTextColor(0, 0, 0)
-      doc.text(`Date: ${testResults.completionDate}`, pageWidth / 2, pageHeight - 45, { align: "center" })
-
-      // Signature line
-      doc.setDrawColor(0, 0, 0)
-      doc.setLineWidth(0.5)
-      doc.line(pageWidth / 2 - 40, pageHeight - 30, pageWidth / 2 + 40, pageHeight - 30)
-      doc.text("Authorized Signature", pageWidth / 2, pageHeight - 25, { align: "center" })
+      doc.setDrawColor("#dcdcdc") // Light gray border
+      doc.setLineWidth(0.8)
+      doc.line(pageWidth / 2 - 50, pageHeight - 25, pageWidth / 2 + 50, pageHeight - 25)
+      doc.text("Authorized Signature", pageWidth / 2, pageHeight - 20, { align: "center" })
 
       // Save the PDF
       doc.save(`${applicantName.replace(/\s+/g, '_')}_Generator_Technician_Certificate.pdf`)
@@ -289,16 +285,16 @@ Date: ${testResults.completionDate}
   if (currentScreen === 'welcome') {
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
-        <Card className="w-full max-w-2xl card">
+        <Card className="w-full max-w-2xl card animate-fade-in">
           <CardHeader className="card-header">
             <CardTitle className="card-title">
               Generator Technician Knowledge Test
             </CardTitle>
           </CardHeader>
           <CardContent className="card-content space-y-6">
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-              <h3 className="font-semibold text-blue-800 mb-2">Test Instructions</h3>
-              <ul className="text-sm text-blue-700 space-y-1">
+            <div className="instruction-box p-4 rounded-lg border border-color-border bg-color-background-light">
+              <h3 className="font-semibold text-color-primary mb-2 text-lg">Test Instructions</h3>
+              <ul className="text-sm text-color-text-dark space-y-1">
                 <li>• You have 75 minutes to complete {questions.length} questions.</li>
                 <li>• Select the best answer for each question.</li>
                 <li>• You will receive your results immediately after submission.</li>
@@ -306,7 +302,7 @@ Date: ${testResults.completionDate}
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-lg font-medium">
+              <Label htmlFor="name" className="text-lg font-medium text-color-text-dark">
                 Enter your full name:
               </Label>
               <Input
@@ -315,7 +311,7 @@ Date: ${testResults.completionDate}
                 placeholder="Your full name"
                 value={applicantName}
                 onChange={(e) => setApplicantName(e.target.value)}
-                className="text-lg p-3 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                className="input-field text-lg p-3 border-color-border focus:border-color-primary focus:ring focus:ring-color-secondary focus:ring-opacity-50"
               />
             </div>
 

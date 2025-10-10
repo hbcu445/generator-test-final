@@ -3,50 +3,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Modern Color Palette */
+/* Modern & Vibrant Color Palette */
 :root {
-  --color-primary: #007bff; /* Bright Blue */
-  --color-secondary: #6c757d; /* Muted Gray */
-  --color-accent: #28a745; /* Green for success/highlights */
-  --color-danger: #dc3545; /* Red for warnings/errors */
-  --color-background-light: #f8f9fa; /* Very light gray */
-  --color-background-dark: #e9ecef; /* Slightly darker gray */
-  --color-text-dark: #343a40; /* Dark text */
-  --color-text-light: #ffffff; /* Light text */
+  --color-primary: #6a0dad; /* Deep Purple */
+  --color-secondary: #8d52d9; /* Lighter Purple */
+  --color-accent: #ff6f61; /* Vibrant Coral */
+  --color-danger: #e74c3c; /* Bright Red */
+  --color-success: #2ecc71; /* Emerald Green */
+  --color-background-light: #f4f4f9; /* Off-white */
+  --color-background-dark: #e0e0eb; /* Light Gray-Purple */
+  --color-text-dark: #2c3e50; /* Dark Blue-Gray */
+  --color-text-light: #ffffff; /* White */
   --color-card-bg: #ffffff;
-  --color-border: #dee2e6;
+  --color-border: #dcdcdc;
 }
 
 body {
-  font-family: 'Inter', sans-serif; /* Modern sans-serif font */
+  font-family: 'Poppins', sans-serif; /* Modern, clean font */
   background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-background-dark) 100%);
   color: var(--color-text-dark);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem; /* Add some padding for mobile */
 }
 
 .card {
-  border-radius: 1rem; /* More rounded corners */
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+  border-radius: 1.5rem; /* Even more rounded corners */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Stronger, more modern shadow */
   border: none;
   background-color: var(--color-card-bg);
+  overflow: hidden; /* Ensures rounded corners are respected */
 }
 
 .card-header {
-  background-color: var(--color-primary); /* Primary color for header */
+  background: linear-gradient(45deg, var(--color-primary) 0%, var(--color-secondary) 100%); /* Gradient header */
   color: var(--color-text-light);
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  padding: 1.5rem 2rem;
+  padding: 2rem 1.5rem; /* Increased padding */
   text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.card-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="%23ffffff" fill-opacity="0.1" d="M0,0 L100,0 L100,100 L0,100 Z"/></svg>') repeat;
+  opacity: 0.1;
+  z-index: -1;
 }
 
 .card-title {
   color: var(--color-text-light);
-  font-size: 2.25rem; /* Larger title */
-  font-weight: 700;
+  font-size: 2.5rem; /* Larger title */
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
 
 .card-content {
@@ -54,21 +71,25 @@ body {
 }
 
 .button {
-  border-radius: 0.5rem;
-  font-weight: 600;
+  border-radius: 0.75rem; /* More rounded buttons */
+  font-weight: 700;
   transition: all 0.3s ease-in-out;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
+  padding: 0.85rem 1.75rem;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .button-primary {
   background-color: var(--color-primary);
   color: var(--color-text-light);
+  box-shadow: 0 5px 15px rgba(106, 13, 173, 0.3);
 }
 
 .button-primary:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  transform: translateY(-2px); /* Slight lift effect */
+  background-color: var(--color-secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(106, 13, 173, 0.4);
 }
 
 .button-outline {
@@ -80,13 +101,14 @@ body {
 .button-outline:hover {
   background-color: var(--color-primary);
   color: var(--color-text-light);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .radio-group-item {
   border-color: var(--color-primary);
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-width: 2px;
 }
 
 .radio-group-item[data-state=checked] {
@@ -95,48 +117,55 @@ body {
 }
 
 .radio-group-label {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: var(--color-text-dark);
+  font-weight: 500;
 }
 
 .progress-bar {
-  height: 0.75rem;
-  border-radius: 0.375rem;
-  background-color: var(--color-primary);
+  height: 0.85rem;
+  border-radius: 0.425rem;
+  background-color: var(--color-accent);
+  transition: width 0.4s ease-in-out;
 }
 
 .progress-background {
   background-color: var(--color-border);
+  border-radius: 0.425rem;
 }
 
 /* Specific styles for the test screen header */
 .test-header {
   background-color: var(--color-card-bg);
-  border-radius: 1rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .test-question-card {
-  border-radius: 1rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
 }
 
 .test-question-category {
   color: var(--color-primary);
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-weight: 700;
+  font-size: 1rem;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .test-question-title {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  font-weight: 700;
   color: var(--color-text-dark);
+  line-height: 1.4;
 }
 
 .ai-help-modal .card-header {
-  background-color: var(--color-accent);
+  background: linear-gradient(45deg, var(--color-accent) 0%, #ff9a8d 100%);
 }
 
 .ai-help-modal .card-title {
@@ -145,7 +174,7 @@ body {
 
 /* Results Screen */
 .results-card-header {
-  background-color: var(--color-accent);
+  background: linear-gradient(45deg, var(--color-success) 0%, #76e0a3 100%);
 }
 
 .results-card-title {
@@ -153,14 +182,16 @@ body {
 }
 
 .results-score-percentage {
-  color: var(--color-accent);
-  font-size: 3.5rem;
-  font-weight: 700;
+  color: var(--color-success);
+  font-size: 4.5rem;
+  font-weight: 800;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
 }
 
 .results-skill-level {
   color: var(--color-primary);
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1.3rem;
 }
 
 /* Certificate Styling */
@@ -168,12 +199,12 @@ body {
   position: relative;
   width: 297mm; /* A4 landscape width */
   height: 210mm; /* A4 landscape height */
-  border: 15mm solid #007bff; /* Vibrant blue border */
+  border: 15mm solid var(--color-primary); /* Vibrant purple border */
   padding: 10mm;
   box-sizing: border-box;
-  background: linear-gradient(45deg, #e0f2f7 0%, #ffffff 100%); /* Light gradient background */
+  background: linear-gradient(45deg, #f0e6fa 0%, #ffffff 100%); /* Light gradient background */
   font-family: 'Playfair Display', serif; /* Elegant font */
-  color: #343a40;
+  color: var(--color-text-dark);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -190,83 +221,145 @@ body {
   top: 0;
   left: 0;
   pointer-events: none;
-  border: 2mm solid #0056b3; /* Inner border */
+  border: 2mm solid var(--color-secondary); /* Inner border */
   box-sizing: border-box;
 }
 
 .certificate-container::after {
-  border: 1mm dashed #007bff; /* Dashed inner border */
+  border: 1mm dashed var(--color-accent); /* Dashed inner border */
   padding: 5mm;
 }
 
 .certificate-header {
-  font-size: 56pt; /* Larger title */
+  font-size: 60pt; /* Larger title */
   font-weight: bold;
-  color: #007bff; /* Primary blue */
+  color: var(--color-primary); /* Primary purple */
   margin-bottom: 5mm;
   text-transform: uppercase;
-  letter-spacing: 3pt;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  letter-spacing: 4pt;
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.15);
 }
 
 .certificate-subheader {
-  font-size: 24pt;
+  font-size: 26pt;
   margin-bottom: 10mm;
-  color: #6c757d;
+  color: var(--color-text-dark);
   font-family: 'Roboto', sans-serif;
 }
 
 .certificate-text {
-  font-size: 18pt;
+  font-size: 20pt;
   margin-bottom: 3mm;
-  color: #343a40;
+  color: var(--color-text-dark);
 }
 
 .certificate-name {
-  font-size: 48pt;
+  font-size: 52pt;
   font-weight: bold;
-  color: #28a745; /* Green accent for name */
+  color: var(--color-accent); /* Coral accent for name */
   margin-bottom: 10mm;
   text-transform: capitalize;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .certificate-score {
-  font-size: 32pt;
+  font-size: 36pt;
   font-weight: bold;
-  color: #007bff; /* Blue for score */
+  color: var(--color-success); /* Green for score */
   margin-bottom: 5mm;
 }
 
 .certificate-level {
-  font-size: 22pt;
+  font-size: 24pt;
   font-weight: bold;
-  color: #6c757d; /* Muted gray for level */
+  color: var(--color-secondary); /* Secondary purple for level */
   margin-bottom: 15mm;
 }
 
 .certificate-date {
-  font-size: 16pt;
-  margin-top: 15mm;
-  border-top: 1px solid #6c757d;
-  padding-top: 5mm;
-  width: 60%;
+  font-size: 18pt;
+  margin-top: 20mm;
+  border-top: 2px solid var(--color-border);
+  padding-top: 8mm;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .certificate-signature {
-  font-size: 16pt;
-  margin-top: 8mm;
-  border-top: 1px solid #6c757d;
-  padding-top: 5mm;
-  width: 60%;
+  font-size: 18pt;
+  margin-top: 10mm;
+  border-top: 2px solid var(--color-border);
+  padding-top: 8mm;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Ensure the modal for AI help is styled correctly */
-.fixed.inset-0 {
-  z-index: 9999; /* Ensure it's on top */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-title {
+    font-size: 2rem;
+  }
+  .button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  .test-question-title {
+    font-size: 1.3rem;
+  }
+  .radio-group-label {
+    font-size: 1rem;
+  }
+  .results-score-percentage {
+    font-size: 3.5rem;
+  }
+  .certificate-header {
+    font-size: 40pt;
+  }
+  .certificate-name {
+    font-size: 36pt;
+  }
+  .certificate-score {
+    font-size: 28pt;
+  }
+  .certificate-level {
+    font-size: 20pt;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-title {
+    font-size: 1.8rem;
+  }
+  .button {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+  .test-question-title {
+    font-size: 1.1rem;
+  }
+  .radio-group-label {
+    font-size: 0.9rem;
+  }
+  .results-score-percentage {
+    font-size: 3rem;
+  }
+  .certificate-header {
+    font-size: 30pt;
+  }
+  .certificate-name {
+    font-size: 28pt;
+  }
+  .certificate-score {
+    font-size: 24pt;
+  }
+  .certificate-level {
+    font-size: 18pt;
+  }
+  .certificate-container {
+    border: 10mm solid var(--color-primary);
+    padding: 5mm;
+  }
 }
 
