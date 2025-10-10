@@ -18,6 +18,7 @@ function App() {
   const [answers, setAnswers] = useState({})
   const [timeRemaining, setTimeRemaining] = useState(75 * 60) // 75 minutes in seconds
   const [testStarted, setTestStarted] = useState(false)
+  const [isPaused, setIsPaused] = useState(false) // New state for pause functionality
   const [testResults, setTestResults] = useState(null)
   const [lifelinesRemaining, setLifelinesRemaining] = useState(3) // Initialize with 3 lifelines
   const [lifelinesUsed, setLifelinesUsed] = useState(0)
@@ -32,7 +33,7 @@ function App() {
 
   // Timer effect
   useEffect(() => {
-    if (testStarted && timeRemaining > 0 && currentScreen === 'test') {
+    if (testStarted && !isPaused && timeRemaining > 0 && currentScreen === 'test') {
       const timer = setTimeout(() => {
         setTimeRemaining(timeRemaining - 1)
       }, 1000)
@@ -391,6 +392,12 @@ Date: ${testResults.completionDate}
               <div className="flex items-center space-x-4 text-color-text-dark">
                 <Clock className="h-5 w-5" />
                 <span className="font-mono font-medium">{formatTime(timeRemaining)}</span>
+                <Button
+                  onClick={() => setIsPaused(!isPaused)}
+                  className="button button-secondary button-sm ml-4"
+                >
+                  {isPaused ? "Resume" : "Pause"}
+                </Button>
               </div>
             </div>
             <Progress value={progress} className="w-full" />
