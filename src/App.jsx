@@ -19,10 +19,13 @@ function App() {
   const [timeRemaining, setTimeRemaining] = useState(75 * 60) // 75 minutes in seconds
   const [testStarted, setTestStarted] = useState(false)
   const [testResults, setTestResults] = useState(null)
-  const [showAiHelp, setShowAiHelp] = useState(false)
-  const [aiQuestion, setAiQuestion] = useState('')
-  const [aiAnswer, setAiAnswer] = useState('')
+  const [lifelinesRemaining, setLifelinesRemaining] = useState(3) // Initialize with 3 lifelines
+  const [lifelinesUsed, setLifelinesUsed] = useState(0)
+  const [showAiHelpModal, setShowAiHelpModal] = useState(false)
+  const [aiQuestion, setAiQuestion] = useState("")
+  const [aiAnswer, setAiAnswer] = useState("")
   const [aiLoading, setAiLoading] = useState(false)
+  const [aiExplanationQuestionIndex, setAiExplanationQuestionIndex] = useState(null) // To store which question AI is explaining
 
   // Filter and prepare questions
   const questions = questionsData.filter(q => q.question && q.options && q.options.length > 0)
@@ -76,16 +79,18 @@ function App() {
     let correctAnswers = 0
     questions.forEach((question, index) => {
       const userAnswer = answers[index]
-      // Assuming correct_answer_letter is 'A', 'B', 'C', 'D'
-      // And options are 'A- ...', 'B- ...'
-      const correctOptionPrefix = question.correct_answer_letter + '-'
       const isCorrect = userAnswer && userAnswer === question.correct_answer_letter
       if (isCorrect) {
         correctAnswers++
       }
     })
 
-    const percentage = Math.round((correctAnswers / questions.length) * 100)
+    let finalScore = correctAnswers;
+    if (lifelinesUsed > 0) {
+      finalScore = Math.max(0, correctAnswers - lifelinesUsed); // Deduct 1 point per lifeline used
+    }
+
+    const percentage = Math.round((finalScore / questions.length) * 100)
     let level = 'Beginner'
     if (percentage >= 80) level = 'Advanced'
     else if (percentage >= 60) level = 'Intermediate'
@@ -98,16 +103,20 @@ function App() {
         category: question.category,
         userAnswer: userAnswer ? `${userAnswer}. ${question.options[userAnswer.charCodeAt(0) - 65]}` : 'No Answer',
         correctAnswer: `${question.correct_answer_letter}. ${question.options[question.correct_answer_letter.charCodeAt(0) - 65]}`, 
-        isCorrect: isCorrect
+        isCorrect: isCorrect,
+        aiExplanation: null, // Placeholder for AI explanation
+        showExplanation: false // Flag to show/hide explanation
       }
     })
 
     setTestResults({
       correctAnswers,
       totalQuestions: questions.length,
+      finalScore,
       percentage,
       level,
       completionDate: new Date().toLocaleDateString(),
+      lifelinesUsed,
       detailedResults: detailedResults
     })
     setCurrentScreen("results")
@@ -121,67 +130,54 @@ function App() {
         format: 'a4'
       })
 
-      // Set up the certificate design
       const pageWidth = doc.internal.pageSize.getWidth()
       const pageHeight = doc.internal.pageSize.getHeight()
 
-      // Use the new fancy certificate styling
-      // Background gradient and borders are handled by CSS in .certificate-container
-
-      // Title
-      doc.setFontSize(56) // Larger title
-      doc.setFont("Playfair Display", "bold") // Elegant font
-      doc.setTextColor("#6a0dad") // Primary Purple
+      doc.setFontSize(56)
+      doc.setFont("Playfair Display", "bold")
+      doc.setTextColor("#6a0dad")
       doc.text("CERTIFICATE OF COMPLETION", pageWidth / 2, 40, { align: "center" })
 
-      // Subtitle
       doc.setFontSize(24)
       doc.setFont("Roboto", "normal")
-      doc.setTextColor("#2c3e50") // Dark Blue-Gray
+      doc.setTextColor("#2c3e50")
       doc.text("Generator Technician Knowledge Test", pageWidth / 2, 65, { align: "center" })
 
-      // Certificate text
       doc.setFontSize(18)
       doc.text("This certifies that", pageWidth / 2, 95, { align: "center" })
 
-      // Applicant name
-      doc.setFontSize(48) // Larger name
+      doc.setFontSize(48)
       doc.setFont("Playfair Display", "bold")
-      doc.setTextColor("#ff6f61") // Vibrant Coral
+      doc.setTextColor("#ff6f61")
       doc.text(applicantName, pageWidth / 2, 120, { align: "center" })
 
-      // Achievement text
       doc.setFontSize(18)
       doc.setFont("Roboto", "normal")
       doc.setTextColor("#2c3e50")
       doc.text("has successfully completed the", pageWidth / 2, 140, { align: "center" })
       doc.text("Generator Technician Knowledge Test", pageWidth / 2, 150, { align: "center" })
 
-      // Score details
-      doc.setFontSize(32) // Larger score
+      doc.setFontSize(32)
       doc.setFont("Playfair Display", "bold")
-      doc.setTextColor("#2ecc71") // Emerald Green
+      doc.setTextColor("#2ecc71")
       doc.text(`Score: ${testResults.percentage}% (${testResults.correctAnswers} of ${testResults.totalQuestions} questions correct)`, pageWidth / 2, 175, { align: "center" })
-      doc.setFontSize(22) // Larger skill level
-      doc.setTextColor("#8d52d9") // Lighter Purple
+      doc.setFontSize(22)
+      doc.setTextColor("#8d52d9")
       doc.text(`Skill Level: ${testResults.level}`, pageWidth / 2, 185, { align: "center" })
 
-      // Date and Signature
       doc.setFontSize(16)
       doc.setFont("Roboto", "normal")
       doc.setTextColor("#2c3e50")
       doc.text(`Date: ${testResults.completionDate}`, pageWidth / 2, pageHeight - 40, { align: "center" })
 
-      doc.setDrawColor("#dcdcdc") // Light gray border
+      doc.setDrawColor("#dcdcdc")
       doc.setLineWidth(0.8)
       doc.line(pageWidth / 2 - 50, pageHeight - 25, pageWidth / 2 + 50, pageHeight - 25)
       doc.text("Authorized Signature", pageWidth / 2, pageHeight - 20, { align: "center" })
 
-      // Save the PDF
       doc.save(`${applicantName.replace(/\s+/g, '_')}_Generator_Technician_Certificate.pdf`)
     }).catch(error => {
       console.error('Error generating certificate:', error)
-      // Fallback to text certificate
       const certificateContent = `
 CERTIFICATE OF COMPLETION
 
@@ -232,6 +228,13 @@ Date: ${testResults.completionDate}
         doc.setTextColor(result.isCorrect ? 0 : 255, result.isCorrect ? 100 : 0, 0); // Green for correct, Red for incorrect
         doc.text(`Correct Answer: ${result.correctAnswer}`, 15, y);
         y += 7;
+
+        if (!result.isCorrect && result.aiExplanation) {
+          doc.setFontSize(8);
+          doc.setTextColor(100, 100, 100); // Gray for AI explanation
+          doc.text(`AI Explanation: ${result.aiExplanation}`, 20, y);
+          y += 5;
+        }
       });
 
       doc.save(`${applicantName.replace(/\s+/g, '_')}_Detailed_Results.pdf`);
@@ -240,8 +243,6 @@ Date: ${testResults.completionDate}
       alert('Failed to generate results report.');
     });
   }
-
-
 
   const restartTest = () => {
     setCurrentScreen("welcome")
@@ -258,22 +259,30 @@ Date: ${testResults.completionDate}
     setCurrentScreen('results')
   }
 
-  const handleAiHelp = async () => {
-    if (!aiQuestion.trim()) return
+  const handleAiHelp = async (questionText, isLifeline = false, questionIndex = null) => {
+    if (!questionText.trim()) return
     setAiLoading(true)
-    setAiAnswer('')
+    setAiAnswer("")
+
+    if (isLifeline) {
+      setLifelinesRemaining(prev => prev - 1)
+      setLifelinesUsed(prev => prev + 1)
+    }
 
     try {
-      // Directly call OpenAI API from frontend (for demonstration/testing purposes)
-      // In a real application, this should be proxied through a secure backend
-      const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY || process.env.OPENAI_API_KEY; // Assuming key is available via Vite env or process.env
+      const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY || process.env.OPENAI_API_KEY;
       if (!OPENAI_API_KEY) {
         setAiAnswer("AI Help is not configured. Please provide an OpenAI API key.");
         setAiLoading(false);
         return;
       }
 
-      const prompt = `The user is taking a power generation technician knowledge test. They asked: "${aiQuestion}". The current question they are on is: "${questions[currentQuestionIndex].question}". Provide a concise and helpful answer without giving away the direct answer to the current test question. Focus on explaining concepts or providing relevant background information.`;
+      let prompt = `The user is taking a power generation technician knowledge test. They asked: "${questionText}".`;
+      if (questionIndex !== null) {
+        prompt = `The user answered a question incorrectly. The question was: "${questions[questionIndex].question}". The correct answer was: "${questions[questionIndex].correct_answer_letter}. ${questions[questionIndex].options[questions[questionIndex].correct_answer_letter.charCodeAt(0) - 65]}". Explain why the correct answer is correct in a concise and educational manner, without being condescending.`;
+      } else {
+        prompt = `The user is taking a power generation technician knowledge test. They asked: "${questionText}". The current question they are on is: "${questions[currentQuestionIndex].question}". Provide a concise and helpful explanation (max 150 words) without giving away the direct answer to the current test question. Focus on explaining concepts or providing relevant background information.`;
+      }
 
       const response = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
@@ -282,9 +291,9 @@ Date: ${testResults.completionDate}
           "Authorization": `Bearer ${OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "gpt-4o-mini", // Or another suitable model
+          model: "gpt-4o-mini",
           messages: [{ role: "user", content: prompt }],
-          max_tokens: 150,
+          max_tokens: 200,
         }),
       });
       const data = await response.json();
@@ -294,12 +303,22 @@ Date: ${testResults.completionDate}
         setAiAnswer(data.error ? `Error: ${data.error.message}` : "Failed to get AI help. Please try again.");
       }
     } catch (error) {
-      console.error('Error fetching AI help:', error)
-      setAiAnswer('Sorry, I could not fetch an answer at this time. Please try again later.')
+      console.error("Error fetching AI help:", error)
+      setAiAnswer("Sorry, I could not fetch an answer at this time. Please try again later.")
     } finally {
       setAiLoading(false)
     }
   }
+
+  const useLifeline = () => {
+    if (lifelinesRemaining > 0) {
+      setShowAiHelpModal(true);
+      setAiQuestion("Explain the concept related to this question."); // Default question for lifeline
+      handleAiHelp("Explain the concept related to this question.", true);
+    } else {
+      alert("No lifelines remaining!");
+    }
+  };
 
   // Welcome Screen
   if (currentScreen === 'welcome') {
@@ -307,9 +326,13 @@ Date: ${testResults.completionDate}
       <div className="min-h-screen flex items-center justify-center p-4">
         <Card className="w-full max-w-2xl card animate-fade-in">
           <CardHeader className="card-header">
-            <CardTitle className="card-title">
-              Generator Technician Knowledge Test
-            </CardTitle>
+            <div className="flex flex-col items-center justify-center mb-4">
+              <img src="/src/assets/generator_source_logo.jpg" alt="Generator Source Logo" className="h-20 mb-2" />
+              <CardTitle className="card-title-header">
+                GENERATOR SOURCE
+              </CardTitle>
+            </div>
+            <h2 className="text-xl font-semibold text-color-text-light">Generator Technician Knowledge Test</h2>
           </CardHeader>
           <CardContent className="card-content space-y-6">
             <div className="instruction-box p-4 rounded-lg border border-color-border bg-color-background-light">
@@ -318,6 +341,7 @@ Date: ${testResults.completionDate}
                 <li>• You have 75 minutes to complete {questions.length} questions.</li>
                 <li>• Select the best answer for each question.</li>
                 <li>• You will receive your results immediately after submission.</li>
+                <li>• You have 3 AI Lifelines to help you with questions. Using a lifeline will deduct 1 point from your final score.</li>
               </ul>
             </div>
             
@@ -364,43 +388,29 @@ Date: ${testResults.completionDate}
                 <User className="h-5 w-5" />
                 <span className="font-medium">{applicantName}</span>
               </div>
-              <div className="flex items-center space-x-2 text-lg font-mono">
-                <Clock className="h-5 w-5 text-color-danger" />
-                <span className={timeRemaining < 300 ? 'text-color-danger' : 'text-color-text-dark'}>
-                  {formatTime(timeRemaining)}
-                </span>
+              <div className="flex items-center space-x-4 text-color-text-dark">
+                <Clock className="h-5 w-5" />
+                <span className="font-mono font-medium">{formatTime(timeRemaining)}</span>
               </div>
             </div>
-            <Progress value={progress} className="progress-background h-2">
-              <div className="progress-bar" style={{ width: `${progress}%` }}></div>
-            </Progress>
-            <p className="text-sm text-color-secondary mt-2">
-              Question {currentQuestionIndex + 1} of {questions.length}
-            </p>
+            <Progress value={progress} className="w-full" />
+            <p className="text-sm text-center mt-2 text-color-text-light">Question {currentQuestionIndex + 1} of {questions.length}</p>
           </div>
 
           {/* Question Card */}
-          <Card className="mb-6 test-question-card">
-            <CardHeader>
-              <div className="test-question-category mb-2">
-                {currentQuestion.category}
-              </div>
-              <CardTitle className="test-question-title leading-relaxed">
-                {currentQuestion.question}
-              </CardTitle>
+          <Card className="card animate-fade-in">
+            <CardHeader className="card-header">
+              <CardTitle className="card-title">{currentQuestion.category}</CardTitle>
             </CardHeader>
-            <CardContent>
-              <RadioGroup
-                value={answers[currentQuestionIndex] || ''}
-                onValueChange={handleAnswerChange}
-                className="space-y-3"
-              >
+            <CardContent className="card-content space-y-6">
+              <p className="text-lg font-medium text-color-text-dark">{currentQuestion.question}</p>
+              <RadioGroup value={answers[currentQuestionIndex]} onValueChange={handleAnswerChange} className="space-y-3">
                 {currentQuestion.options.map((option, index) => {
-                  const optionLetter = String.fromCharCode(65 + index) // A, B, C, D
+                  const optionLetter = String.fromCharCode(65 + index)
                   return (
-                    <div key={index} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 border border-color-border">
-                      <RadioGroupItem value={optionLetter} id={`option-${index}`} className="radio-group-item" />
-                      <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer radio-group-label">
+                    <div key={index} className="flex items-center space-x-3">
+                      <RadioGroupItem value={optionLetter} id={`option-${optionLetter}`} className="radio-item" />
+                      <Label htmlFor={`option-${optionLetter}`} className="text-base text-color-text-dark font-normal cursor-pointer hover:text-color-primary transition-colors duration-200">
                         {option}
                       </Label>
                     </div>
@@ -410,8 +420,8 @@ Date: ${testResults.completionDate}
             </CardContent>
           </Card>
 
-          {/* Navigation and Submit */}
-          <div className="flex justify-between items-center">
+          {/* Navigation and Lifeline */}
+          <div className="mt-6 flex justify-between items-center">
             <Button
               onClick={previousQuestion}
               disabled={currentQuestionIndex === 0}
@@ -421,21 +431,21 @@ Date: ${testResults.completionDate}
               <ChevronLeft className="mr-2 h-4 w-4" />
               Previous
             </Button>
-            
+
             <div className="flex space-x-3">
               <Button
-                onClick={() => alert("AI Help is currently under maintenance. Please try again later.")}
-                variant="ghost"
-                className="px-4 text-gray-500 cursor-not-allowed"
-                disabled
+                onClick={useLifeline}
+                disabled={lifelinesRemaining === 0}
+                className="button button-secondary"
               >
                 <Lightbulb className="mr-2 h-4 w-4" />
-                AI Help (Maintenance)
+                AI Lifeline ({lifelinesRemaining} left)
               </Button>
+
               {currentQuestionIndex === questions.length - 1 ? (
                 <Button
                   onClick={handleTestSubmit}
-                  className="button button-primary bg-color-accent hover:bg-green-700"
+                  className="button button-primary"
                 >
                   Submit Test
                 </Button>
@@ -452,42 +462,28 @@ Date: ${testResults.completionDate}
           </div>
 
           {/* AI Help Modal */}
-          {showAiHelp && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-              <Card className="w-full max-w-md card animate-fade-in">
+          {showAiHelpModal && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <Card className="w-full max-w-lg card animate-fade-in ai-help-modal">
                 <CardHeader className="card-header">
-                  <CardTitle className="flex items-center card-title">
-                    <Lightbulb className="mr-2 h-5 w-5" /> AI Help
-                  </CardTitle>
+                  <CardTitle className="card-title">AI Explanation</CardTitle>
                 </CardHeader>
                 <CardContent className="card-content space-y-4">
-                  <p className="text-sm text-color-text-dark">
-                    Ask a question related to the current test question or general generator knowledge.
-                  </p>
-                  <Input
-                    placeholder="Type your question here..."
-                    value={aiQuestion}
-                    onChange={(e) => setAiQuestion(e.target.value)}
-                    className="w-full input-field text-lg p-3 border-color-border focus:border-color-primary focus:ring focus:ring-color-secondary focus:ring-opacity-50"
-                  />
-                  <Button onClick={handleAiHelp} disabled={aiLoading} className="w-full button button-primary">
-                    {aiLoading ? "Thinking..." : "Get AI Help"}
-                  </Button>
-                  {aiAnswer && (
-                    <div className="bg-color-background-light p-3 rounded-md text-sm text-color-text-dark border border-color-border">
-                      <p className="font-semibold mb-1">AI Response:</p>
-                      <p>{aiAnswer}</p>
-                    </div>
+                  <p className="text-color-text-dark font-semibold">Question:</p>
+                  <p className="text-color-text-dark">{aiQuestion}</p>
+                  <p className="text-color-text-dark font-semibold">Answer:</p>
+                  {aiLoading ? (
+                    <p className="text-color-text-dark">Loading AI explanation...</p>
+                  ) : (
+                    <p className="text-color-text-dark">{aiAnswer}</p>
                   )}
-                  <Button onClick={() => setShowAiHelp(false)} variant="outline" className="w-full button button-outline">
+                  <Button onClick={() => setShowAiHelpModal(false)} className="button button-secondary">
                     Close
                   </Button>
                 </CardContent>
-              </Card>           </div>
+              </Card>
+            </div>
           )}
-
-          {/* Test Simulator for Demo */}
-          <TestSimulator onComplete={simulateTestCompletion} />
         </div>
       </div>
     )
@@ -495,82 +491,105 @@ Date: ${testResults.completionDate}
 
   // Results Screen
   if (currentScreen === 'results') {
-    const passed = testResults.percentage >= 70
-
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center p-4">
-        <Card className="w-full max-w-2xl">
-          <CardHeader className="text-center">
-            <div className="mx-auto mb-4">
-              {passed ? (
-                <CheckCircle className="h-16 w-16 text-green-500" />
-              ) : (
-                <Award className="h-16 w-16 text-orange-500" />
-              )}
-            </div>
-            <CardTitle className="text-3xl font-bold mb-2">
-              {passed ? 'Congratulations!' : 'Test Completed'}
-            </CardTitle>
-            <p className="text-xl text-gray-600">
-              {passed ? 'Felisitasyon!' : 'Tès la fini'}
-            </p>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="bg-white p-6 rounded-lg border-2 border-gray-200">
-              <h3 className="text-xl font-semibold text-center mb-4">
-                Generator Technician Knowledge Test Results
-              </h3>
-              
-              <div className="space-y-3 text-center">
-                <p className="text-lg">
-                  <span className="font-medium">{applicantName}</span>
-                </p>
-                <p className="text-2xl font-bold text-blue-600">
-                  {testResults.correctAnswers} of {testResults.totalQuestions} Questions Correct
-                </p>
-                <p className="text-3xl font-bold text-green-600">
-                  {testResults.percentage}%
-                </p>
-                <p className="text-lg">
-                  Skill Level: <span className="font-semibold text-purple-600">{testResults.level}</span>
-                </p>
-                <p className="text-sm text-gray-600">
-                  Completed on {testResults.completionDate}
-                </p>
-
+      <div className="min-h-screen bg-gray-100 p-4 sm:p-8">
+        <div className="max-w-4xl mx-auto">
+          <Card className="card animate-fade-in">
+            <CardHeader className="card-header text-center">
+              <Award className="mx-auto h-16 w-16 text-yellow-500" />
+              <CardTitle className="card-title mt-4">Test Results</CardTitle>
+            </CardHeader>
+            <CardContent className="card-content space-y-6">
+              <div className="bg-white p-6 rounded-lg border-2 border-gray-200">
+                <h3 className="text-xl font-semibold text-center mb-4">
+                  Generator Technician Knowledge Test Results
+                </h3>
+                <div className="space-y-3 text-center">
+                  <p className="text-lg">
+                    <span className="font-medium">{applicantName}</span>
+                  </p>
+                  <p className="text-2xl font-bold text-blue-600">
+                    {testResults.finalScore} of {testResults.totalQuestions} Correct (after lifeline deduction)
+                  </p>
+                  <p className="text-3xl font-bold text-green-600">
+                    {testResults.percentage}%
+                  </p>
+                  <p className="text-lg">
+                    Skill Level: <span className="font-semibold text-purple-600">{testResults.level}</span>
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Lifelines Used: {testResults.lifelinesUsed}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Completed on {testResults.completionDate}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div className="flex flex-col space-y-3">
-              <Button
-                onClick={generateCertificate}
-                className="bg-blue-600 hover:bg-blue-700"
-              >
-                <Award className="mr-2 h-4 w-4" />
-                Download Certificate
-              </Button>
-              <Button
-                onClick={generateResultsReport}
-                variant="outline"
-                className="border-blue-600 text-blue-600 hover:bg-blue-50"
-              >
-                Download Detailed Report
-              </Button>
-              <Button
-                onClick={restartTest}
-                variant="outline"
-                className=""
-              >
-                Take Test Again
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+              <div className="mt-8">
+                <h3 className="text-xl font-semibold text-color-primary mb-4">Detailed Results</h3>
+                <div className="space-y-4">
+                  {testResults.detailedResults.map((result, index) => (
+                    <div key={index} className="p-4 border rounded-lg shadow-sm bg-gray-50">
+                      <p className="font-semibold text-color-text-dark">{index + 1}. {result.question}</p>
+                      <p className="text-sm text-gray-700">Your Answer: {result.userAnswer}</p>
+                      <p className={`text-sm font-medium ${result.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
+                        Correct Answer: {result.correctAnswer}
+                      </p>
+                      {!result.isCorrect && (
+                        <div className="mt-2">
+                          <Button
+                            onClick={() => {
+                              setAiExplanationQuestionIndex(index);
+                              setShowAiHelpModal(true);
+                              handleAiHelp(
+                                `Explain why the correct answer for the question '${result.question}' is '${result.correctAnswer}'`, 
+                                false, 
+                                index
+                              );
+                            }}
+                            className="button button-outline button-sm"
+                          >
+                            <Lightbulb className="mr-2 h-4 w-4" />
+                            Explain Incorrect Answer
+                          </Button>
+                        </div>
+                      )}
+                      {result.aiExplanation && (
+                        <div className="mt-2 p-2 bg-blue-50 border-l-4 border-blue-400 text-blue-800 text-sm">
+                          <p className="font-semibold">AI Explanation:</p>
+                          <p>{result.aiExplanation}</p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-col space-y-3">
+                <Button onClick={generateCertificate} className="button button-primary">
+                  <Award className="mr-2 h-4 w-4" />
+                  Download Certificate
+                </Button>
+                <Button onClick={generateResultsReport} className="button button-secondary">
+                  Download Report
+                </Button>
+                <Button onClick={restartTest} className="button button-outline">
+                  Restart Test
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     )
   }
 
-  return null
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <p>Loading...</p>
+    </div>
+  )
 }
 
 export default App
