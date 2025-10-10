@@ -123,13 +123,12 @@
     "number": 11,
     "question": "What is the proper sequence for connecting battery cables?",
     "options": [
-      "1-  Connect positive cable",
-      "2- tighten positive cable",
-      "3- connect negative cable",
-      "4- tighten negative cable",
-      "A- 1,2,3,4"
+      "A- Connect positive cable, then negative cable, then tighten both.",
+      "B- Connect positive cable, tighten positive, then connect negative cable, tighten negative.",
+      "C- Connect negative cable, then positive cable, then tighten both.",
+      "D- Connect negative cable, tighten negative, then connect positive cable, tighten positive."
     ],
-    "correct_answer_letter": "A"
+    "correct_answer_letter": "B"
   },
   {
     "category": "BASIC ELECTRICITY",
