@@ -90,14 +90,27 @@ function App() {
     if (percentage >= 80) level = 'Advanced'
     else if (percentage >= 60) level = 'Intermediate'
 
+    const detailedResults = questions.map((question, index) => {
+      const userAnswer = answers[index]
+      const isCorrect = userAnswer && userAnswer === question.correct_answer_letter
+      return {
+        question: question.question,
+        category: question.category,
+        userAnswer: userAnswer ? `${userAnswer}. ${question.options[userAnswer.charCodeAt(0) - 65]}` : 'No Answer',
+        correctAnswer: `${question.correct_answer_letter}. ${question.options[question.correct_answer_letter.charCodeAt(0) - 65]}`, 
+        isCorrect: isCorrect
+      }
+    })
+
     setTestResults({
       correctAnswers,
       totalQuestions: questions.length,
       percentage,
       level,
-      completionDate: new Date().toLocaleDateString()
+      completionDate: new Date().toLocaleDateString(),
+      detailedResults: detailedResults
     })
-    setCurrentScreen('results')
+    setCurrentScreen("results")
   }
 
   const generateCertificate = () => {
@@ -129,47 +142,44 @@ function App() {
 
       // Subtitle
       doc.setFontSize(18)
-      doc.setFont('helvetica', 'normal')
+      doc.setFont("helvetica", "normal")
       doc.setTextColor(0, 0, 0)
-      doc.text('Generator Technician Knowledge Test', pageWidth / 2, 55, { align: 'center' })
-      doc.text('Tès Konesans Teknisyen Jeneratè', pageWidth / 2, 65, { align: 'center' })
+      doc.text("Generator Technician Knowledge Test", pageWidth / 2, 55, { align: "center" })
 
       // Certificate text
       doc.setFontSize(14)
-      doc.text('This certifies that / Sa a sètifye ke', pageWidth / 2, 85, { align: 'center' })
+      doc.text("This certifies that", pageWidth / 2, 85, { align: "center" })
 
       // Applicant name
       doc.setFontSize(24)
-      doc.setFont('helvetica', 'bold')
+      doc.setFont("helvetica", "bold")
       doc.setTextColor(0, 102, 51)
-      doc.text(applicantName, pageWidth / 2, 105, { align: 'center' })
+      doc.text(applicantName, pageWidth / 2, 105, { align: "center" })
 
       // Achievement text
       doc.setFontSize(14)
-      doc.setFont('helvetica', 'normal')
+      doc.setFont("helvetica", "normal")
       doc.setTextColor(0, 0, 0)
-      doc.text('has successfully completed the Generator Technician Knowledge Test', pageWidth / 2, 125, { align: 'center' })
-      doc.text('te fini ak siksè tès konesans teknisyen jeneratè a', pageWidth / 2, 135, { align: 'center' })
+      doc.text("has successfully completed the Generator Technician Knowledge Test", pageWidth / 2, 125, { align: "center" })
 
       // Score details
       doc.setFontSize(16)
-      doc.setFont('helvetica', 'bold')
+      doc.setFont("helvetica", "bold")
       doc.setTextColor(0, 51, 102)
-      doc.text(`Score: ${testResults.percentage}% (${testResults.correctAnswers} of ${testResults.totalQuestions} questions correct)`, pageWidth / 2, 155, { align: 'center' })
-      doc.text(`Skill Level: ${testResults.level}`, pageWidth / 2, 170, { align: 'center' })
+      doc.text(`Score: ${testResults.percentage}% (${testResults.correctAnswers} of ${testResults.totalQuestions} questions correct)`, pageWidth / 2, 155, { align: "center" })
+      doc.text(`Skill Level: ${testResults.level}`, pageWidth / 2, 170, { align: "center" })
 
-      // Date and location
+      // Date
       doc.setFontSize(12)
-      doc.setFont('helvetica', 'normal')
+      doc.setFont("helvetica", "normal")
       doc.setTextColor(0, 0, 0)
-      doc.text(`Date: ${testResults.completionDate}`, 30, pageHeight - 30)
-      doc.text('Location: Jacksonville', pageWidth - 80, pageHeight - 30)
+      doc.text(`Date: ${testResults.completionDate}`, pageWidth / 2, pageHeight - 45, { align: "center" })
 
       // Signature line
       doc.setDrawColor(0, 0, 0)
       doc.setLineWidth(0.5)
-      doc.line(pageWidth - 80, pageHeight - 50, pageWidth - 30, pageHeight - 50)
-      doc.text('Authorized Signature', pageWidth - 80, pageHeight - 45)
+      doc.line(pageWidth / 2 - 40, pageHeight - 30, pageWidth / 2 + 40, pageHeight - 30)
+      doc.text("Authorized Signature", pageWidth / 2, pageHeight - 25, { align: "center" })
 
       // Save the PDF
       doc.save(`${applicantName.replace(/\s+/g, '_')}_Generator_Technician_Certificate.pdf`)
@@ -186,7 +196,6 @@ with a score of ${testResults.percentage}% (${testResults.correctAnswers} of ${t
 
 Skill Level: ${testResults.level}
 Date: ${testResults.completionDate}
-Location: Jacksonville
       `
       
       const blob = new Blob([certificateContent], { type: 'text/plain' })
@@ -201,9 +210,46 @@ Location: Jacksonville
     })
   }
 
+  const generateResultsReport = () => {
+    import('jspdf').then(({ jsPDF }) => {
+      const doc = new jsPDF();
+      doc.setFontSize(16);
+      doc.text('Generator Technician Knowledge Test - Detailed Results', 10, 10);
+      doc.setFontSize(12);
+      doc.text(`Applicant: ${applicantName}`, 10, 20);
+      doc.text(`Score: ${testResults.percentage}% (${testResults.correctAnswers}/${testResults.totalQuestions})`, 10, 25);
+      doc.text(`Skill Level: ${testResults.level}`, 10, 30);
+      doc.text(`Date: ${testResults.completionDate}`, 10, 35);
+
+      let y = 45;
+      testResults.detailedResults.forEach((result, index) => {
+        if (y > 280) { // Check if new page is needed
+          doc.addPage();
+          y = 10;
+        }
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`${index + 1}. ${result.question}`, 10, y);
+        y += 5;
+        doc.text(`Your Answer: ${result.userAnswer}`, 15, y);
+        y += 5;
+        doc.setTextColor(result.isCorrect ? 0 : 255, result.isCorrect ? 100 : 0, 0); // Green for correct, Red for incorrect
+        doc.text(`Correct Answer: ${result.correctAnswer}`, 15, y);
+        y += 7;
+      });
+
+      doc.save(`${applicantName.replace(/\s+/g, '_')}_Detailed_Results.pdf`);
+    }).catch(error => {
+      console.error('Error generating results report:', error);
+      alert('Failed to generate results report.');
+    });
+  }
+
+
+
   const restartTest = () => {
-    setCurrentScreen('welcome')
-    setApplicantName('')
+    setCurrentScreen("welcome")
+    setApplicantName("")
     setCurrentQuestionIndex(0)
     setAnswers({})
     setTimeRemaining(75 * 60)
@@ -249,30 +295,26 @@ Location: Jacksonville
               Generator Technician Knowledge Test
             </CardTitle>
             <p className="text-gray-600 text-lg">
-              Bienvini nan tès konesans teknisyen jeneratè a
-            </p>
+              </p>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-blue-800 mb-2">Test Instructions / Enstriksyon Tès</h3>
+              <h3 className="font-semibold text-blue-800 mb-2">Test Instructions</h3>
               <ul className="text-sm text-blue-700 space-y-1">
-                <li>• You have 75 minutes to complete {questions.length} questions</li>
-                <li>• Ou gen 75 minit pou reponn {questions.length} kesyon</li>
-                <li>• Select the best answer for each question</li>
-                <li>• Chwazi pi bon repons lan pou chak kesyon</li>
-                <li>• You will receive your results immediately</li>
-                <li>• W ap resevwa rezilta yo imedyatman</li>
+                <li>• You have 75 minutes to complete {questions.length} questions.</li>
+                <li>• Select the best answer for each question.</li>
+                <li>• You will receive your results immediately after submission.</li>
               </ul>
             </div>
             
             <div className="space-y-2">
               <Label htmlFor="name" className="text-lg font-medium">
-                Enter your full name / Antre non konple ou:
+                Enter your full name:
               </Label>
               <Input
                 id="name"
                 type="text"
-                placeholder="Your full name / Non konple ou"
+                placeholder="Your full name"
                 value={applicantName}
                 onChange={(e) => setApplicantName(e.target.value)}
                 className="text-lg p-3"
@@ -285,7 +327,7 @@ Location: Jacksonville
               className="w-full text-lg py-3 bg-blue-600 hover:bg-blue-700"
             >
               <User className="mr-2 h-5 w-5" />
-              Start Test / Kòmanse Tès
+              Start Test
             </Button>
           </CardContent>
         </Card>
@@ -343,7 +385,6 @@ Location: Jacksonville
                     <div key={index} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 border border-gray-200">
                       <RadioGroupItem value={optionLetter} id={`option-${index}`} />
                       <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer text-base">
-                        <span className="font-medium text-blue-600 mr-2">{optionLetter}.</span>
                         {option}
                       </Label>
                     </div>
@@ -477,24 +518,29 @@ Location: Jacksonville
                 <p className="text-sm text-gray-600">
                   Completed on {testResults.completionDate}
                 </p>
-                <p className="text-sm text-gray-600">
-                  Jacksonville
-                </p>
+
               </div>
             </div>
 
-            <div className="flex space-x-3">
+            <div className="flex flex-col space-y-3">
               <Button
                 onClick={generateCertificate}
-                className="flex-1 bg-blue-600 hover:bg-blue-700"
+                className="bg-blue-600 hover:bg-blue-700"
               >
                 <Award className="mr-2 h-4 w-4" />
                 Download Certificate
               </Button>
               <Button
+                onClick={generateResultsReport}
+                variant="outline"
+                className="border-blue-600 text-blue-600 hover:bg-blue-50"
+              >
+                Download Detailed Report
+              </Button>
+              <Button
                 onClick={restartTest}
                 variant="outline"
-                className="flex-1"
+                className=""
               >
                 Take Test Again
               </Button>

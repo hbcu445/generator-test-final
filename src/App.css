@@ -1,120 +1,132 @@
-@import "tailwindcss";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f2f5; /* Light gray background */
 }
 
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+.card {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+.card-header {
+  background-color: #2c3e50; /* Dark blue-gray for header */
+  color: #ecf0f1; /* Light text */
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  padding: 1.5rem;
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+.card-title {
+  color: #ecf0f1;
 }
+
+.button {
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.button-primary {
+  background-color: #3498db; /* Industrial blue */
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: #2980b9;
+}
+
+.radio-group-item {
+  border-color: #3498db;
+}
+
+.radio-group-item[data-state=checked] {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+/* Custom styles for certificate */
+.certificate-container {
+  position: relative;
+  width: 297mm; /* A4 landscape width */
+  height: 210mm; /* A4 landscape height */
+  border: 10mm solid #2c3e50; /* Thick dark border */
+  padding: 15mm;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #ecf0f1 0%, #ffffff 100%);
+  font-family: 'Georgia', serif;
+  color: #2c3e50;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.certificate-header {
+  font-size: 48pt;
+  font-weight: bold;
+  color: #e74c3c; /* Red accent */
+  margin-bottom: 10mm;
+  text-transform: uppercase;
+  letter-spacing: 2pt;
+}
+
+.certificate-subheader {
+  font-size: 20pt;
+  margin-bottom: 15mm;
+  color: #34495e;
+}
+
+.certificate-text {
+  font-size: 16pt;
+  margin-bottom: 5mm;
+}
+
+.certificate-name {
+  font-size: 36pt;
+  font-weight: bold;
+  color: #3498db; /* Blue accent */
+  margin-bottom: 15mm;
+  text-transform: capitalize;
+}
+
+.certificate-score {
+  font-size: 24pt;
+  font-weight: bold;
+  color: #27ae60; /* Green for success */
+  margin-bottom: 10mm;
+}
+
+.certificate-level {
+  font-size: 18pt;
+  font-weight: bold;
+  color: #8e44ad; /* Purple for skill level */
+  margin-bottom: 20mm;
+}
+
+.certificate-date {
+  font-size: 14pt;
+  margin-top: 20mm;
+  border-top: 1px solid #2c3e50;
+  padding-top: 5mm;
+  width: 50%;
+}
+
+.certificate-signature {
+  font-size: 14pt;
+  margin-top: 10mm;
+  border-top: 1px solid #2c3e50;
+  padding-top: 5mm;
+  width: 50%;
+}
+
+/* Ensure the modal for AI help is styled correctly */
+.fixed.inset-0 {
+  z-index: 9999; /* Ensure it's on top */
+}
+
