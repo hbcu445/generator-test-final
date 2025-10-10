@@ -433,34 +433,36 @@ Date: ${testResults.completionDate}
           {/* AI Help Modal */}
           {showAiHelp && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-              <Card className="w-full max-w-md ai-help-modal">
+              <Card className="w-full max-w-md card animate-fade-in">
                 <CardHeader className="card-header">
                   <CardTitle className="flex items-center card-title">
                     <Lightbulb className="mr-2 h-5 w-5" /> AI Help
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-sm text-gray-600">Ask a question related to the current topic. Do not ask for direct answers.</p>
+                <CardContent className="card-content space-y-4">
+                  <p className="text-sm text-color-text-dark">
+                    Ask a question related to the current test question or general generator knowledge.
+                  </p>
                   <Input
-                    placeholder="Your question..."
+                    placeholder="Type your question here..."
                     value={aiQuestion}
                     onChange={(e) => setAiQuestion(e.target.value)}
+                    className="w-full input-field text-lg p-3 border-color-border focus:border-color-primary focus:ring focus:ring-color-secondary focus:ring-opacity-50"
                   />
-                  <Button onClick={handleAiHelp} disabled={aiLoading || !aiQuestion.trim()} className="w-full">
-                    {aiLoading ? 'Getting Answer...' : 'Get Answer'}
+                  <Button onClick={handleAiHelp} disabled={aiLoading} className="w-full button button-primary">
+                    {aiLoading ? "Thinking..." : "Get AI Help"}
                   </Button>
                   {aiAnswer && (
-                    <div className="bg-gray-100 p-3 rounded-md text-sm">
-                      <p className="font-semibold">AI Response:</p>
+                    <div className="bg-color-background-light p-3 rounded-md text-sm text-color-text-dark border border-color-border">
+                      <p className="font-semibold mb-1">AI Response:</p>
                       <p>{aiAnswer}</p>
                     </div>
                   )}
-                  <Button variant="outline" onClick={() => setShowAiHelp(false)} className="w-full">
+                  <Button onClick={() => setShowAiHelp(false)} variant="outline" className="w-full button button-outline">
                     Close
                   </Button>
                 </CardContent>
-              </Card>
-            </div>
+              </Card>           </div>
           )}
 
           {/* Test Simulator for Demo */}

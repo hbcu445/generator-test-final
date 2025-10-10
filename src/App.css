@@ -6,7 +6,7 @@
 /* Modern Industrial Color Palette (Blue & Yellow) */
 :root {
   --color-primary: #004085; /* Deep Industrial Blue */
-  --color-secondary: #ffc107; /* Vibrant Industrial Yellow */
+  --color-secondary: #FFD700; /* Bright Industrial Yellow (Gold) */
   --color-accent: #28a745; /* Green for success/highlights */
   --color-danger: #dc3545; /* Red for warnings/errors */
   --color-background-light: #f0f2f5; /* Very Light Gray */
@@ -398,5 +398,4 @@ body {
   line-height: 1.5;
   color: #34495e; /* Darker text for instructions */
 }
-
 
