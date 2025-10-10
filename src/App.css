@@ -3,65 +3,52 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Modern & Vibrant Color Palette */
+/* Modern Industrial Color Palette (Blue & Yellow) */
 :root {
-  --color-primary: #6a0dad; /* Deep Purple */
-  --color-secondary: #8d52d9; /* Lighter Purple */
-  --color-accent: #ff6f61; /* Vibrant Coral */
-  --color-danger: #e74c3c; /* Bright Red */
-  --color-success: #2ecc71; /* Emerald Green */
-  --color-background-light: #f4f4f9; /* Off-white */
-  --color-background-dark: #e0e0eb; /* Light Gray-Purple */
-  --color-text-dark: #2c3e50; /* Dark Blue-Gray */
+  --color-primary: #0056b3; /* Industrial Blue */
+  --color-secondary: #ffc107; /* Industrial Yellow */
+  --color-accent: #28a745; /* Green for success/highlights */
+  --color-danger: #dc3545; /* Red for warnings/errors */
+  --color-background-light: #f8f9fa; /* Light Gray */
+  --color-background-dark: #e9ecef; /* Medium Gray */
+  --color-text-dark: #212529; /* Dark Gray */
   --color-text-light: #ffffff; /* White */
   --color-card-bg: #ffffff;
-  --color-border: #dcdcdc;
+  --color-border: #ced4da;
 }
 
 body {
-  font-family: 'Poppins', sans-serif; /* Modern, clean font */
+  font-family: 'Roboto', sans-serif; /* Clean, modern font */
   background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-background-dark) 100%);
   color: var(--color-text-dark);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem; /* Add some padding for mobile */
+  padding: 1rem;
 }
 
 .card {
-  border-radius: 1.5rem; /* Even more rounded corners */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Stronger, more modern shadow */
-  border: none;
+  border-radius: 0.75rem; /* Slightly rounded, industrial feel */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border: 1px solid var(--color-border);
   background-color: var(--color-card-bg);
-  overflow: hidden; /* Ensures rounded corners are respected */
+  overflow: hidden;
 }
 
 .card-header {
-  background: linear-gradient(45deg, var(--color-primary) 0%, var(--color-secondary) 100%); /* Gradient header */
+  background-color: var(--color-primary); /* Primary blue header */
   color: var(--color-text-light);
-  padding: 2rem 1.5rem; /* Increased padding */
+  padding: 1.5rem 2rem;
   text-align: center;
   position: relative;
   z-index: 1;
 }
 
-.card-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="%23ffffff" fill-opacity="0.1" d="M0,0 L100,0 L100,100 L0,100 Z"/></svg>') repeat;
-  opacity: 0.1;
-  z-index: -1;
-}
-
 .card-title {
   color: var(--color-text-light);
-  font-size: 2.5rem; /* Larger title */
-  font-weight: 800;
+  font-size: 2.2rem; /* Adjusted title size */
+  font-weight: 700;
   line-height: 1.2;
   margin-bottom: 0.5rem;
 }
@@ -71,11 +58,11 @@ body {
 }
 
 .button {
-  border-radius: 0.75rem; /* More rounded buttons */
-  font-weight: 700;
+  border-radius: 0.5rem;
+  font-weight: 600;
   transition: all 0.3s ease-in-out;
-  padding: 0.85rem 1.75rem;
-  font-size: 1.1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -83,13 +70,13 @@ body {
 .button-primary {
   background-color: var(--color-primary);
   color: var(--color-text-light);
-  box-shadow: 0 5px 15px rgba(106, 13, 173, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 86, 179, 0.2);
 }
 
 .button-primary:hover {
-  background-color: var(--color-secondary);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(106, 13, 173, 0.4);
+  background-color: #004085; /* Darker blue on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 86, 179, 0.3);
 }
 
 .button-outline {
@@ -101,13 +88,13 @@ body {
 .button-outline:hover {
   background-color: var(--color-primary);
   color: var(--color-text-light);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 .radio-group-item {
   border-color: var(--color-primary);
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.25rem;
+  height: 1.25rem;
   border-width: 2px;
 }
 
@@ -117,64 +104,64 @@ body {
 }
 
 .radio-group-label {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--color-text-dark);
   font-weight: 500;
 }
 
 .progress-bar {
-  height: 0.85rem;
-  border-radius: 0.425rem;
-  background-color: var(--color-accent);
+  height: 0.75rem;
+  border-radius: 0.375rem;
+  background-color: var(--color-secondary); /* Yellow progress bar */
   transition: width 0.4s ease-in-out;
 }
 
 .progress-background {
   background-color: var(--color-border);
-  border-radius: 0.425rem;
+  border-radius: 0.375rem;
 }
 
 /* Specific styles for the test screen header */
 .test-header {
   background-color: var(--color-card-bg);
-  border-radius: 1.5rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 0.75rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
 .test-question-card {
-  border-radius: 1.5rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 0.75rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
   margin-bottom: 1.5rem;
 }
 
 .test-question-category {
   color: var(--color-primary);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
 .test-question-title {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--color-text-dark);
   line-height: 1.4;
 }
 
 .ai-help-modal .card-header {
-  background: linear-gradient(45deg, var(--color-accent) 0%, #ff9a8d 100%);
+  background-color: var(--color-secondary);
 }
 
 .ai-help-modal .card-title {
-  color: var(--color-text-light);
+  color: var(--color-text-dark);
 }
 
 /* Results Screen */
 .results-card-header {
-  background: linear-gradient(45deg, var(--color-success) 0%, #76e0a3 100%);
+  background-color: var(--color-primary);
 }
 
 .results-card-title {
@@ -182,8 +169,8 @@ body {
 }
 
 .results-score-percentage {
-  color: var(--color-success);
-  font-size: 4.5rem;
+  color: var(--color-accent);
+  font-size: 4rem;
   font-weight: 800;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
 }
@@ -191,7 +178,7 @@ body {
 .results-skill-level {
   color: var(--color-primary);
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 /* Certificate Styling */
@@ -199,11 +186,11 @@ body {
   position: relative;
   width: 297mm; /* A4 landscape width */
   height: 210mm; /* A4 landscape height */
-  border: 15mm solid var(--color-primary); /* Vibrant purple border */
+  border: 15mm solid var(--color-primary); /* Industrial Blue border */
   padding: 10mm;
   box-sizing: border-box;
-  background: linear-gradient(45deg, #f0e6fa 0%, #ffffff 100%); /* Light gradient background */
-  font-family: 'Playfair Display', serif; /* Elegant font */
+  background: linear-gradient(45deg, #e0f2f7 0%, #ffffff 100%); /* Light gradient background */
+  font-family: 'Roboto', sans-serif; /* Clean, modern font */
   color: var(--color-text-dark);
   text-align: center;
   display: flex;
@@ -221,77 +208,76 @@ body {
   top: 0;
   left: 0;
   pointer-events: none;
-  border: 2mm solid var(--color-secondary); /* Inner border */
+  border: 2mm solid var(--color-secondary); /* Inner yellow border */
   box-sizing: border-box;
 }
 
 .certificate-container::after {
-  border: 1mm dashed var(--color-accent); /* Dashed inner border */
+  border: 1mm dashed var(--color-primary); /* Dashed inner blue border */
   padding: 5mm;
 }
 
 .certificate-header {
-  font-size: 60pt; /* Larger title */
+  font-size: 50pt; /* Adjusted title size */
   font-weight: bold;
-  color: var(--color-primary); /* Primary purple */
+  color: var(--color-primary); /* Primary blue */
   margin-bottom: 5mm;
   text-transform: uppercase;
-  letter-spacing: 4pt;
-  text-shadow: 3px 3px 6px rgba(0,0,0,0.15);
+  letter-spacing: 3pt;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .certificate-subheader {
-  font-size: 26pt;
+  font-size: 22pt;
   margin-bottom: 10mm;
   color: var(--color-text-dark);
-  font-family: 'Roboto', sans-serif;
 }
 
 .certificate-text {
-  font-size: 20pt;
+  font-size: 16pt;
   margin-bottom: 3mm;
   color: var(--color-text-dark);
 }
 
 .certificate-name {
-  font-size: 52pt;
+  font-size: 42pt;
   font-weight: bold;
-  color: var(--color-accent); /* Coral accent for name */
+  color: var(--color-secondary); /* Yellow accent for name */
   margin-bottom: 10mm;
   text-transform: capitalize;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 .certificate-score {
-  font-size: 36pt;
+  font-size: 30pt;
   font-weight: bold;
-  color: var(--color-success); /* Green for score */
+  color: var(--color-accent); /* Green for score */
   margin-bottom: 5mm;
 }
 
 .certificate-level {
-  font-size: 24pt;
+  font-size: 20pt;
   font-weight: bold;
-  color: var(--color-secondary); /* Secondary purple for level */
+  color: var(--color-primary); /* Blue for level */
   margin-bottom: 15mm;
 }
 
 .certificate-date {
-  font-size: 18pt;
-  margin-top: 20mm;
-  border-top: 2px solid var(--color-border);
-  padding-top: 8mm;
-  width: 70%;
+  font-size: 16pt;
+  margin-top: 15mm;
+  border-top: 1px solid var(--color-border);
+  padding-top: 5mm;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .certificate-signature {
-  font-size: 18pt;
-  margin-top: 10mm;
-  border-top: 2px solid var(--color-border);
-  padding-top: 8mm;
-  width: 70%;
+  font-size: 16pt;
+  margin-top: 8mm;
+  border-top: 1px solid var(--color-border);
+  padding-top: 5mm;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -299,67 +285,83 @@ body {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .card-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   .button {
-    padding: 0.7rem 1.2rem;
+    padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
   }
   .test-question-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   .radio-group-label {
     font-size: 1rem;
   }
   .results-score-percentage {
-    font-size: 3.5rem;
+    font-size: 3.2rem;
   }
   .certificate-header {
-    font-size: 40pt;
+    font-size: 35pt;
   }
   .certificate-name {
-    font-size: 36pt;
+    font-size: 30pt;
   }
   .certificate-score {
-    font-size: 28pt;
+    font-size: 25pt;
   }
   .certificate-level {
-    font-size: 20pt;
+    font-size: 18pt;
   }
 }
 
 @media (max-width: 480px) {
   .card-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   .button {
-    padding: 0.6rem 1rem;
-    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
   }
   .test-question-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   .radio-group-label {
     font-size: 0.9rem;
   }
   .results-score-percentage {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
   .certificate-header {
-    font-size: 30pt;
-  }
-  .certificate-name {
     font-size: 28pt;
   }
-  .certificate-score {
+  .certificate-name {
     font-size: 24pt;
   }
+  .certificate-score {
+    font-size: 20pt;
+  }
   .certificate-level {
-    font-size: 18pt;
+    font-size: 16pt;
   }
   .certificate-container {
-    border: 10mm solid var(--color-primary);
+    border: 8mm solid var(--color-primary);
     padding: 5mm;
   }
 }
+
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.input-field {
+  width: 100%; /* Ensure input field takes full width */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
 
