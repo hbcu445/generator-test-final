@@ -214,10 +214,17 @@ body {
 }
 
 /* Radio Group Options */
+.radio-group-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust minmax for desired button width */
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
 .radio-group-item-label {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; /* Align text to the left */
   justify-content: center;
   border: 2px solid var(--color-border);
   border-radius: 10px;
@@ -226,6 +233,7 @@ body {
   transition: all 0.3s ease;
   background-color: var(--color-card-bg);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  text-align: left; /* Ensure text is left-aligned */
 }
 
 .radio-group-item-label:hover {
@@ -246,20 +254,25 @@ body {
 }
 
 .radio-group-item-label .option-letter {
-  font-size: 2rem;
+  font-size: 1.5rem; /* Slightly smaller for better integration */
   font-weight: 700;
   color: var(--color-primary);
   margin-bottom: 0.5rem;
-}
-
-.radio-group-item-label .option-text {
-  font-size: 1.1rem;
+  min-width: 2.5rem; /* Ensure consistent width for letter */
   text-align: center;
-  color: var(--color-text-dark);
+  border-radius: 5px;
+  background-color: var(--color-background-dark);
+  padding: 0.2rem 0.5rem;
 }
 
 .radio-group-item-label.selected .option-text {
   color: var(--color-text-light);
+}
+
+.radio-group-item-label .option-text {
+  font-size: 1.1rem;
+  color: var(--color-text-dark);
+  flex-grow: 1; /* Allow text to take available space */
 }
 
 /* AI Help Modal */
