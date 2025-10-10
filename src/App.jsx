@@ -533,9 +533,14 @@ Date: ${testResults.completionDate}
                     <div key={index} className="p-4 border rounded-lg shadow-sm bg-gray-50">
                       <p className="font-semibold text-color-text-dark">{index + 1}. {result.question}</p>
                       <p className="text-sm text-gray-700">Your Answer: {result.userAnswer}</p>
-                      <p className={`text-sm font-medium ${result.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
-                        Correct Answer: {result.correctAnswer}
-                      </p>
+                      <div className="flex items-center space-x-2">
+                        <p className={`text-sm font-medium ${result.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
+                          Correct Answer: {result.correctAnswer}
+                        </p>
+                        {result.isCorrect && (
+                          <CheckCircle className="h-4 w-4 text-green-600" />
+                        )}
+                      </div>
                       {!result.isCorrect && (
                         <div className="mt-2">
                           <Button
