@@ -422,26 +422,25 @@ Date: ${testResults.completionDate}
                   <RadioGroup
                     value={answers[currentQuestionIndex] || ''} // Ensure value is empty string if no answer selected
                     onValueChange={handleAnswerChange}
-                    className="grid gap-4 md:grid-cols-2 mt-6">
+                    className="radio-group-container">
                     {currentQuestion.options.map((option, index) => {
                       const optionLetter = String.fromCharCode(65 + index)
                       const isSelected = answers[currentQuestionIndex] === optionLetter
                       return (
-                        <Label
-                          key={index}
-                          htmlFor={`option-${optionLetter}`}
-                          className={`flex flex-col items-center justify-center rounded-lg border-2 p-4 cursor-pointer transition-all duration-200 text-center
-                            ${isSelected ? 'border-color-primary bg-color-primary text-color-text-light shadow-lg' : 'border-color-border bg-color-card-bg hover:border-color-primary hover:shadow-md'}
-                          `}
-                        >
+                        <div key={index}>
                           <RadioGroupItem
                             value={optionLetter}
                             id={`option-${optionLetter}`}
                             className="sr-only"
                           />
-                          <span className={`text-2xl font-bold ${isSelected ? 'text-color-text-light' : 'text-color-primary'}`}>{optionLetter}.</span>
-                          <span className={`text-lg mt-2 ${isSelected ? 'text-color-text-light' : 'text-color-text-dark'}`}>{option}</span>
-                        </Label>
+                          <Label
+                            htmlFor={`option-${optionLetter}`}
+                            className={`radio-group-item-label ${isSelected ? 'selected' : ''}`}
+                          >
+                            <span className="option-letter">{optionLetter}</span>
+                            <span className="option-text">{option}</span>
+                          </Label>
+                        </div>
                       )
                     })}
                   </RadioGroup>
