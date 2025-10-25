@@ -281,7 +281,7 @@ Date: ${testResults.completionDate}
         ? questions[questionIndex].question 
         : questions[currentQuestionIndex].question;
 
-      const response = await fetch("https://5000-i8u7obv43gcy4e7x6iz14-ce3443d9.manusvm.computer/api/ai-help", {
+      const response = await fetch("/api/ai-help", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
