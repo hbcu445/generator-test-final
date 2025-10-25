@@ -129,6 +129,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  min-height: 44px; /* Minimum touch target size */
+  border: none;
 }
 
 .button-primary {
@@ -190,6 +192,20 @@ body {
   transform: none;
 }
 
+/* Navigation Buttons */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.navigation-buttons .button {
+  flex: 1;
+  max-width: 200px;
+}
+
 /* Test Screen Specifics */
 .test-header {
   background-color: var(--color-card-bg);
@@ -218,8 +234,8 @@ body {
 /* Radio Group Options */
 .radio-group-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Larger buttons */
-  gap: 1.5rem; /* More spacing */
+  grid-template-columns: 1fr;
+  gap: 1rem;
   margin-top: 2rem;
 }
 
@@ -227,14 +243,15 @@ body {
   display: flex;
   align-items: center;
   border: 2px solid var(--color-border);
-  border-radius: 12px; /* More rounded */
-  padding: 1.2rem 1.5rem; /* Larger padding */
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
   background-color: var(--color-card-bg);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* More prominent shadow */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   text-align: left;
   font-size: 1.1rem;
+  min-height: 60px; /* Minimum touch target for mobile */
 }
 
 .radio-group-item-label:hover {
@@ -252,7 +269,7 @@ body {
 
 .radio-group-item-label.selected .option-letter {
   color: var(--color-text-light);
-  background-color: var(--color-secondary); /* Yellow circle for selected */
+  background-color: var(--color-secondary);
 }
 
 .radio-group-item-label .option-letter {
@@ -261,7 +278,7 @@ body {
   color: var(--color-primary);
   min-width: 2.5rem;
   height: 2.5rem;
-  border-radius: 50%; /* Circular */
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -292,6 +309,7 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  padding: 1rem;
 }
 
 .ai-help-modal-content {
@@ -299,7 +317,7 @@ body {
   border-radius: 12px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
   padding: 2rem;
-  width: 90%;
+  width: 100%;
   max-width: 500px;
   animation: fade-in 0.3s ease-out forwards;
 }
@@ -385,7 +403,7 @@ body {
 }
 
 .ai-explanation-box {
-  background-color: #e6f7ff; /* Light blue for explanation */
+  background-color: #e6f7ff;
   border-left: 4px solid var(--color-accent);
   padding: 1rem;
   margin-top: 1rem;
@@ -395,7 +413,6 @@ body {
 }
 
 /* Certificate Styling (for jsPDF) */
-/* Note: jsPDF uses its own styling, these are conceptual */
 .certificate-container {
   border: 10px solid var(--color-primary);
   padding: 20px;
@@ -448,18 +465,18 @@ body {
   color: #777;
 }
 
-/* Responsive Adjustments */
+/* Mobile Responsive Adjustments */
 @media (max-width: 768px) {
   .card-header {
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
   }
 
   .card-title-header {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .card-content {
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
   }
 
   .instruction-box {
@@ -467,13 +484,14 @@ body {
   }
 
   .input-field {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.9rem;
+    padding: 1rem;
+    font-size: 1.1rem;
   }
 
   .button {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    min-height: 50px; /* Larger touch targets on mobile */
   }
 
   .test-header {
@@ -488,20 +506,42 @@ body {
     font-size: 0.9rem;
   }
 
+  .radio-group-container {
+    gap: 1.5rem;
+  }
+
   .radio-group-item-label {
-    padding: 1rem;
+    padding: 1.5rem;
+    min-height: 70px; /* Larger touch targets */
+    font-size: 1.2rem;
   }
 
   .radio-group-item-label .option-letter {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    min-width: 3rem;
+    height: 3rem;
   }
 
   .radio-group-item-label .option-text {
-    font-size: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .navigation-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .navigation-buttons .button {
+    width: 100%;
+    max-width: none;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    min-height: 56px; /* Extra large for mobile */
   }
 
   .ai-help-modal-content {
     padding: 1.5rem;
+    margin: 1rem;
   }
 
   .results-summary {
@@ -522,3 +562,26 @@ body {
   }
 }
 
+/* Extra small screens */
+@media (max-width: 480px) {
+  .card-title-header {
+    font-size: 1.5rem;
+  }
+
+  .button {
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    min-height: 56px;
+  }
+
+  .radio-group-item-label {
+    padding: 1.8rem 1.2rem;
+    min-height: 80px;
+  }
+
+  .navigation-buttons .button {
+    padding: 1.5rem;
+    font-size: 1.3rem;
+    min-height: 60px;
+  }
+}

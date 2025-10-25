@@ -277,37 +277,27 @@ Date: ${testResults.completionDate}
     }
 
     try {
-      const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY || process.env.OPENAI_API_KEY;
-      if (!OPENAI_API_KEY) {
-        setAiAnswer("AI Help is not configured. Please provide an OpenAI API key.");
-        setAiLoading(false);
-        return;
-      }
+      const currentQuestion = questionIndex !== null 
+        ? questions[questionIndex].question 
+        : questions[currentQuestionIndex].question;
 
-      let prompt = `The user is taking a power generation technician knowledge test. They asked: "${questionText}".`;
-      if (questionIndex !== null) {
-        prompt = `The user answered a question incorrectly. The question was: "${questions[questionIndex].question}". The correct answer was: "${questions[questionIndex].correct_answer_letter}. ${questions[questionIndex].options[questions[questionIndex].correct_answer_letter.charCodeAt(0) - 65]}". Explain why the correct answer is correct in a concise and educational manner, without being condescending.`;
-      } else {
-        prompt = `The user is taking a power generation technician knowledge test. They asked: "${questionText}". The current question they are on is: "${questions[currentQuestionIndex].question}". Provide a concise and helpful explanation (max 150 words) without giving away the direct answer to the current test question. Focus on explaining concepts or providing relevant background information.`;
-      }
-
-      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      const response = await fetch("/api/ai-help", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "gpt-4o-mini",
-          messages: [{ role: "user", content: prompt }],
-          max_tokens: 200,
+          question: questionText,
+          currentQuestion: currentQuestion,
         }),
       });
+      
       const data = await response.json();
-      if (response.ok && data.choices && data.choices.length > 0) {
-        setAiAnswer(data.choices[0].message.content);
+      
+      if (response.ok && data.answer) {
+        setAiAnswer(data.answer);
       } else {
-        setAiAnswer(data.error ? `Error: ${data.error.message}` : "Failed to get AI help. Please try again.");
+        setAiAnswer(data.error || "Failed to get AI help. Please try again.");
       }
     } catch (error) {
       console.error("Error fetching AI help:", error)
