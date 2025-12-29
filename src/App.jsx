@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Label } from '@/components/ui/label.jsx'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group.jsx'
 import { Progress } from '@/components/ui/progress.jsx'
-import { Clock, User, Award, CheckCircle, ChevronLeft, ChevronRight, Lightbulb } from 'lucide-react'
+import { Clock, User, Award, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react'
 import questionsData from './assets/questions.json'
 import TestSimulator from './TestSimulator.jsx'
 import './App.css'
@@ -17,15 +17,8 @@ function App() {
   const [answers, setAnswers] = useState({})
   const [timeRemaining, setTimeRemaining] = useState(75 * 60) // 75 minutes in seconds
   const [testStarted, setTestStarted] = useState(false)
-  const [isPaused, setIsPaused] = useState(false) // New state for pause functionality
+  const [isPaused, setIsPaused] = useState(false)
   const [testResults, setTestResults] = useState(null)
-  const [lifelinesRemaining, setLifelinesRemaining] = useState(3) // Initialize with 3 lifelines
-  const [lifelinesUsed, setLifelinesUsed] = useState(0)
-  const [showAiHelpModal, setShowAiHelpModal] = useState(false)
-  const [aiQuestion, setAiQuestion] = useState("")
-  const [aiAnswer, setAiAnswer] = useState("")
-  const [aiLoading, setAiLoading] = useState(false)
-  const [aiExplanationQuestionIndex, setAiExplanationQuestionIndex] = useState(null) // To store which question AI is explaining
 
   // Filter and prepare questions
   const questions = questionsData.filter(q => q.question && q.options && q.options.length > 0)
@@ -85,12 +78,7 @@ function App() {
       }
     })
 
-    let finalScore = correctAnswers;
-    if (lifelinesUsed > 0) {
-      finalScore = Math.max(0, correctAnswers - lifelinesUsed); // Deduct 1 point per lifeline used
-    }
-
-    const percentage = Math.round((finalScore / questions.length) * 100)
+    const percentage = Math.round((correctAnswers / questions.length) * 100)
     let level = 'Beginner'
     if (percentage >= 80) level = 'Advanced'
     else if (percentage >= 60) level = 'Intermediate'
@@ -103,20 +91,16 @@ function App() {
         category: question.category,
         userAnswer: userAnswer ? `${userAnswer}. ${question.options[userAnswer.charCodeAt(0) - 65]}` : 'No Answer',
         correctAnswer: `${question.correct_answer_letter}. ${question.options[question.correct_answer_letter.charCodeAt(0) - 65]}`, 
-        isCorrect: isCorrect,
-        aiExplanation: null, // Placeholder for AI explanation
-        showExplanation: false // Flag to show/hide explanation
+        isCorrect: isCorrect
       }
     })
 
     setTestResults({
       correctAnswers,
       totalQuestions: questions.length,
-      finalScore,
       percentage,
       level,
       completionDate: new Date().toLocaleDateString(),
-      lifelinesUsed,
       detailedResults: detailedResults
     })
     setCurrentScreen("results")
@@ -215,7 +199,7 @@ Date: ${testResults.completionDate}
 
       let y = 45;
       testResults.detailedResults.forEach((result, index) => {
-        if (y > 280) { // Check if new page is needed
+        if (y > 280) {
           doc.addPage();
           y = 10;
         }
@@ -225,16 +209,9 @@ Date: ${testResults.completionDate}
         y += 5;
         doc.text(`Your Answer: ${result.userAnswer}`, 15, y);
         y += 5;
-        doc.setTextColor(result.isCorrect ? 0 : 255, result.isCorrect ? 100 : 0, 0); // Green for correct, Red for incorrect
+        doc.setTextColor(result.isCorrect ? 0 : 255, result.isCorrect ? 100 : 0, 0);
         doc.text(`Correct Answer: ${result.correctAnswer}`, 15, y);
         y += 7;
-
-        if (!result.isCorrect && result.aiExplanation) {
-          doc.setFontSize(8);
-          doc.setTextColor(100, 100, 100); // Gray for AI explanation
-          doc.text(`AI Explanation: ${result.aiExplanation}`, 20, y);
-          y += 5;
-        }
       });
 
       doc.save(`${applicantName.replace(/\s+/g, '_')}_Detailed_Results.pdf`);
@@ -252,13 +229,6 @@ Date: ${testResults.completionDate}
     setTimeRemaining(75 * 60)
     setTestStarted(false)
     setTestResults(null)
-    setLifelinesRemaining(3)
-    setLifelinesUsed(0)
-    setShowAiHelpModal(false)
-    setAiQuestion("")
-    setAiAnswer("")
-    setAiLoading(false)
-    setAiExplanationQuestionIndex(null)
   }
 
   const simulateTestCompletion = (mockResults) => {
@@ -266,62 +236,11 @@ Date: ${testResults.completionDate}
     setCurrentScreen('results')
   }
 
-  const handleAiHelp = async (questionText, isLifeline = false, questionIndex = null) => {
-    if (!questionText.trim()) return
-    setAiLoading(true)
-    setAiAnswer("")
-
-    if (isLifeline) {
-      setLifelinesRemaining(prev => prev - 1)
-      setLifelinesUsed(prev => prev + 1)
-    }
-
-    try {
-      const currentQuestion = questionIndex !== null 
-        ? questions[questionIndex].question 
-        : questions[currentQuestionIndex].question;
-
-      const response = await fetch("/api/ai-help", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          question: questionText,
-          currentQuestion: currentQuestion,
-        }),
-      });
-      
-      const data = await response.json();
-      
-      if (response.ok && data.answer) {
-        setAiAnswer(data.answer);
-      } else {
-        setAiAnswer(data.error || "Failed to get AI help. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error fetching AI help:", error)
-      setAiAnswer("Sorry, I could not fetch an answer at this time. Please try again later.")
-    } finally {
-      setAiLoading(false)
-    }
-  }
-
-  const useLifeline = () => {
-    if (lifelinesRemaining > 0) {
-      setShowAiHelpModal(true);
-      setAiQuestion("Explain the concept related to this question."); // Default question for lifeline
-      handleAiHelp("Explain the concept related to this question.", true);
-    } else {
-      alert("No lifelines remaining!");
-    }
-  };
-
   // Welcome Screen
   if (currentScreen === 'welcome') {
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
-        <Card className="w-full max-w-2xl card animate-fade-in">
+        <Card className="w-full max-w-3xl card animate-fade-in">
           <CardHeader className="card-header">
             <div className="flex flex-col items-center justify-center mb-4">
               <img src="/src/assets/generator_source_logo.jpg" alt="Generator Source Logo" className="h-20 mb-2" />
@@ -329,16 +248,15 @@ Date: ${testResults.completionDate}
                 GENERATOR SOURCE
               </CardTitle>
             </div>
-            <h2 className="text-xl font-semibold text-color-text-light">Generator Technician Knowledge Test</h2>
+            <h2 className="text-2xl font-semibold text-color-text-light">Generator Technician Knowledge Test</h2>
           </CardHeader>
           <CardContent className="card-content space-y-6">
-            <div className="instruction-box p-4 rounded-lg border border-color-border bg-color-background-light">
-              <h3 className="font-semibold text-color-primary mb-2 text-lg">Test Instructions</h3>
-              <ul className="text-sm text-color-text-dark space-y-1">
+            <div className="instruction-box p-6 rounded-lg border border-color-border bg-color-background-light">
+              <h3 className="font-semibold text-color-primary mb-3 text-xl">Test Instructions</h3>
+              <ul className="text-base text-color-text-dark space-y-2">
                 <li>• You have 75 minutes to complete {questions.length} questions.</li>
                 <li>• Select the best answer for each question.</li>
                 <li>• You will receive your results immediately after submission.</li>
-                <li>• You have 3 AI Lifelines to help you with questions. Using a lifeline will deduct 1 point from your final score.</li>
               </ul>
             </div>
             
@@ -359,7 +277,7 @@ Date: ${testResults.completionDate}
             <Button 
               onClick={startTest}
               disabled={!applicantName.trim()}
-              className="w-full button button-primary"
+              className="w-full button button-primary text-lg py-6"
             >
               <User className="mr-2 h-5 w-5" />
               Start Test
@@ -376,18 +294,18 @@ Date: ${testResults.completionDate}
     const progress = ((currentQuestionIndex + 1) / questions.length) * 100
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-        <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+        <div className="max-w-5xl mx-auto">
           {/* Header */}
           <div className="test-header mb-6">
             <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center space-x-4 text-color-text-dark">
-                <User className="h-5 w-5" />
+              <div className="flex items-center space-x-4 text-color-text-dark text-lg">
+                <User className="h-6 w-6" />
                 <span className="font-medium">{applicantName}</span>
               </div>
-              <div className="flex items-center space-x-4 text-color-text-dark">
-                <Clock className="h-5 w-5" />
-                <span className="font-mono font-medium">{formatTime(timeRemaining)}</span>
+              <div className="flex items-center space-x-4 text-color-text-dark text-lg">
+                <Clock className="h-6 w-6" />
+                <span className="font-mono font-medium text-xl">{formatTime(timeRemaining)}</span>
                 <Button
                   onClick={() => setIsPaused(!isPaused)}
                   className="button button-secondary button-sm ml-4"
@@ -396,112 +314,67 @@ Date: ${testResults.completionDate}
                 </Button>
               </div>
             </div>
-            <Progress value={progress} className="w-full" />
-            <p className="text-sm text-center mt-2 text-color-text-light">Question {currentQuestionIndex + 1} of {questions.length}</p>
+            <Progress value={progress} className="w-full h-3" />
+            <p className="text-base text-center mt-3 text-color-text-light font-medium">Question {currentQuestionIndex + 1} of {questions.length}</p>
           </div>
 
           {/* Question Card */}
-          <Card className="card animate-fade-in">
-            <CardHeader className="card-header">
-              <CardTitle className="text-center text-3xl font-bold text-color-text-light">
+          <Card className="card animate-fade-in shadow-lg">
+            <CardHeader className="card-header py-6">
+              <CardTitle className="text-center text-2xl font-bold text-color-text-light uppercase tracking-wide">
                 {currentQuestion.category}
               </CardTitle>
             </CardHeader>
-            <CardContent className="card-content space-y-6">
-              <p className="text-lg font-medium text-color-text-dark">{currentQuestion.question}</p>
-                  <RadioGroup
-                    value={answers[currentQuestionIndex] || ''} // Ensure value is empty string if no answer selected
-                    onValueChange={handleAnswerChange}
-                    className="radio-group-container">
-                    {currentQuestion.options.map((option, index) => {
-                      const optionLetter = String.fromCharCode(65 + index)
-                      const isSelected = answers[currentQuestionIndex] === optionLetter
-                      return (
-                        <div key={index}>
-                          <RadioGroupItem
-                            value={optionLetter}
-                            id={`option-${optionLetter}`}
-                            className="sr-only"
-                          />
-                          <Label
-                            htmlFor={`option-${optionLetter}`}
-                            className={`radio-group-item-label ${isSelected ? 'selected' : ''}`}
-                          >
-                            <span className="option-letter">{optionLetter}</span>
-                            <span className="option-text">{option}</span>
-                          </Label>
-                        </div>
-                      )
-                    })}
-                  </RadioGroup>
+            <CardContent className="card-content space-y-8 p-8">
+              <p className="text-2xl font-medium text-color-text-dark leading-relaxed">{currentQuestion.question}</p>
+              <RadioGroup
+                value={answers[currentQuestionIndex] || ''}
+                onValueChange={handleAnswerChange}
+                className="radio-group-container space-y-4">
+                {currentQuestion.options.map((option, index) => {
+                  const optionLetter = String.fromCharCode(65 + index)
+                  const isSelected = answers[currentQuestionIndex] === optionLetter
+                  return (
+                    <div key={index}>
+                      <RadioGroupItem
+                        value={optionLetter}
+                        id={`option-${optionLetter}`}
+                        className="sr-only"
+                      />
+                      <Label
+                        htmlFor={`option-${optionLetter}`}
+                        className={`radio-group-item-label cursor-pointer ${isSelected ? 'selected' : ''}`}
+                      >
+                        <span className="option-letter text-2xl font-bold">{optionLetter}</span>
+                        <span className="option-text text-xl">{option}</span>
+                      </Label>
+                    </div>
+                  )
+                })}
+              </RadioGroup>
             </CardContent>
           </Card>
 
-          {/* Navigation and Lifeline */}
-          <div className="mt-6 flex justify-between items-center">
+          {/* Navigation */}
+          <div className="mt-8 flex justify-between items-center gap-4">
             <Button
               onClick={previousQuestion}
               disabled={currentQuestionIndex === 0}
               variant="outline"
-              className="button button-outline"
+              className="button button-outline text-lg py-6 px-8"
             >
-              <ChevronLeft className="mr-2 h-4 w-4" />
+              <ChevronLeft className="mr-2 h-5 w-5" />
               Previous
             </Button>
             <Button
-              onClick={useLifeline}
-              disabled={lifelinesRemaining === 0 || aiLoading}
-              className="button button-secondary"
-            >
-              <Lightbulb className="mr-2 h-4 w-4" />
-              AI Lifeline ({lifelinesRemaining} LEFT)
-            </Button>
-            <Button
               onClick={currentQuestionIndex === questions.length - 1 ? handleTestSubmit : nextQuestion}
-              className="button button-primary"
+              className="button button-primary text-lg py-6 px-8"
             >
               {currentQuestionIndex === questions.length - 1 ? 'Submit Test' : 'Next'}
-              <ChevronRight className="ml-2 h-4 w-4" />
+              <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>
-
-        {/* AI Help Modal */}
-        {showAiHelpModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <Card className="w-full max-w-md card animate-fade-in">
-              <CardHeader className="card-header">
-                <CardTitle className="text-center text-2xl font-bold text-color-text-light">AI Help</CardTitle>
-              </CardHeader>
-              <CardContent className="card-content space-y-4">
-                <p className="text-color-text-dark">{aiQuestion}</p>
-                <Input
-                  type="text"
-                  placeholder="Ask AI for a hint or explanation... (e.g., 'Explain Ohm's Law')"
-                  value={aiQuestion}
-                  onChange={(e) => setAiQuestion(e.target.value)}
-                  className="input-field"
-                  disabled={aiLoading}
-                />
-                <Button
-                  onClick={() => handleAiHelp(aiQuestion)}
-                  disabled={aiLoading || !aiQuestion.trim()}
-                  className="w-full button button-primary"
-                >
-                  {aiLoading ? 'Getting Help...' : 'Get AI Help'}
-                </Button>
-                {aiAnswer && (
-                  <div className="ai-answer-box p-3 rounded-lg bg-color-background-light border border-color-border">
-                    <p className="text-sm text-color-text-dark">{aiAnswer}</p>
-                  </div>
-                )}
-                <Button onClick={() => setShowAiHelpModal(false)} className="w-full button button-secondary">
-                  Close
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        )}
       </div>
     )
   }
@@ -509,85 +382,73 @@ Date: ${testResults.completionDate}
   // Results Screen
   if (currentScreen === 'results') {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <Card className="w-full max-w-4xl card animate-fade-in">
-          <CardHeader className="card-header">
-            <div className="flex flex-col items-center justify-center mb-4">
-              <img src="/src/assets/generator_source_logo.jpg" alt="Generator Source Logo" className="h-20 mb-2" />
-              <CardTitle className="card-title-header">
-                GENERATOR SOURCE
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+        <div className="max-w-4xl mx-auto">
+          <Card className="card animate-fade-in">
+            <CardHeader className="card-header">
+              <CardTitle className="text-center text-3xl font-bold text-color-text-light flex items-center justify-center">
+                <Award className="mr-3 h-8 w-8" />
+                Test Results
               </CardTitle>
-            </div>
-            <h2 className="text-xl font-semibold text-color-text-light">Test Results for {applicantName}</h2>
-          </CardHeader>
-          <CardContent className="card-content space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-color-text-dark">
-              <div className="flex items-center space-x-2">
-                <Award className="h-5 w-5 text-color-primary" />
-                <span>Score: {testResults.percentage}%</span>
+            </CardHeader>
+            <CardContent className="card-content space-y-6">
+              <div className="text-center space-y-4">
+                <h3 className="text-2xl font-semibold text-color-text-dark">Congratulations, {applicantName}!</h3>
+                <div className="flex justify-center items-center space-x-8">
+                  <div className="text-center">
+                    <p className="text-5xl font-bold text-color-primary">{testResults.percentage}%</p>
+                    <p className="text-sm text-color-text-light">Score</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-5xl font-bold text-color-secondary">{testResults.correctAnswers}/{testResults.totalQuestions}</p>
+                    <p className="text-sm text-color-text-light">Correct Answers</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-3xl font-bold text-color-accent">{testResults.level}</p>
+                    <p className="text-sm text-color-text-light">Skill Level</p>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-5 w-5 text-color-success" />
-                <span>Correct Answers: {testResults.correctAnswers} / {testResults.totalQuestions}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Lightbulb className="h-5 w-5 text-color-secondary" />
-                <span>Lifelines Used: {testResults.lifelinesUsed}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <User className="h-5 w-5 text-color-text-dark" />
-                <span>Skill Level: {testResults.level}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Clock className="h-5 w-5 text-color-text-dark" />
-                <span>Date: {testResults.completionDate}</span>
-              </div>
-            </div>
 
-            <div className="flex justify-center space-x-4 mt-6">
-              <Button onClick={generateCertificate} className="button button-primary">
-                Download Certificate
-              </Button>
-              <Button onClick={generateResultsReport} className="button button-secondary">
-                Download Report
-              </Button>
-              <Button onClick={restartTest} className="button button-outline">
-                Retake Test
-              </Button>
-            </div>
-
-            <h3 className="text-xl font-semibold text-color-primary mt-8">Detailed Results</h3>
-            <div className="space-y-4">
-              {testResults.detailedResults.map((result, index) => (
-                <Card key={index} className="card-item p-4 border border-color-border rounded-lg">
-                  <p className="font-medium text-color-text-dark">{index + 1}. {result.question}</p>
-                  <p className="text-sm text-color-text-dark">Your Answer: <span className={result.isCorrect ? 'text-color-success' : 'text-color-danger'}>{result.userAnswer}</span></p>
-                  <p className="text-sm text-color-text-dark">Correct Answer: <span className="text-color-success font-semibold">{result.correctAnswer}</span></p>
-                  {!result.isCorrect && (
-                    <Button
-                      onClick={() => handleAiHelp(questions[index].question, false, index)}
-                      className="button button-tertiary button-sm mt-2"
-                      disabled={aiLoading}
-                    >
-                      {aiLoading && aiExplanationQuestionIndex === index ? 'Getting Explanation...' : 'Explain Incorrect Answer'}
-                    </Button>
-                  )}
-                  {aiExplanationQuestionIndex === index && aiAnswer && (
-                    <div className="ai-explanation-box p-3 rounded-lg bg-color-background-light border border-color-border mt-2">
-                      <p className="text-sm text-color-text-dark">{aiAnswer}</p>
+              <div className="border-t border-color-border pt-6">
+                <h4 className="text-xl font-semibold mb-4 text-color-text-dark">Detailed Results</h4>
+                <div className="space-y-3 max-h-96 overflow-y-auto">
+                  {testResults.detailedResults.map((result, index) => (
+                    <div key={index} className={`p-4 rounded-lg border ${result.isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+                      <div className="flex items-start">
+                        <CheckCircle className={`h-5 w-5 mr-2 mt-1 ${result.isCorrect ? 'text-green-600' : 'text-red-600'}`} />
+                        <div className="flex-1">
+                          <p className="font-medium text-color-text-dark">{index + 1}. {result.question}</p>
+                          <p className="text-sm text-color-text-light mt-1">Your Answer: {result.userAnswer}</p>
+                          {!result.isCorrect && (
+                            <p className="text-sm text-green-700 mt-1">Correct Answer: {result.correctAnswer}</p>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  )}
-                </Card>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button onClick={generateCertificate} className="flex-1 button button-primary">
+                  <Award className="mr-2 h-5 w-5" />
+                  Download Certificate
+                </Button>
+                <Button onClick={generateResultsReport} className="flex-1 button button-secondary">
+                  Download Detailed Report
+                </Button>
+                <Button onClick={restartTest} variant="outline" className="flex-1 button button-outline">
+                  Take Test Again
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+        <TestSimulator onSimulate={simulateTestCompletion} />
       </div>
     )
   }
-
-  return null
 }
 
 export default App
-
