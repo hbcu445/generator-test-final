@@ -207,6 +207,6 @@
 - [x] Make all branch and skill level buttons the same size
 
 ## Contact Fields Layout
-- [ ] Arrange Name, Email, Phone fields horizontally in one row
-- [ ] Make all contact fields same size
-- [ ] Increase contact field size by 15%
+- [x] Arrange Name, Email, Phone fields horizontally in one row
+- [x] Make all contact fields same size
+- [x] Increase contact field size by 15%
