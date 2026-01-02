@@ -326,40 +326,40 @@ function App() {
   // Welcome Screen
   if (currentScreen === 'welcome') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
         <Header />
-        <div className="pt-24 pb-20 px-4">
-          <div className="max-w-2xl mx-auto">
-            <Card className="shadow-2xl border-2 border-blue-200">
-              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white pb-8">
-                <CardTitle className="text-4xl font-bold text-center">
+        <div className="pt-32 pb-24 px-6">
+          <div className="max-w-4xl mx-auto">
+            <Card className="shadow-2xl border-0 rounded-2xl overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 text-white py-12">
+                <CardTitle className="text-5xl font-bold text-center tracking-tight">
                   Generator Technician Knowledge Test
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-8 space-y-8">
-                <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
-                  <h3 className="text-xl font-semibold text-blue-900 mb-3">Test Purpose</h3>
-                  <p className="text-gray-700 mb-4 italic">This assessment is designed to establish and verify your knowledge and expertise as a generator technician.</p>
-                  <h3 className="text-xl font-semibold text-blue-900 mb-4">Test Instructions</h3>
-                  <ul className="space-y-3 text-gray-700">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                      <span>You have <strong>75 minutes</strong> to complete <strong>100 questions</strong></span>
+              <CardContent className="p-12 space-y-10">
+                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 border-l-4 border-indigo-500 p-8 rounded-xl">
+                  <h3 className="text-2xl font-bold text-indigo-900 mb-4">Test Purpose</h3>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">This assessment is designed to establish and verify your knowledge and expertise as a generator technician.</p>
+                  <h3 className="text-2xl font-bold text-indigo-900 mb-5">Test Instructions</h3>
+                  <ul className="space-y-4 text-gray-700 text-lg">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-indigo-600 mt-1 flex-shrink-0" />
+                      <span>You have <strong className="text-indigo-900">75 minutes</strong> to complete <strong className="text-indigo-900">100 questions</strong></span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-indigo-600 mt-1 flex-shrink-0" />
                       <span>Select the best answer for each question</span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-indigo-600 mt-1 flex-shrink-0" />
                       <span>You will receive your results immediately after submission</span>
                     </li>
                   </ul>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-7">
                   <div>
-                    <Label htmlFor="name" className="text-lg font-semibold text-gray-900">
+                    <Label htmlFor="name" className="text-xl font-bold text-gray-900 mb-3 block">
                       Full Name *
                     </Label>
                     <Input
@@ -368,13 +368,13 @@ function App() {
                       placeholder="John Doe"
                       value={applicantName}
                       onChange={(e) => setApplicantName(e.target.value)}
-                      className="h-14 text-lg border-2 border-gray-300 focus:border-blue-500 rounded-lg mt-2 px-4"
+                      className="h-16 text-lg border-2 border-gray-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 rounded-xl px-5 transition-all"
                       required
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="email" className="text-lg font-semibold text-gray-900">
+                    <Label htmlFor="email" className="text-xl font-bold text-gray-900 mb-3 block">
                       Email Address *
                     </Label>
                     <Input
@@ -383,13 +383,13 @@ function App() {
                       placeholder="john.doe@example.com"
                       value={applicantEmail}
                       onChange={(e) => setApplicantEmail(e.target.value)}
-                      className="h-14 text-lg border-2 border-gray-300 focus:border-blue-500 rounded-lg mt-2 px-4"
+                      className="h-16 text-lg border-2 border-gray-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 rounded-xl px-5 transition-all"
                       required
                     />
                   </div>
-                  
+
                   <div>
-                    <Label htmlFor="phone" className="text-lg font-semibold text-gray-900">
+                    <Label htmlFor="phone" className="text-xl font-bold text-gray-900 mb-3 block">
                       Phone Number *
                     </Label>
                     <Input
@@ -398,136 +398,136 @@ function App() {
                       placeholder="(555) 123-4567"
                       value={applicantPhone}
                       onChange={(e) => setApplicantPhone(e.target.value)}
-                      className="h-14 text-lg border-2 border-gray-300 focus:border-blue-500 rounded-lg mt-2 px-4"
+                      className="h-16 text-lg border-2 border-gray-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 rounded-xl px-5 transition-all"
                       required
                     />
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <Label className="text-lg font-semibold text-gray-900">
+                <div className="space-y-5">
+                  <Label className="text-xl font-bold text-gray-900">
                     Select Your Branch *
                   </Label>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-5">
                     <button
                       type="button"
                       onClick={() => setBranch('Brighton, CO')}
                       style={{
-                        backgroundColor: branch === 'Brighton, CO' ? '#f0fdf4' : 'white',
-                        borderColor: branch === 'Brighton, CO' ? '#16a34a' : '#d1d5db',
-                        borderWidth: '2px',
+                        backgroundColor: branch === 'Brighton, CO' ? '#ecfdf5' : 'white',
+                        borderColor: branch === 'Brighton, CO' ? '#14b8a6' : '#e5e7eb',
+                        borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
+                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
-                      <div className="font-bold text-lg text-blue-900">Brighton, CO</div>
-                      <div className="text-sm text-gray-600">Colorado Branch</div>
+                      <div className="font-bold text-xl text-indigo-900">Brighton, CO</div>
+                      <div className="text-base text-gray-600 mt-1">Colorado Branch</div>
                     </button>
                     <button
                       type="button"
                       onClick={() => setBranch('Jacksonville, FL')}
                       style={{
-                        backgroundColor: branch === 'Jacksonville, FL' ? '#f0fdf4' : 'white',
-                        borderColor: branch === 'Jacksonville, FL' ? '#16a34a' : '#d1d5db',
-                        borderWidth: '2px',
+                        backgroundColor: branch === 'Jacksonville, FL' ? '#ecfdf5' : 'white',
+                        borderColor: branch === 'Jacksonville, FL' ? '#14b8a6' : '#e5e7eb',
+                        borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
+                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
-                      <div className="font-bold text-lg text-blue-900">Jacksonville, FL</div>
-                      <div className="text-sm text-gray-600">Florida Branch</div>
+                      <div className="font-bold text-xl text-indigo-900">Jacksonville, FL</div>
+                      <div className="text-base text-gray-600 mt-1">Florida Branch</div>
                     </button>
                     <button
                       type="button"
                       onClick={() => setBranch('Austin, TX')}
                       style={{
-                        backgroundColor: branch === 'Austin, TX' ? '#f0fdf4' : 'white',
-                        borderColor: branch === 'Austin, TX' ? '#16a34a' : '#d1d5db',
-                        borderWidth: '2px',
+                        backgroundColor: branch === 'Austin, TX' ? '#ecfdf5' : 'white',
+                        borderColor: branch === 'Austin, TX' ? '#14b8a6' : '#e5e7eb',
+                        borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
+                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
-                      <div className="font-bold text-lg text-blue-900">Austin, TX</div>
-                      <div className="text-sm text-gray-600">Texas Branch</div>
+                      <div className="font-bold text-xl text-indigo-900">Austin, TX</div>
+                      <div className="text-base text-gray-600 mt-1">Texas Branch</div>
                     </button>
                     <button
                       type="button"
                       onClick={() => setBranch('Pensacola, FL')}
                       style={{
-                        backgroundColor: branch === 'Pensacola, FL' ? '#f0fdf4' : 'white',
-                        borderColor: branch === 'Pensacola, FL' ? '#16a34a' : '#d1d5db',
-                        borderWidth: '2px',
+                        backgroundColor: branch === 'Pensacola, FL' ? '#ecfdf5' : 'white',
+                        borderColor: branch === 'Pensacola, FL' ? '#14b8a6' : '#e5e7eb',
+                        borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
+                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
-                      <div className="font-bold text-lg text-blue-900">Pensacola, FL</div>
-                      <div className="text-sm text-gray-600">Florida Branch</div>
+                      <div className="font-bold text-xl text-indigo-900">Pensacola, FL</div>
+                      <div className="text-base text-gray-600 mt-1">Florida Branch</div>
                     </button>
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <Label className="text-lg font-semibold text-gray-900">
-                    Select Your Skill Level
+                <div className="space-y-5">
+                  <Label className="text-xl font-bold text-gray-900">
+                    Select Your Skill Level *
                   </Label>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-5">
                     <button
                       type="button"
                       onClick={() => setSkillLevel('1')}
                       style={{
-                        backgroundColor: skillLevel === '1' ? '#f0fdf4' : 'white',
-                        borderColor: skillLevel === '1' ? '#16a34a' : '#d1d5db',
-                        borderWidth: '2px',
+                        backgroundColor: skillLevel === '1' ? '#ecfdf5' : 'white',
+                        borderColor: skillLevel === '1' ? '#14b8a6' : '#e5e7eb',
+                        borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
+                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
-                      <div className="font-bold text-lg text-blue-900">Level 1</div>
-                      <div className="text-sm text-gray-600">Beginner</div>
+                      <div className="font-bold text-xl text-indigo-900">Level 1</div>
+                      <div className="text-base text-gray-600 mt-1">Beginner</div>
                     </button>
                     <button
                       type="button"
                       onClick={() => setSkillLevel('2')}
                       style={{
-                        backgroundColor: skillLevel === '2' ? '#f0fdf4' : 'white',
-                        borderColor: skillLevel === '2' ? '#16a34a' : '#d1d5db',
-                        borderWidth: '2px',
+                        backgroundColor: skillLevel === '2' ? '#ecfdf5' : 'white',
+                        borderColor: skillLevel === '2' ? '#14b8a6' : '#e5e7eb',
+                        borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
+                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
-                      <div className="font-bold text-lg text-blue-900">Level 2</div>
-                      <div className="text-sm text-gray-600">Advanced</div>
+                      <div className="font-bold text-xl text-indigo-900">Level 2</div>
+                      <div className="text-base text-gray-600 mt-1">Advanced</div>
                     </button>
                     <button
                       type="button"
                       onClick={() => setSkillLevel('3')}
                       style={{
-                        backgroundColor: skillLevel === '3' ? '#f0fdf4' : 'white',
-                        borderColor: skillLevel === '3' ? '#16a34a' : '#d1d5db',
-                        borderWidth: '2px',
+                        backgroundColor: skillLevel === '3' ? '#ecfdf5' : 'white',
+                        borderColor: skillLevel === '3' ? '#14b8a6' : '#e5e7eb',
+                        borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
+                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
-                      <div className="font-bold text-lg text-blue-900">Level 3</div>
-                      <div className="text-sm text-gray-600">Pro</div>
+                      <div className="font-bold text-xl text-indigo-900">Level 3</div>
+                      <div className="text-base text-gray-600 mt-1">Pro</div>
                     </button>
                     <button
                       type="button"
                       onClick={() => setSkillLevel('4')}
                       style={{
-                        backgroundColor: skillLevel === '4' ? '#f0fdf4' : 'white',
-                        borderColor: skillLevel === '4' ? '#16a34a' : '#d1d5db',
-                        borderWidth: '2px',
+                        backgroundColor: skillLevel === '4' ? '#ecfdf5' : 'white',
+                        borderColor: skillLevel === '4' ? '#14b8a6' : '#e5e7eb',
+                        borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
+                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
-                      <div className="font-bold text-lg text-blue-900">Level 4</div>
-                      <div className="text-sm text-gray-600">Master</div>
+                      <div className="font-bold text-xl text-indigo-900">Level 4</div>
+                      <div className="text-base text-gray-600 mt-1">Master</div>
                     </button>
                   </div>
                 </div>
@@ -535,9 +535,9 @@ function App() {
                 <Button
                   onClick={startTest}
                   disabled={!applicantName.trim() || !applicantEmail.trim() || !applicantPhone.trim() || !branch || !skillLevel}
-                  className="w-full h-16 text-xl font-semibold bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg"
+                  className="w-full h-20 text-2xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 hover:from-indigo-700 hover:via-purple-700 hover:to-indigo-800 transition-all duration-300 shadow-2xl hover:shadow-indigo-500/50 rounded-2xl mt-4"
                 >
-                  <Play className="mr-3 h-6 w-6" />
+                  <Play className="mr-4 h-8 w-8" />
                   Begin Test
                 </Button>
               </CardContent>
@@ -553,36 +553,36 @@ function App() {
   // Test Screen
   if (currentScreen === 'test') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
         <Header />
-        <div className="pt-28 pb-24 px-8">
-          <div className="max-w-5xl mx-auto">
+        <div className="pt-32 pb-24 px-6">
+          <div className="max-w-6xl mx-auto">
             {/* Progress Bar */}
-            <div className="mb-6 bg-white p-4 rounded-lg shadow-md border border-gray-200">
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm font-medium text-gray-700">
+            <div className="mb-8 bg-white p-6 rounded-2xl shadow-xl border-0">
+              <div className="flex justify-between items-center mb-4">
+                <span className="text-lg font-bold text-gray-900">
                   Question {currentQuestionIndex + 1} of {questions.length}
                 </span>
-                <span className="text-sm font-medium text-blue-600">
+                <span className="text-lg font-bold text-indigo-600">
                   {Math.round(((currentQuestionIndex + 1) / questions.length) * 100)}% Complete
                 </span>
               </div>
-              <Progress value={((currentQuestionIndex + 1) / questions.length) * 100} className="h-3" />
+              <Progress value={((currentQuestionIndex + 1) / questions.length) * 100} className="h-4" />
             </div>
 
             {/* Question Card */}
-            <Card className="shadow-xl border-2 border-blue-200">
-              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+            <Card className="shadow-2xl border-0 rounded-2xl overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 text-white py-8">
                 <div className="flex justify-between items-center">
-                  <CardTitle className="text-2xl font-bold">
+                  <CardTitle className="text-3xl font-bold tracking-tight">
                     {currentQuestion.category}
                   </CardTitle>
                 </div>
               </CardHeader>
-              <CardContent className="p-8 space-y-8">
+              <CardContent className="p-10 space-y-10">
                 {/* Question Text */}
-                <div className="bg-gray-50 p-6 rounded-lg border-l-4 border-blue-600">
-                  <p className="text-2xl font-medium text-gray-900 leading-relaxed">
+                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-2xl border-l-4 border-indigo-500">
+                  <p className="text-2xl font-semibold text-gray-900 leading-relaxed">
                     {currentQuestion.question}
                   </p>
                 </div>
@@ -591,15 +591,15 @@ function App() {
                 <RadioGroup
                   value={answers[currentQuestionIndex] || ''}
                   onValueChange={handleAnswerChange}
-                  className="space-y-4"
+                  className="space-y-5"
                 >
                   {['A', 'B', 'C', 'D'].map((letter) => (
                     <div
                       key={letter}
-                      className={`relative flex items-center space-x-4 p-6 rounded-xl border-2 transition-all duration-200 cursor-pointer hover:shadow-lg ${
+                      className={`relative flex items-center space-x-5 p-7 rounded-2xl border-3 transition-all duration-300 cursor-pointer hover:shadow-2xl hover:scale-[1.02] ${
                         answers[currentQuestionIndex] === letter
-                          ? 'bg-blue-600 border-blue-600 text-white shadow-lg'
-                          : 'bg-white border-gray-300 hover:border-blue-400'
+                          ? 'bg-gradient-to-r from-indigo-600 to-purple-600 border-indigo-600 text-white shadow-2xl shadow-indigo-500/50'
+                          : 'bg-white border-gray-300 hover:border-indigo-400'
                       }`}
                       onClick={() => handleAnswerChange(letter)}
                     >
@@ -609,20 +609,20 @@ function App() {
                         className="sr-only"
                       />
                       <div
-                        className={`flex items-center justify-center w-12 h-12 rounded-full text-xl font-bold flex-shrink-0 ${
+                        className={`flex items-center justify-center w-14 h-14 rounded-full text-2xl font-bold flex-shrink-0 ${
                           answers[currentQuestionIndex] === letter
-                            ? 'bg-white text-blue-600'
-                            : 'bg-blue-600 text-white'
+                            ? 'bg-white text-indigo-600'
+                            : 'bg-gradient-to-br from-indigo-600 to-purple-600 text-white'
                         }`}
                       >
                         {letter}
                       </div>
                       <label
                         htmlFor={`option-${letter}`}
-                        className={`flex-1 text-xl cursor-pointer ${
+                        className={`flex-1 text-xl cursor-pointer leading-relaxed ${
                           answers[currentQuestionIndex] === letter
-                            ? 'text-white font-semibold'
-                            : 'text-gray-900'
+                            ? 'text-white font-bold'
+                            : 'text-gray-900 font-medium'
                         }`}
                       >
                         {currentQuestion.options[letter.charCodeAt(0) - 65]}
@@ -632,31 +632,31 @@ function App() {
                 </RadioGroup>
 
                 {/* Navigation Buttons */}
-                <div className="flex gap-4 pt-6 border-t border-gray-200">
+                <div className="flex gap-6 pt-8 border-t-2 border-gray-200">
                   <Button
                     onClick={previousQuestion}
                     disabled={currentQuestionIndex === 0}
                     variant="outline"
-                    className="flex-1 h-14 text-lg font-semibold border-2"
+                    className="flex-1 h-16 text-xl font-bold border-3 border-indigo-300 hover:border-indigo-500 hover:bg-indigo-50 rounded-xl transition-all duration-300"
                   >
-                    <ChevronLeft className="mr-2 h-5 w-5" />
+                    <ChevronLeft className="mr-3 h-6 w-6" />
                     Previous
                   </Button>
                   {currentQuestionIndex === questions.length - 1 ? (
                     <Button
                       onClick={handleTestSubmit}
-                      className="flex-1 h-14 text-lg font-semibold bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
+                      className="flex-1 h-16 text-xl font-bold bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 rounded-xl shadow-xl hover:shadow-teal-500/50 transition-all duration-300"
                     >
                       Submit Test
-                      <CheckCircle className="ml-2 h-5 w-5" />
+                      <CheckCircle className="ml-3 h-6 w-6" />
                     </Button>
                   ) : (
                     <Button
                       onClick={nextQuestion}
-                      className="flex-1 h-14 text-lg font-semibold bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                      className="flex-1 h-16 text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl shadow-xl hover:shadow-indigo-500/50 transition-all duration-300"
                     >
                       Next
-                      <ChevronRight className="ml-2 h-5 w-5" />
+                      <ChevronRight className="ml-3 h-6 w-6" />
                     </Button>
                   )}
                 </div>
