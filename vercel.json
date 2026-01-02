@@ -1,35 +1,11 @@
 {
-  "version": 2,
   "buildCommand": "pnpm install && pnpm run build",
-  "builds": [
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "rewrites": [
     {
-      "src": "server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/ai-help",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/api/submit-test",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*\\.(js|css|jpg|png|PNG|ico|json))",
-      "dest": "/dist/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
