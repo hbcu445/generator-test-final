@@ -250,4 +250,4 @@
 - [ ] Adjust spacing/padding so everything fits on one page without being cut off (like the reference screenshot)
 
 ## Label-Field Spacing
-- [ ] Increase space between labels (Full Name, Email, Phone) and their input fields to avoid crowded look
+- [x] Increase space between labels (Full Name, Email, Phone) and their input fields to avoid crowded look
