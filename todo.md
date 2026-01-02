@@ -22,3 +22,13 @@
 - [x] Test timer functionality
 - [ ] Test results display and certificate generation (not tested yet)
 - [x] Verify all 97 questions display correctly
+
+## Application Simplification (User Request - 2026-01-02)
+- [x] Remove Supabase database integration
+- [x] Remove Express server (server.js)
+- [x] Remove backend API routes
+- [x] Configure email to work via SendGrid serverless function
+- [x] Update vercel.json for static site deployment
+- [x] Remove Dockerfile (not needed for static site)
+- [x] Test build and verify it works
+- [ ] Push to GitHub and verify Vercel deploys correctly

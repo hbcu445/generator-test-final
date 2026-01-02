@@ -142,7 +142,7 @@ function App() {
     
     // Submit results to backend for storage and email delivery
     try {
-      const response = await fetch('/api/submit-test', {
+      const response = await fetch('/api/send-results', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
