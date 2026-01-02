@@ -191,3 +191,8 @@
 - [ ] DaVinci logo is HUGE (taking up most of the screen - needs to be tiny)
 - [ ] Input fields are cramped and overlapping
 - [ ] Overall layout is broken - nothing from our changes is showing
+
+## Current Issues from User Feedback (Jan 2)
+- [ ] Title "Generator Technician Knowledge Test" is WAY TOO BIG (needs to be smaller, professional size)
+- [ ] DaVinci logo is missing from bottom right corner (only text showing)
+- [ ] Input fields are too cramped (need more spacing between them)

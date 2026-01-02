@@ -316,14 +316,14 @@ function App() {
 
   // Footer component used across all screens
   const Footer = () => (
-    <div className="fixed bottom-0 right-0 p-6 z-50">
-      <div className="flex flex-col items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-3 rounded-lg shadow-lg">
+    <div style={{position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999}}>
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.95)', padding: '12px', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)'}}>
         <img 
           src="/DaVinciFinalLogo.PNG" 
           alt="DaVinci.AI Logo" 
-          style={{width: '64px', height: 'auto', maxWidth: '64px'}}
+          style={{width: '60px', height: 'auto', maxWidth: '60px', display: 'block'}}
         />
-        <span className="text-xs text-gray-600 font-medium">© Created with DaVinci.AI</span>
+        <span style={{fontSize: '10px', color: '#666', fontWeight: '500'}}>© Created with DaVinci.AI</span>
       </div>
     </div>
   )
@@ -337,7 +337,7 @@ function App() {
           <div className="max-w-4xl mx-auto">
             <Card className="shadow-2xl border-0 rounded-2xl overflow-hidden">
               <CardHeader className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 text-white py-12">
-                <CardTitle className="text-8xl font-black text-center tracking-tight leading-tight" style={{fontSize: '6rem', lineHeight: '1.1'}}>
+                <CardTitle className="text-4xl font-bold text-center" style={{fontSize: '2.5rem', lineHeight: '1.2'}}>
                   Generator Technician Knowledge Test
                 </CardTitle>
               </CardHeader>
@@ -362,7 +362,7 @@ function App() {
                   </ul>
                 </div>
 
-                <div className="space-y-10">
+                <div className="space-y-8">
                   <div>
                     <Label htmlFor="name" className="text-xl font-bold text-gray-900 mb-3 block">
                       Full Name *
