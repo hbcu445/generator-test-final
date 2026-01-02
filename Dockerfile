@@ -16,7 +16,11 @@ COPY . .
 RUN pnpm build
 
 # Create dist/index.js entry point after build
-RUN echo "import '../server.js';" > dist/index.js
+RUN echo "import { fileURLToPath } from 'url';" > dist/index.js && \
+    echo "import { dirname, join } from 'path';" >> dist/index.js && \
+    echo "const __filename = fileURLToPath(import.meta.url);" >> dist/index.js && \
+    echo "const __dirname = dirname(__filename);" >> dist/index.js && \
+    echo "await import(join(__dirname, '..', 'server.js'));" >> dist/index.js
 
 # Expose port
 EXPOSE 3000
