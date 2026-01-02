@@ -374,7 +374,7 @@ function App() {
                       value={applicantName}
                       onChange={(e) => setApplicantName(e.target.value)}
                       className="rounded-xl border-2 bg-blue-50 border-blue-700"
-                      style={{fontSize: '1rem', padding: '0.8rem 1rem'}}
+                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem'}}
                       required
                     />
                   </div>
@@ -390,7 +390,7 @@ function App() {
                       value={applicantEmail}
                       onChange={(e) => setApplicantEmail(e.target.value)}
                       className="rounded-xl border-2 bg-blue-50 border-blue-700"
-                      style={{fontSize: '1rem', padding: '0.8rem 1rem'}}
+                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem'}}
                       required
                     />
                   </div>
@@ -406,7 +406,7 @@ function App() {
                       value={applicantPhone}
                       onChange={(e) => setApplicantPhone(e.target.value)}
                       className="rounded-xl border-2 bg-blue-50 border-blue-700"
-                      style={{fontSize: '1rem', padding: '0.8rem 1rem'}}
+                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem'}}
                       required
                     />
                   </div>
@@ -477,8 +477,8 @@ function App() {
                   </div>
                 </div>
 
-                <div style={{marginTop: '3rem'}}>
-                  <div className="grid grid-cols-4 gap-6">
+                <div style={{marginTop: '2.5rem'}}>
+                  <div className="grid grid-cols-4 gap-4">
                     <button
                       type="button"
                       onClick={() => setSkillLevel('1')}
