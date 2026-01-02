@@ -1164,5 +1164,35 @@
       "D-85 dB"
     ],
     "correct_answer_letter": "B"
+  },
+  {
+    "question": "What is the recommended maintenance interval for changing generator oil under normal operating conditions?",
+    "options": [
+      "A-Every 50 hours",
+      "B-Every 100 hours",
+      "C-Every 200 hours",
+      "D-Every 500 hours"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "question": "What type of fuel stabilizer is recommended for gasoline generators in long-term storage?",
+    "options": [
+      "A-Ethanol-based",
+      "B-Petroleum-based",
+      "C-Synthetic-based",
+      "D-Water-based"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "question": "What is the typical voltage regulation tolerance for a quality automatic voltage regulator (AVR)?",
+    "options": [
+      "A-±1%",
+      "B-±3%",
+      "C-±5%",
+      "D-±10%"
+    ],
+    "correct_answer_letter": "A"
   }
 ]
