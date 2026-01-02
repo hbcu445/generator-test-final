@@ -9,7 +9,7 @@ import { Progress } from '@/components/ui/progress.jsx'
 import { Clock, User, Award, CheckCircle, ChevronLeft, ChevronRight, Play } from 'lucide-react'
 import questionsData from './assets/questions.json'
 import TestSimulator from './TestSimulator.jsx'
-// import './App.css' - REMOVED to eliminate CSS conflicts
+import './App.css'
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('welcome') // welcome, test, results
