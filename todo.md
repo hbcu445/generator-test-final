@@ -212,6 +212,6 @@
 - [x] Increase contact field size by 15%
 
 ## CORRECTIONS NEEDED
-- [ ] Fix input fields - only 15% bigger, not tripled
-- [ ] Add proper spacing between branch and skill level button sections
-- [ ] Ensure all buttons (branch and skill level) are exactly the same size
+- [x] Fix input fields - only 15% bigger, not tripled
+- [x] Add proper spacing between branch and skill level button sections
+- [x] Ensure all buttons (branch and skill level) are exactly the same size
