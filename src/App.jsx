@@ -363,7 +363,7 @@ function App() {
                 </div>
 
                 <div className="space-y-5 max-w-2xl">
-                  <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-8">
                     <Label htmlFor="name" className="text-base font-semibold text-gray-900 text-right" style={{width: '180px', minWidth: '180px'}}>
                       Full Name *
                     </Label>
@@ -379,7 +379,7 @@ function App() {
                     />
                   </div>
                   
-                  <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-8">
                     <Label htmlFor="email" className="text-base font-semibold text-gray-900 text-right" style={{width: '180px', minWidth: '180px'}}>
                       Email *
                     </Label>
@@ -395,7 +395,7 @@ function App() {
                     />
                   </div>
 
-                  <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-8">
                     <Label htmlFor="phone" className="text-base font-semibold text-gray-900 text-right" style={{width: '180px', minWidth: '180px'}}>
                       Phone *
                     </Label>
