@@ -337,7 +337,7 @@ function App() {
           <div className="max-w-4xl mx-auto">
             <Card className="shadow-2xl border-0 rounded-2xl overflow-hidden">
               <CardHeader className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 text-white py-12">
-                <CardTitle className="text-4xl font-bold text-center" style={{fontSize: '2.5rem', lineHeight: '1.2'}}>
+                <CardTitle className="text-3xl font-bold text-center" style={{fontSize: '1.75rem', lineHeight: '1.3'}}>
                   Generator Technician Knowledge Test
                 </CardTitle>
               </CardHeader>
