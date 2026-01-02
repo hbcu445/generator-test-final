@@ -198,4 +198,4 @@
 - [x] Input fields are too cramped (need more spacing between them)
 
 ## Additional Spacing Improvements
-- [ ] Add more space between branch location buttons
+- [x] Add more space between branch location buttons
