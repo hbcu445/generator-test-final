@@ -15,6 +15,6 @@
 - [ ] Improve navigation arrow styling with proper yellow triangular shapes
 
 ## Deployment Issues
-- [ ] Fix deployment error: Cannot find module '/usr/src/app/dist/index.js'
-- [ ] Configure proper build output for server deployment
-- [ ] Ensure Supabase and email integration work in production
+- [x] Fix deployment error: Cannot find module '/usr/src/app/dist/index.js' - Added Dockerfile
+- [x] Configure proper build output for server deployment - Dockerfile builds frontend then starts server
+- [ ] Ensure Supabase and email integration work in production - needs testing after deployment
