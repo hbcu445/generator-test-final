@@ -1164,5 +1164,41 @@
       "D-85 dB"
     ],
     "correct_answer_letter": "B"
+  },
+  {
+    "category": "ADVANCED DIAGNOSTICS",
+    "number": 98,
+    "question": "What is the primary advantage of using thermal imaging cameras during generator inspections?",
+    "options": [
+      "A-Detecting loose connections and hot spots before failure occurs",
+      "B-Measuring exact voltage levels",
+      "C-Testing fuel quality",
+      "D-Checking coolant pH levels"
+    ],
+    "correct_answer_letter": "A"
+  },
+  {
+    "category": "POWER QUALITY",
+    "number": 99,
+    "question": "What phenomenon occurs when a generator's output frequency drifts due to varying load conditions?",
+    "options": [
+      "A-Voltage sag",
+      "B-Frequency droop",
+      "C-Harmonic distortion",
+      "D-Power factor lag"
+    ],
+    "correct_answer_letter": "B"
+  },
+  {
+    "category": "EMERGENCY SYSTEMS",
+    "number": 100,
+    "question": "In a Level 1 EPSS (Emergency Power Supply System), what is the maximum allowable time for the generator to reach full voltage and frequency after utility failure?",
+    "options": [
+      "A-5 seconds",
+      "B-10 seconds",
+      "C-20 seconds",
+      "D-60 seconds"
+    ],
+    "correct_answer_letter": "B"
   }
 ]
