@@ -76,3 +76,8 @@
 - [ ] All results → emett@generatorsource.com (master copy)
 - [x] Update validation to require branch selection
 - [x] Store branch information in database
+
+## Deployment Fix
+- [ ] Update .gitignore to exclude node_modules
+- [ ] Remove node_modules from git tracking
+- [ ] Push clean repository for deployment
