@@ -235,5 +235,5 @@
 - [x] Fix input fields alignment (they look crooked/misaligned)
 
 ## Spacing Requirements
-- [ ] Make input fields smaller so they don't touch each other
-- [ ] Ensure EVERY button and field has clear space around it (NO touching anywhere on page)
+- [x] Make input fields smaller so they don't touch each other
+- [x] Ensure EVERY button and field has clear space around it (NO touching anywhere on page)
