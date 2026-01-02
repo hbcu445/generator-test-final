@@ -217,5 +217,5 @@
 - [x] Ensure all buttons (branch and skill level) are exactly the same size
 
 ## Button Selection Visual Feedback
-- [ ] Add visual indication when branch button is selected
-- [ ] Add visual indication when skill level button is selected
+- [x] Add visual indication when branch button is selected
+- [x] Add visual indication when skill level button is selected
