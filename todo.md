@@ -251,3 +251,6 @@
 
 ## Label-Field Spacing
 - [x] Increase space between labels (Full Name, Email, Phone) and their input fields to avoid crowded look
+
+## Test Page Header Redesign
+- [ ] Create horizontal header row: [Person Icon] Name | [Clock Icon] Timer | [Red Pause Button] - all in same row

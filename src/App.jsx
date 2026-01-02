@@ -285,29 +285,27 @@ function App() {
         
         {/* Timer and Status - Upper Right (only during test) */}
         {currentScreen === 'test' && (
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 text-gray-700">
-              <User className="h-5 w-5" />
-              <span className="font-medium">{applicantName}</span>
+          <div className="flex items-center gap-8">
+            {/* Person Icon + Name */}
+            <div className="flex items-center gap-3">
+              <User className="h-6 w-6 text-gray-700" />
+              <span className="text-lg font-semibold text-gray-900">{applicantName}</span>
             </div>
-            <div className="flex items-center gap-3 bg-blue-50 px-4 py-2 rounded-lg border border-blue-200">
-              {!isPaused && (
-                <div className="relative">
-                  <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
-                  <div className="relative w-3 h-3 bg-green-500 rounded-full"></div>
-                </div>
-              )}
-              <Clock className="h-5 w-5 text-blue-600" />
-              <span className="text-xl font-bold text-blue-900">{formatTime(timeRemaining)}</span>
-              <Button
-                onClick={() => setIsPaused(!isPaused)}
-                variant="outline"
-                size="sm"
-                className="ml-2"
-              >
-                {isPaused ? 'Resume' : 'Pause'}
-              </Button>
+            
+            {/* Clock Icon + Timer */}
+            <div className="flex items-center gap-3">
+              <Clock className="h-6 w-6 text-blue-600" />
+              <span className="text-2xl font-bold text-blue-900 tabular-nums">{formatTime(timeRemaining)}</span>
             </div>
+            
+            {/* Red Pause Button */}
+            <button
+              onClick={() => setIsPaused(!isPaused)}
+              className="px-6 py-2 font-semibold text-white rounded-lg transition-all hover:opacity-90"
+              style={{backgroundColor: isPaused ? '#10b981' : '#dc2626'}}
+            >
+              {isPaused ? 'RESUME' : 'PAUSE'}
+            </button>
           </div>
         )}
       </div>
