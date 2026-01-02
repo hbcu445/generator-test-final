@@ -230,6 +230,6 @@
 - [x] Add light blue background to Name, Email, and Phone fields
 
 ## Layout Corrections
-- [ ] Move Begin Test button to the RIGHT of Level 4 button (same row)
-- [ ] Make buttons slightly smaller to fit Begin Test on the same line
-- [ ] Fix input fields alignment (they look crooked/misaligned)
+- [x] Move Begin Test button to the RIGHT of Level 4 button (same row)
+- [x] Make buttons slightly smaller to fit Begin Test on the same line
+- [x] Fix input fields alignment (they look crooked/misaligned)
