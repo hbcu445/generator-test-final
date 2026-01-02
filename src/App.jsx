@@ -419,8 +419,8 @@ function App() {
                       onClick={() => setBranch('Brighton, CO')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '150px',
+                        height: '70px',
                         backgroundColor: branch === 'Brighton, CO' ? '#1e40af' : '#fef08a',
                         borderColor: '#1e40af',
                         borderWidth: '3px',
@@ -436,8 +436,8 @@ function App() {
                       onClick={() => setBranch('Jacksonville, FL')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '150px',
+                        height: '70px',
                         backgroundColor: branch === 'Jacksonville, FL' ? '#1e40af' : '#fef08a',
                         borderColor: '#1e40af',
                         borderWidth: '3px',
@@ -453,8 +453,8 @@ function App() {
                       onClick={() => setBranch('Austin, TX')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '150px',
+                        height: '70px',
                         backgroundColor: branch === 'Austin, TX' ? '#1e40af' : '#fef08a',
                         borderColor: '#1e40af',
                         borderWidth: '3px',
@@ -470,8 +470,8 @@ function App() {
                       onClick={() => setBranch('Pensacola, FL')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '150px',
+                        height: '70px',
                         backgroundColor: branch === 'Pensacola, FL' ? '#1e40af' : '#fef08a',
                         borderColor: '#1e40af',
                         borderWidth: '3px',
@@ -486,14 +486,14 @@ function App() {
                 </div>
 
                 <div style={{marginTop: '2.5rem'}}>
-                  <div className="flex gap-4 items-center justify-center">
+                  <div className="flex gap-3 items-center justify-center flex-wrap">
                     <button
                       type="button"
                       onClick={() => setSkillLevel('1')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '150px',
+                        height: '70px',
                         backgroundColor: skillLevel === '1' ? '#fef08a' : '#1e3a8a',
                         borderColor: '#fef08a',
                         borderWidth: '3px',
@@ -509,8 +509,8 @@ function App() {
                       onClick={() => setSkillLevel('2')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '150px',
+                        height: '70px',
                         backgroundColor: skillLevel === '2' ? '#fef08a' : '#1e3a8a',
                         borderColor: '#fef08a',
                         borderWidth: '3px',
@@ -526,8 +526,8 @@ function App() {
                       onClick={() => setSkillLevel('3')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '150px',
+                        height: '70px',
                         backgroundColor: skillLevel === '3' ? '#fef08a' : '#1e3a8a',
                         borderColor: '#fef08a',
                         borderWidth: '3px',
@@ -543,8 +543,8 @@ function App() {
                       onClick={() => setSkillLevel('4')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '150px',
+                        height: '70px',
                         backgroundColor: skillLevel === '4' ? '#fef08a' : '#1e3a8a',
                         borderColor: '#fef08a',
                         borderWidth: '3px',
@@ -565,10 +565,10 @@ function App() {
                         borderWidth: '3px',
                         borderStyle: 'solid',
                         color: 'white',
-                        width: '104px',
-                        height: '104px',
+                        width: '90px',
+                        height: '90px',
                         borderRadius: '50%',
-                        marginLeft: '1rem',
+                        marginLeft: '0.5rem',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
