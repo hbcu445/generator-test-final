@@ -235,8 +235,9 @@
 - [x] Fix input fields alignment (they look crooked/misaligned)
 
 ## NEW LAYOUT FROM SKETCH
-- [ ] Input fields: labels on LEFT, fields on RIGHT (Full Name | [____], Email | [____], Phone | [____])
-- [ ] Branch buttons: 4 buttons in a row with spacing
-- [ ] Level buttons: 4 buttons in a row with spacing  
-- [ ] Start button: Large "CLICK HERE TO START" button below level buttons (full width)
-- [ ] DaVinci logo: Small in bottom right corner
+- [x] Input fields: labels on LEFT, fields on RIGHT (Full Name | [____], Email | [____], Phone | [____])
+- [x] Branch buttons: 4 buttons in a row with spacing
+- [x] Level buttons: 4 buttons in a row with spacing  
+- [x] Start button: Large "CLICK HERE TO START" button below level buttons (full width)
+- [x] DaVinci logo: Small in bottom right corner
+- [x] Make everything fit on one page (compact spacing)
