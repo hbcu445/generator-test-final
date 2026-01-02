@@ -179,4 +179,4 @@
 - [ ] Test and deploy
 
 ## Logo Size Fix
-- [ ] Resize DaVinci.AI logo to be much smaller (currently takes half the screen - should be small branding element)
+- [x] Resize DaVinci.AI logo to be much smaller (currently takes half the screen - should be small branding element)
