@@ -278,31 +278,37 @@ function App() {
   const Header = () => (
     <div className="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-        {/* Generator Source Logo - Upper Left */}
+        {/* Generator Source Logo */}
         <div className="flex items-center">
-          <img src="/GSBlue180x55.jpg" alt="Generator Source" className="h-18" style={{height: '70px'}} />
+          <img src="/GSBlue180x55.jpg" alt="Generator Source" style={{height: '60px'}} />
         </div>
         
-        {/* Timer and Status - Upper Right (only during test) */}
+        {/* Test Info Row (only during test) */}
         {currentScreen === 'test' && (
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-6">
+            {/* Location */}
+            <span className="text-lg font-semibold text-gray-900">{branch}</span>
+            
+            {/* Date */}
+            <span className="text-lg font-medium text-gray-700">{new Date().toLocaleDateString('en-US', {month: '2-digit', day: '2-digit', year: 'numeric'})}</span>
+            
             {/* Person Icon + Name */}
-            <div className="flex items-center gap-3">
-              <User className="h-6 w-6 text-gray-700" />
+            <div className="flex items-center gap-2">
+              <User className="h-5 w-5 text-gray-700" />
               <span className="text-lg font-semibold text-gray-900">{applicantName}</span>
             </div>
             
             {/* Clock Icon + Timer */}
-            <div className="flex items-center gap-3">
-              <Clock className="h-6 w-6 text-blue-600" />
-              <span className="text-2xl font-bold text-blue-900 tabular-nums">{formatTime(timeRemaining)}</span>
+            <div className="flex items-center gap-2">
+              <Clock className="h-5 w-5 text-blue-600" />
+              <span className="text-xl font-bold text-blue-900 tabular-nums">{formatTime(timeRemaining)}</span>
             </div>
             
-            {/* Red Pause Button */}
+            {/* Pause Button */}
             <button
               onClick={() => setIsPaused(!isPaused)}
-              className="px-6 py-2 font-semibold text-white rounded-lg transition-all hover:opacity-90"
-              style={{backgroundColor: isPaused ? '#10b981' : '#dc2626'}}
+              className="px-5 py-2 font-bold text-white rounded transition-all hover:opacity-90"
+              style={{backgroundColor: isPaused ? '#10b981' : '#dc2626', fontSize: '14px'}}
             >
               {isPaused ? 'RESUME' : 'PAUSE'}
             </button>
@@ -583,7 +589,6 @@ function App() {
           </div>
         </div>
         <Footer />
-        <SpeedInsights />
       </div>
     )
   }
@@ -591,115 +596,73 @@ function App() {
   // Test Screen
   if (currentScreen === 'test') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
+      <div className="min-h-screen bg-white">
         <Header />
-        <div className="pt-32 pb-24 px-6">
-          <div className="max-w-6xl mx-auto">
-            {/* Progress Bar */}
-            <div className="mb-8 bg-white p-6 rounded-2xl shadow-xl border-0">
-              <div className="flex justify-between items-center mb-4 flex-wrap gap-4">
-                <span className="text-lg font-bold text-gray-900">
-                  Question {currentQuestionIndex + 1} of {questions.length}
-                </span>
-                <span className="text-lg font-bold text-indigo-600">
-                  {Math.round(((currentQuestionIndex + 1) / questions.length) * 100)}% Complete
-                </span>
-              </div>
-              <Progress value={((currentQuestionIndex + 1) / questions.length) * 100} className="h-4" />
+        <div className="pt-24 pb-24 px-8">
+          <div className="max-w-5xl mx-auto">
+            {/* Progress Display */}
+            <div className="mb-8 text-center">
+              <span className="text-2xl font-bold text-gray-900">
+                QUESTION {currentQuestionIndex + 1} of {questions.length} | COMPLETE: {Math.round(((currentQuestionIndex + 1) / questions.length) * 100)}%
+              </span>
             </div>
 
-            {/* Question Card */}
-            <Card className="shadow-2xl border-0 rounded-2xl overflow-hidden">
-              <CardHeader className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 text-white py-8">
-                <div className="flex justify-between items-center">
-                  <CardTitle className="text-3xl font-bold tracking-tight">
-                    {currentQuestion.category}
-                  </CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent className="p-10 space-y-10">
-                {/* Question Text */}
-                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-2xl border-l-4 border-indigo-500">
-                  <p className="text-2xl font-semibold text-gray-900 leading-relaxed">
-                    {currentQuestion.question}
-                  </p>
-                </div>
+            {/* Question Text */}
+            <div className="mb-12 text-center">
+              <p className="text-3xl font-bold text-gray-900 uppercase leading-relaxed">
+                {currentQuestion.question}
+              </p>
+            </div>
 
-                {/* Answer Options */}
-                <RadioGroup
-                  value={answers[currentQuestionIndex] || ''}
-                  onValueChange={handleAnswerChange}
-                  className="space-y-5"
+            {/* Answer Options */}
+            <div className="space-y-6 mb-16">
+              {['A', 'B', 'C', 'D'].map((letter) => (
+                <div
+                  key={letter}
+                  className="flex items-center gap-6 cursor-pointer"
+                  onClick={() => handleAnswerChange(letter)}
                 >
-                  {['A', 'B', 'C', 'D'].map((letter) => (
-                    <div
-                      key={letter}
-                      className={`relative flex items-center space-x-5 p-7 rounded-2xl border-3 transition-all duration-300 cursor-pointer hover:shadow-2xl hover:scale-[1.02] ${
-                        answers[currentQuestionIndex] === letter
-                          ? 'bg-gradient-to-r from-indigo-600 to-purple-600 border-indigo-600 text-white shadow-2xl shadow-indigo-500/50'
-                          : 'bg-white border-gray-300 hover:border-indigo-400'
-                      }`}
-                      onClick={() => handleAnswerChange(letter)}
-                    >
-                      <RadioGroupItem
-                        value={letter}
-                        id={`option-${letter}`}
-                        className="sr-only"
-                      />
-                      <div
-                        className={`flex items-center justify-center w-14 h-14 rounded-full text-2xl font-bold flex-shrink-0 ${
-                          answers[currentQuestionIndex] === letter
-                            ? 'bg-white text-indigo-600'
-                            : 'bg-gradient-to-br from-indigo-600 to-purple-600 text-white'
-                        }`}
-                      >
-                        {letter}
-                      </div>
-                      <label
-                        htmlFor={`option-${letter}`}
-                        className={`flex-1 text-xl cursor-pointer leading-relaxed ${
-                          answers[currentQuestionIndex] === letter
-                            ? 'text-white font-bold'
-                            : 'text-gray-900 font-medium'
-                        }`}
-                      >
-                        {currentQuestion.options[letter.charCodeAt(0) - 65]}
-                      </label>
-                    </div>
-                  ))}
-                </RadioGroup>
-
-                {/* Navigation Buttons */}
-                <div className="flex gap-6 pt-8 border-t-2 border-gray-200">
-                  <Button
-                    onClick={previousQuestion}
-                    disabled={currentQuestionIndex === 0}
-                    variant="outline"
-                    className="flex-1 h-16 text-xl font-bold border-3 border-indigo-300 hover:border-indigo-500 hover:bg-indigo-50 rounded-xl transition-all duration-300"
+                  <div
+                    className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-gray-900 flex-shrink-0"
+                    style={{backgroundColor: answers[currentQuestionIndex] === letter ? '#fef08a' : 'white'}}
                   >
-                    <ChevronLeft className="mr-3 h-6 w-6" />
-                    Previous
-                  </Button>
-                  {currentQuestionIndex === questions.length - 1 ? (
-                    <Button
-                      onClick={handleTestSubmit}
-                      className="flex-1 h-16 text-xl font-bold bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 rounded-xl shadow-xl hover:shadow-teal-500/50 transition-all duration-300"
-                    >
-                      Submit Test
-                      <CheckCircle className="ml-3 h-6 w-6" />
-                    </Button>
-                  ) : (
-                    <Button
-                      onClick={nextQuestion}
-                      className="flex-1 h-16 text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl shadow-xl hover:shadow-indigo-500/50 transition-all duration-300"
-                    >
-                      Next
-                      <ChevronRight className="ml-3 h-6 w-6" />
-                    </Button>
-                  )}
+                    <span className="text-2xl font-bold text-gray-900">{letter}</span>
+                  </div>
+                  <span className="text-2xl font-medium text-gray-900">
+                    {currentQuestion.options[letter.charCodeAt(0) - 65]}
+                  </span>
                 </div>
-              </CardContent>
-            </Card>
+              ))}
+            </div>
+
+            {/* Navigation Arrows */}
+            <div className="flex justify-between items-center">
+              <button
+                onClick={previousQuestion}
+                disabled={currentQuestionIndex === 0}
+                className="flex items-center gap-2 disabled:opacity-30"
+              >
+                <div className="w-0 h-0 border-t-[30px] border-t-transparent border-r-[50px] border-r-yellow-400 border-b-[30px] border-b-transparent"></div>
+                <span className="text-xl font-bold">BACK</span>
+              </button>
+              
+              {currentQuestionIndex === questions.length - 1 ? (
+                <button
+                  onClick={handleTestSubmit}
+                  className="px-8 py-4 bg-green-600 text-white text-xl font-bold rounded-lg hover:bg-green-700"
+                >
+                  SUBMIT TEST
+                </button>
+              ) : (
+                <button
+                  onClick={nextQuestion}
+                  className="flex items-center gap-2"
+                >
+                  <span className="text-xl font-bold">NEXT</span>
+                  <div className="w-0 h-0 border-t-[30px] border-t-transparent border-l-[50px] border-l-yellow-400 border-b-[30px] border-b-transparent"></div>
+                </button>
+              )}
+            </div>
           </div>
         </div>
         <Footer />
