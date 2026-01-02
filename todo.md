@@ -152,3 +152,11 @@
 - [x] Style skill level buttons with dark blue background, white text, and yellow border
 - [x] Style Begin Test button with neon green background, dark green border, and black text
 - [ ] Deploy to production
+
+## Loading Animation
+- [ ] Create loading spinner component
+- [ ] Add transition state between welcome and test screens
+- [ ] Show spinner during transition
+- [ ] Use Generator Source brand colors
+- [ ] Test the animation
+- [ ] Deploy to production
