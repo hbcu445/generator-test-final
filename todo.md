@@ -243,4 +243,4 @@
 - [x] Make everything fit on one page (compact spacing)
 
 ## Input Field Alignment Fix
-- [ ] Make input fields line up vertically (currently offset because labels have different widths)
+- [x] Make input fields line up vertically (currently offset because labels have different widths)
