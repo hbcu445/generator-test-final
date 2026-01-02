@@ -359,6 +359,10 @@ function App() {
                       <CheckCircle className="h-6 w-6 text-indigo-600 mt-1 flex-shrink-0" />
                       <span>You will receive your results immediately after submission</span>
                     </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-indigo-600 mt-1 flex-shrink-0" />
+                      <span>Choose your <strong className="text-indigo-900">Location</strong> and <strong className="text-indigo-900">Skill Level</strong></span>
+                    </li>
                   </ul>
                 </div>
 
