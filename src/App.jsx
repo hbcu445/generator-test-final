@@ -417,62 +417,62 @@ function App() {
                     <button
                       type="button"
                       onClick={() => setBranch('Brighton, CO')}
+                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        backgroundColor: '#fef08a',
+                        backgroundColor: branch === 'Brighton, CO' ? '#1e40af' : '#fef08a',
                         borderColor: '#1e40af',
                         borderWidth: '3px',
-                        borderStyle: 'solid'
+                        borderStyle: 'solid',
+                        padding: '1.25rem'
                       }}
-                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
-                      style={{padding: '1.25rem'}}
                     >
-                      <div className="font-bold text-xl text-indigo-900">Brighton, CO</div>
-                      <div className="text-base text-gray-600 mt-1">Colorado Branch</div>
+                      <div className="font-bold text-xl" style={{color: branch === 'Brighton, CO' ? 'white' : '#312e81'}}>Brighton, CO</div>
+                      <div className="text-base mt-1" style={{color: branch === 'Brighton, CO' ? '#e5e7eb' : '#4b5563'}}>Colorado Branch</div>
                     </button>
                     <button
                       type="button"
                       onClick={() => setBranch('Jacksonville, FL')}
+                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        backgroundColor: '#fef08a',
+                        backgroundColor: branch === 'Jacksonville, FL' ? '#1e40af' : '#fef08a',
                         borderColor: '#1e40af',
                         borderWidth: '3px',
-                        borderStyle: 'solid'
+                        borderStyle: 'solid',
+                        padding: '1.25rem'
                       }}
-                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
-                      style={{padding: '1.25rem'}}
                     >
-                      <div className="font-bold text-xl text-indigo-900">Jacksonville, FL</div>
-                      <div className="text-base text-gray-600 mt-1">Florida Branch</div>
+                      <div className="font-bold text-xl" style={{color: branch === 'Jacksonville, FL' ? 'white' : '#312e81'}}>Jacksonville, FL</div>
+                      <div className="text-base mt-1" style={{color: branch === 'Jacksonville, FL' ? '#e5e7eb' : '#4b5563'}}>Florida Branch</div>
                     </button>
                     <button
                       type="button"
                       onClick={() => setBranch('Austin, TX')}
+                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        backgroundColor: '#fef08a',
+                        backgroundColor: branch === 'Austin, TX' ? '#1e40af' : '#fef08a',
                         borderColor: '#1e40af',
                         borderWidth: '3px',
-                        borderStyle: 'solid'
+                        borderStyle: 'solid',
+                        padding: '1.25rem'
                       }}
-                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
-                      style={{padding: '1.25rem'}}
                     >
-                      <div className="font-bold text-xl text-indigo-900">Austin, TX</div>
-                      <div className="text-base text-gray-600 mt-1">Texas Branch</div>
+                      <div className="font-bold text-xl" style={{color: branch === 'Austin, TX' ? 'white' : '#312e81'}}>Austin, TX</div>
+                      <div className="text-base mt-1" style={{color: branch === 'Austin, TX' ? '#e5e7eb' : '#4b5563'}}>Texas Branch</div>
                     </button>
                     <button
                       type="button"
                       onClick={() => setBranch('Pensacola, FL')}
+                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        backgroundColor: '#fef08a',
+                        backgroundColor: branch === 'Pensacola, FL' ? '#1e40af' : '#fef08a',
                         borderColor: '#1e40af',
                         borderWidth: '3px',
-                        borderStyle: 'solid'
+                        borderStyle: 'solid',
+                        padding: '1.25rem'
                       }}
-                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
-                      style={{padding: '1.25rem'}}
                     >
-                      <div className="font-bold text-xl text-indigo-900">Pensacola, FL</div>
-                      <div className="text-base text-gray-600 mt-1">Florida Branch</div>
+                      <div className="font-bold text-xl" style={{color: branch === 'Pensacola, FL' ? 'white' : '#312e81'}}>Pensacola, FL</div>
+                      <div className="text-base mt-1" style={{color: branch === 'Pensacola, FL' ? '#e5e7eb' : '#4b5563'}}>Florida Branch</div>
                     </button>
                   </div>
                 </div>
@@ -482,62 +482,62 @@ function App() {
                     <button
                       type="button"
                       onClick={() => setSkillLevel('1')}
+                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        backgroundColor: '#1e3a8a',
+                        backgroundColor: skillLevel === '1' ? '#fef08a' : '#1e3a8a',
                         borderColor: '#fef08a',
                         borderWidth: '3px',
-                        borderStyle: 'solid'
+                        borderStyle: 'solid',
+                        padding: '1.25rem'
                       }}
-                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
-                      style={{padding: '1.25rem'}}
                     >
-                      <div className="font-bold text-xl" style={{color: 'white'}}>Level 1</div>
-                      <div className="text-base mt-1" style={{color: '#e5e7eb'}}>Beginner</div>
+                      <div className="font-bold text-xl" style={{color: skillLevel === '1' ? '#312e81' : 'white'}}>Level 1</div>
+                      <div className="text-base mt-1" style={{color: skillLevel === '1' ? '#4b5563' : '#e5e7eb'}}>Beginner</div>
                     </button>
                     <button
                       type="button"
                       onClick={() => setSkillLevel('2')}
+                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        backgroundColor: '#1e3a8a',
+                        backgroundColor: skillLevel === '2' ? '#fef08a' : '#1e3a8a',
                         borderColor: '#fef08a',
                         borderWidth: '3px',
-                        borderStyle: 'solid'
+                        borderStyle: 'solid',
+                        padding: '1.25rem'
                       }}
-                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
-                      style={{padding: '1.25rem'}}
                     >
-                      <div className="font-bold text-xl" style={{color: 'white'}}>Level 2</div>
-                      <div className="text-base mt-1" style={{color: '#e5e7eb'}}>Advanced</div>
+                      <div className="font-bold text-xl" style={{color: skillLevel === '2' ? '#312e81' : 'white'}}>Level 2</div>
+                      <div className="text-base mt-1" style={{color: skillLevel === '2' ? '#4b5563' : '#e5e7eb'}}>Advanced</div>
                     </button>
                     <button
                       type="button"
                       onClick={() => setSkillLevel('3')}
+                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        backgroundColor: '#1e3a8a',
+                        backgroundColor: skillLevel === '3' ? '#fef08a' : '#1e3a8a',
                         borderColor: '#fef08a',
                         borderWidth: '3px',
-                        borderStyle: 'solid'
+                        borderStyle: 'solid',
+                        padding: '1.25rem'
                       }}
-                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
-                      style={{padding: '1.25rem'}}
                     >
-                      <div className="font-bold text-xl" style={{color: 'white'}}>Level 3</div>
-                      <div className="text-base mt-1" style={{color: '#e5e7eb'}}>Pro</div>
+                      <div className="font-bold text-xl" style={{color: skillLevel === '3' ? '#312e81' : 'white'}}>Level 3</div>
+                      <div className="text-base mt-1" style={{color: skillLevel === '3' ? '#4b5563' : '#e5e7eb'}}>Pro</div>
                     </button>
                     <button
                       type="button"
                       onClick={() => setSkillLevel('4')}
+                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        backgroundColor: '#1e3a8a',
+                        backgroundColor: skillLevel === '4' ? '#fef08a' : '#1e3a8a',
                         borderColor: '#fef08a',
                         borderWidth: '3px',
-                        borderStyle: 'solid'
+                        borderStyle: 'solid',
+                        padding: '1.25rem'
                       }}
-                      className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
-                      style={{padding: '1.25rem'}}
                     >
-                      <div className="font-bold text-xl" style={{color: 'white'}}>Level 4</div>
-                      <div className="text-base mt-1" style={{color: '#e5e7eb'}}>Master</div>
+                      <div className="font-bold text-xl" style={{color: skillLevel === '4' ? '#312e81' : 'white'}}>Level 4</div>
+                      <div className="text-base mt-1" style={{color: skillLevel === '4' ? '#4b5563' : '#e5e7eb'}}>Master</div>
                     </button>
                   </div>
                 </div>
