@@ -244,3 +244,6 @@
 
 ## Input Field Alignment Fix
 - [x] Make input fields line up vertically (currently offset because labels have different widths)
+
+## Proportions - Fit Everything on One Page
+- [ ] Adjust spacing/padding so everything fits on one page without being cut off (like the reference screenshot)
