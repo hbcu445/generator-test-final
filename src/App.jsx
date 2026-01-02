@@ -316,9 +316,14 @@ function App() {
 
   // Footer component used across all screens
   const Footer = () => (
-    <div className="fixed bottom-0 right-0 p-4 z-50">
-      <div className="flex items-center gap-1 bg-white/80 backdrop-blur-sm px-2 py-1 rounded">
-        <span className="text-[10px] text-gray-400">© Created with DaVinci.AI</span>
+    <div className="fixed bottom-0 right-0 p-6 z-50">
+      <div className="flex flex-col items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-3 rounded-lg shadow-lg">
+        <img 
+          src="/DaVinciFinalLogo.PNG" 
+          alt="DaVinci.AI Logo" 
+          className="w-32 h-auto"
+        />
+        <span className="text-xs text-gray-600 font-medium">© Created with DaVinci.AI</span>
       </div>
     </div>
   )
@@ -484,8 +489,8 @@ function App() {
                       }}
                       className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
-                      <div className="font-bold text-xl text-white">Level 1</div>
-                      <div className="text-base text-gray-200 mt-1">Beginner</div>
+                      <div className="font-bold text-xl" style={{color: 'white'}}>Level 1</div>
+                      <div className="text-base mt-1" style={{color: '#e5e7eb'}}>Beginner</div>
                     </button>
                     <button
                       type="button"
@@ -498,8 +503,8 @@ function App() {
                       }}
                       className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
-                      <div className="font-bold text-xl text-white">Level 2</div>
-                      <div className="text-base text-gray-200 mt-1">Advanced</div>
+                      <div className="font-bold text-xl" style={{color: 'white'}}>Level 2</div>
+                      <div className="text-base mt-1" style={{color: '#e5e7eb'}}>Advanced</div>
                     </button>
                     <button
                       type="button"
@@ -512,8 +517,8 @@ function App() {
                       }}
                       className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
-                      <div className="font-bold text-xl text-white">Level 3</div>
-                      <div className="text-base text-gray-200 mt-1">Pro</div>
+                      <div className="font-bold text-xl" style={{color: 'white'}}>Level 3</div>
+                      <div className="text-base mt-1" style={{color: '#e5e7eb'}}>Pro</div>
                     </button>
                     <button
                       type="button"
@@ -526,8 +531,8 @@ function App() {
                       }}
                       className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
-                      <div className="font-bold text-xl text-white">Level 4</div>
-                      <div className="text-base text-gray-200 mt-1">Master</div>
+                      <div className="font-bold text-xl" style={{color: 'white'}}>Level 4</div>
+                      <div className="text-base mt-1" style={{color: '#e5e7eb'}}>Master</div>
                     </button>
                   </div>
                 </div>

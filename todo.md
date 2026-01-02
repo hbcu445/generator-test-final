@@ -160,3 +160,20 @@
 - [ ] Use Generator Source brand colors
 - [ ] Test the animation
 - [ ] Deploy to production
+
+## URGENT Home Screen Fixes
+- [x] Fix skill level button text color to WHITE (currently black on dark blue - unreadable)
+- [x] Add DaVinci.AI logo IMAGE to bottom right corner (currently just text)
+- [ ] Test and deploy
+
+## Navigation Buttons for Test Screen
+- [x] Previous/Next buttons already exist and work
+- [ ] Modernize button design to match new color scheme
+- [ ] Test navigation
+- [ ] Deploy
+
+## Immediate Test Screen Fixes
+- [ ] Fix progress display formatting ("Question 1 of 1001%" → "Question 1 of 100 | 1% Complete")
+- [ ] Remove Quick Demo button from test screen
+- [ ] Verify answer choice badges are displaying correctly
+- [ ] Test and deploy
