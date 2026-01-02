@@ -364,7 +364,7 @@ function App() {
 
                 <div className="space-y-5 max-w-2xl">
                   <div className="flex items-center gap-6">
-                    <Label htmlFor="name" className="text-base font-semibold text-gray-900 w-32 text-right">
+                    <Label htmlFor="name" className="text-base font-semibold text-gray-900 w-40 text-right">
                       Full Name *
                     </Label>
                     <Input
@@ -380,7 +380,7 @@ function App() {
                   </div>
                   
                   <div className="flex items-center gap-6">
-                    <Label htmlFor="email" className="text-base font-semibold text-gray-900 w-32 text-right">
+                    <Label htmlFor="email" className="text-base font-semibold text-gray-900 w-40 text-right">
                       Email *
                     </Label>
                     <Input
@@ -396,7 +396,7 @@ function App() {
                   </div>
 
                   <div className="flex items-center gap-6">
-                    <Label htmlFor="phone" className="text-base font-semibold text-gray-900 w-32 text-right">
+                    <Label htmlFor="phone" className="text-base font-semibold text-gray-900 w-40 text-right">
                       Phone *
                     </Label>
                     <Input
