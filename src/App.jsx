@@ -274,7 +274,7 @@ function App() {
 
   const currentQuestion = questions[currentQuestionIndex]
 
-  // Header component used across all screens
+  // Header component used across all screens - Updated 2026-01-02
   const Header = () => (
     <div className="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
