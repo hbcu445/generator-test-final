@@ -221,7 +221,7 @@
 - [x] Add visual indication when skill level button is selected
 
 ## Button Layout Final Fixes
-- [ ] Make ALL buttons (branch and level) exactly the same size
-- [ ] Add visible spacing/gaps between individual buttons in each row
-- [ ] Make Begin Test button green circle, 30% bigger
-- [ ] Position Begin Test button next to Level 4 with spacing
+- [x] Make ALL buttons (branch and level) exactly the same size
+- [x] Add visible spacing/gaps between individual buttons in each row
+- [x] Make Begin Test button green circle, 30% bigger
+- [x] Position Begin Test button next to Level 4 with spacing
