@@ -227,4 +227,4 @@
 - [x] Position Begin Test button next to Level 4 with spacing
 
 ## Input Field Styling
-- [ ] Add light blue background to Name, Email, and Phone fields
+- [x] Add light blue background to Name, Email, and Phone fields
