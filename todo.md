@@ -241,6 +241,3 @@
 - [x] Start button: Large "CLICK HERE TO START" button below level buttons (full width)
 - [x] DaVinci logo: Small in bottom right corner
 - [x] Make everything fit on one page (compact spacing)
-
-## Instruction Text Update
-- [x] Add "choose your Location and Skill Level" to Test Instructions section
