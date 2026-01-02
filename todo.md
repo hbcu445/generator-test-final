@@ -240,3 +240,8 @@
 
 ## CRITICAL FIX
 - [x] Move Begin Test button to SAME ROW as skill level buttons (currently below, should be to the right of Level 4)
+
+## Begin Test Button Position
+- [ ] Center Begin Test round button vertically between branch location buttons and skill level buttons (so DaVinci logo doesn't get covered)
+- [ ] Remove duplicate Begin Test button (keep only the centered one)
+- [ ] Ensure Name, Email, Phone input fields are perfectly aligned
