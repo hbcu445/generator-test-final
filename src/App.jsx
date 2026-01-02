@@ -374,7 +374,7 @@ function App() {
                       value={applicantName}
                       onChange={(e) => setApplicantName(e.target.value)}
                       className="rounded-xl border-2 border-blue-700"
-                      style={{fontSize: '1rem', padding: '0.6rem 0.9rem', backgroundColor: '#dbeafe', height: '45px', width: '100%'}}
+                      style={{fontSize: '0.95rem', padding: '0.5rem 0.8rem', backgroundColor: '#dbeafe', height: '38px', maxWidth: '450px'}}
                       required
                     />
                   </div>
@@ -390,7 +390,7 @@ function App() {
                       value={applicantEmail}
                       onChange={(e) => setApplicantEmail(e.target.value)}
                       className="rounded-xl border-2 border-blue-700"
-                      style={{fontSize: '1rem', padding: '0.6rem 0.9rem', backgroundColor: '#dbeafe', height: '45px', width: '100%'}}
+                      style={{fontSize: '0.95rem', padding: '0.5rem 0.8rem', backgroundColor: '#dbeafe', height: '38px', maxWidth: '450px'}}
                       required
                     />
                   </div>
@@ -406,13 +406,13 @@ function App() {
                       value={applicantPhone}
                       onChange={(e) => setApplicantPhone(e.target.value)}
                       className="rounded-xl border-2 border-blue-700"
-                      style={{fontSize: '1rem', padding: '0.6rem 0.9rem', backgroundColor: '#dbeafe', height: '45px', width: '100%'}}
+                      style={{fontSize: '0.95rem', padding: '0.5rem 0.8rem', backgroundColor: '#dbeafe', height: '38px', maxWidth: '450px'}}
                       required
                     />
                   </div>
                 </div>
 
-                <div className="relative">
+                <div>
                   <div className="flex gap-4 justify-center">
                     <button
                       type="button"
@@ -482,34 +482,6 @@ function App() {
                       <div className="font-bold text-xl" style={{color: branch === 'Pensacola, FL' ? 'white' : '#312e81'}}>Pensacola, FL</div>
                       <div className="text-base mt-1" style={{color: branch === 'Pensacola, FL' ? '#e5e7eb' : '#4b5563'}}>Florida Branch</div>
                     </button>
-                  </div>
-                  
-                  {/* Begin Test Button - Positioned Absolutely Between Sections */}
-                  <div style={{position: 'absolute', right: '-120px', top: '50%', transform: 'translateY(-50%)'}}>
-                    <Button
-                      type="button"
-                      onClick={startTest}
-                      disabled={!applicantName.trim() || !applicantEmail.trim() || !applicantPhone.trim() || !branch || !skillLevel}
-                      style={{
-                        backgroundColor: '#22c55e',
-                        borderColor: '#166534',
-                        borderWidth: '3px',
-                        borderStyle: 'solid',
-                        color: 'white',
-                        width: '100px',
-                        height: '100px',
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexDirection: 'column',
-                        padding: '0'
-                      }}
-                      className="text-sm font-bold transition-all duration-300 shadow-2xl hover:shadow-green-500/50 hover:scale-110"
-                    >
-                      <Play style={{width: '24px', height: '24px', marginBottom: '4px'}} />
-                      <span>Begin Test</span>
-                    </Button>
                   </div>
                 </div>
 
@@ -583,6 +555,31 @@ function App() {
                       <div className="font-bold text-xl" style={{color: skillLevel === '4' ? '#312e81' : 'white'}}>Level 4</div>
                       <div className="text-base mt-1" style={{color: skillLevel === '4' ? '#4b5563' : '#e5e7eb'}}>Master</div>
                     </button>
+                    <Button
+                      type="button"
+                      onClick={startTest}
+                      disabled={!applicantName.trim() || !applicantEmail.trim() || !applicantPhone.trim() || !branch || !skillLevel}
+                      style={{
+                        backgroundColor: '#22c55e',
+                        borderColor: '#166534',
+                        borderWidth: '3px',
+                        borderStyle: 'solid',
+                        color: 'white',
+                        width: '90px',
+                        height: '90px',
+                        borderRadius: '50%',
+                        marginLeft: '1rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexDirection: 'column',
+                        padding: '0'
+                      }}
+                      className="text-sm font-bold transition-all duration-300 shadow-2xl hover:shadow-green-500/50 hover:scale-110"
+                    >
+                      <Play style={{width: '20px', height: '20px', marginBottom: '2px'}} />
+                      <span style={{fontSize: '11px'}}>Begin Test</span>
+                    </Button>
                   </div>
                 </div>
               </CardContent>

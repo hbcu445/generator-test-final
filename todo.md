@@ -245,3 +245,8 @@
 - [x] Center Begin Test round button vertically between branch location buttons and skill level buttons (so DaVinci logo doesn't get covered)
 - [x] Remove duplicate Begin Test button (keep only the centered one)
 - [x] Ensure Name, Email, Phone input fields are perfectly aligned
+
+## CRITICAL FIXES NEEDED NOW
+- [ ] Fix Begin Test button (currently not showing/broken)
+- [ ] Fix input fields touching each other (add spacing back)
+- [ ] Make input fields shorter/more compact (currently too long)
