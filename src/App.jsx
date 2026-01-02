@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
@@ -446,6 +447,7 @@ Date: ${testResults.completionDate}
           </Card>
         </div>
         <TestSimulator onSimulate={simulateTestCompletion} />
+        <SpeedInsights />
       </div>
     )
   }
