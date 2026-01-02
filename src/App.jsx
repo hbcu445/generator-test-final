@@ -373,8 +373,8 @@ function App() {
                       placeholder="John Doe"
                       value={applicantName}
                       onChange={(e) => setApplicantName(e.target.value)}
-                      className="rounded-xl border-2 border-blue-700 flex-1"
-                      style={{fontSize: '1rem', padding: '0.6rem 1rem', backgroundColor: '#dbeafe', height: '42px'}}
+                      className="rounded-xl border-2 border-blue-700"
+                      style={{fontSize: '1rem', padding: '0.6rem 1rem', backgroundColor: '#dbeafe', height: '42px', width: '450px', maxWidth: '450px'}}
                       required
                     />
                   </div>
@@ -389,8 +389,8 @@ function App() {
                       placeholder="john.doe@example.com"
                       value={applicantEmail}
                       onChange={(e) => setApplicantEmail(e.target.value)}
-                      className="rounded-xl border-2 border-blue-700 flex-1"
-                      style={{fontSize: '1rem', padding: '0.6rem 1rem', backgroundColor: '#dbeafe', height: '42px'}}
+                      className="rounded-xl border-2 border-blue-700"
+                      style={{fontSize: '1rem', padding: '0.6rem 1rem', backgroundColor: '#dbeafe', height: '42px', width: '450px', maxWidth: '450px'}}
                       required
                     />
                   </div>
@@ -405,8 +405,8 @@ function App() {
                       placeholder="(555) 123-4567"
                       value={applicantPhone}
                       onChange={(e) => setApplicantPhone(e.target.value)}
-                      className="rounded-xl border-2 border-blue-700 flex-1"
-                      style={{fontSize: '1rem', padding: '0.6rem 1rem', backgroundColor: '#dbeafe', height: '42px'}}
+                      className="rounded-xl border-2 border-blue-700"
+                      style={{fontSize: '1rem', padding: '0.6rem 1rem', backgroundColor: '#dbeafe', height: '42px', width: '450px', maxWidth: '450px'}}
                       required
                     />
                   </div>
