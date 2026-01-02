@@ -193,6 +193,6 @@
 - [ ] Overall layout is broken - nothing from our changes is showing
 
 ## Current Issues from User Feedback (Jan 2)
-- [ ] Title "Generator Technician Knowledge Test" is WAY TOO BIG (needs to be smaller, professional size)
-- [ ] DaVinci logo is missing from bottom right corner (only text showing)
-- [ ] Input fields are too cramped (need more spacing between them)
+- [x] Title "Generator Technician Knowledge Test" is WAY TOO BIG (needs to be smaller, professional size)
+- [x] DaVinci logo is missing from bottom right corner (only text showing)
+- [x] Input fields are too cramped (need more spacing between them)
