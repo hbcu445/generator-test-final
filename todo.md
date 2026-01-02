@@ -19,3 +19,8 @@
 - [x] Fix deployment error: Cannot find module '/usr/src/app/dist/index.js' - Added Dockerfile
 - [x] Configure proper build output for server deployment - Dockerfile builds frontend then starts server
 - [ ] Ensure Supabase and email integration work in production - needs testing after deployment
+
+## Vercel Deployment Issues
+- [ ] Vercel still showing old layout despite latest code being pushed to GitHub
+- [ ] Need to investigate why CSS fixes aren't appearing in deployed version
+- [ ] Verify vercel.json configuration is correct
