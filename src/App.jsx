@@ -47,9 +47,18 @@ function App() {
   }
 
   const startTest = () => {
+    console.log('startTest called');
+    console.log('Name:', applicantName);
+    console.log('Email:', applicantEmail);
+    console.log('Phone:', applicantPhone);
+    console.log('Branch:', branch);
+    console.log('Skill Level:', skillLevel);
     if (applicantName.trim() && applicantEmail.trim() && applicantPhone.trim() && branch && skillLevel) {
+      console.log('All validation passed, starting test');
       setCurrentScreen('test')
       setTestStarted(true)
+    } else {
+      console.log('Validation failed');
     }
   }
 
@@ -403,11 +412,13 @@ function App() {
                     <button
                       type="button"
                       onClick={() => setBranch('Brighton, CO')}
-                      className={`p-4 border-2 rounded-lg text-left transition-all ${
-                        branch === 'Brighton, CO'
-                          ? 'border-green-600 bg-green-50 shadow-md'
-                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
-                      }`}
+                      style={{
+                        backgroundColor: branch === 'Brighton, CO' ? '#f0fdf4' : 'white',
+                        borderColor: branch === 'Brighton, CO' ? '#16a34a' : '#d1d5db',
+                        borderWidth: '2px',
+                        borderStyle: 'solid'
+                      }}
+                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
                     >
                       <div className="font-bold text-lg text-blue-900">Brighton, CO</div>
                       <div className="text-sm text-gray-600">Colorado Branch</div>
@@ -415,11 +426,13 @@ function App() {
                     <button
                       type="button"
                       onClick={() => setBranch('Jacksonville, FL')}
-                      className={`p-4 border-2 rounded-lg text-left transition-all ${
-                        branch === 'Jacksonville, FL'
-                          ? 'border-green-600 bg-green-50 shadow-md'
-                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
-                      }`}
+                      style={{
+                        backgroundColor: branch === 'Jacksonville, FL' ? '#f0fdf4' : 'white',
+                        borderColor: branch === 'Jacksonville, FL' ? '#16a34a' : '#d1d5db',
+                        borderWidth: '2px',
+                        borderStyle: 'solid'
+                      }}
+                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
                     >
                       <div className="font-bold text-lg text-blue-900">Jacksonville, FL</div>
                       <div className="text-sm text-gray-600">Florida Branch</div>
@@ -427,11 +440,13 @@ function App() {
                     <button
                       type="button"
                       onClick={() => setBranch('Austin, TX')}
-                      className={`p-4 border-2 rounded-lg text-left transition-all ${
-                        branch === 'Austin, TX'
-                          ? 'border-green-600 bg-green-50 shadow-md'
-                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
-                      }`}
+                      style={{
+                        backgroundColor: branch === 'Austin, TX' ? '#f0fdf4' : 'white',
+                        borderColor: branch === 'Austin, TX' ? '#16a34a' : '#d1d5db',
+                        borderWidth: '2px',
+                        borderStyle: 'solid'
+                      }}
+                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
                     >
                       <div className="font-bold text-lg text-blue-900">Austin, TX</div>
                       <div className="text-sm text-gray-600">Texas Branch</div>
@@ -439,11 +454,13 @@ function App() {
                     <button
                       type="button"
                       onClick={() => setBranch('Pensacola, FL')}
-                      className={`p-4 border-2 rounded-lg text-left transition-all ${
-                        branch === 'Pensacola, FL'
-                          ? 'border-green-600 bg-green-50 shadow-md'
-                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
-                      }`}
+                      style={{
+                        backgroundColor: branch === 'Pensacola, FL' ? '#f0fdf4' : 'white',
+                        borderColor: branch === 'Pensacola, FL' ? '#16a34a' : '#d1d5db',
+                        borderWidth: '2px',
+                        borderStyle: 'solid'
+                      }}
+                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
                     >
                       <div className="font-bold text-lg text-blue-900">Pensacola, FL</div>
                       <div className="text-sm text-gray-600">Florida Branch</div>
@@ -459,11 +476,13 @@ function App() {
                     <button
                       type="button"
                       onClick={() => setSkillLevel('1')}
-                      className={`p-4 border-2 rounded-lg text-left transition-all ${
-                        skillLevel === '1'
-                          ? 'border-green-600 bg-green-50 shadow-md'
-                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
-                      }`}
+                      style={{
+                        backgroundColor: skillLevel === '1' ? '#f0fdf4' : 'white',
+                        borderColor: skillLevel === '1' ? '#16a34a' : '#d1d5db',
+                        borderWidth: '2px',
+                        borderStyle: 'solid'
+                      }}
+                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
                     >
                       <div className="font-bold text-lg text-blue-900">Level 1</div>
                       <div className="text-sm text-gray-600">Beginner</div>
@@ -471,11 +490,13 @@ function App() {
                     <button
                       type="button"
                       onClick={() => setSkillLevel('2')}
-                      className={`p-4 border-2 rounded-lg text-left transition-all ${
-                        skillLevel === '2'
-                          ? 'border-green-600 bg-green-50 shadow-md'
-                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
-                      }`}
+                      style={{
+                        backgroundColor: skillLevel === '2' ? '#f0fdf4' : 'white',
+                        borderColor: skillLevel === '2' ? '#16a34a' : '#d1d5db',
+                        borderWidth: '2px',
+                        borderStyle: 'solid'
+                      }}
+                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
                     >
                       <div className="font-bold text-lg text-blue-900">Level 2</div>
                       <div className="text-sm text-gray-600">Advanced</div>
@@ -483,11 +504,13 @@ function App() {
                     <button
                       type="button"
                       onClick={() => setSkillLevel('3')}
-                      className={`p-4 border-2 rounded-lg text-left transition-all ${
-                        skillLevel === '3'
-                          ? 'border-green-600 bg-green-50 shadow-md'
-                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
-                      }`}
+                      style={{
+                        backgroundColor: skillLevel === '3' ? '#f0fdf4' : 'white',
+                        borderColor: skillLevel === '3' ? '#16a34a' : '#d1d5db',
+                        borderWidth: '2px',
+                        borderStyle: 'solid'
+                      }}
+                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
                     >
                       <div className="font-bold text-lg text-blue-900">Level 3</div>
                       <div className="text-sm text-gray-600">Pro</div>
@@ -495,11 +518,13 @@ function App() {
                     <button
                       type="button"
                       onClick={() => setSkillLevel('4')}
-                      className={`p-4 border-2 rounded-lg text-left transition-all ${
-                        skillLevel === '4'
-                          ? 'border-green-600 bg-green-50 shadow-md'
-                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
-                      }`}
+                      style={{
+                        backgroundColor: skillLevel === '4' ? '#f0fdf4' : 'white',
+                        borderColor: skillLevel === '4' ? '#16a34a' : '#d1d5db',
+                        borderWidth: '2px',
+                        borderStyle: 'solid'
+                      }}
+                      className="p-4 rounded-lg text-left transition-all shadow-sm hover:shadow-md"
                     >
                       <div className="font-bold text-lg text-blue-900">Level 4</div>
                       <div className="text-sm text-gray-600">Master</div>

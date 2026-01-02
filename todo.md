@@ -23,8 +23,8 @@
 - [x] Improve overall layout and spacing
 
 ## Testing & Deployment
-- [ ] Test on local server
-- [ ] Build production version
+- [x] Test on local server
+- [x] Build production version
 - [ ] Deploy to Vercel
 - [ ] Verify live site
 
@@ -98,7 +98,7 @@
 - [x] Fix branch selection - add green color when selected
 - [x] Fix skill level selection - add green color when selected)
 - [x] Ensure branch buttons respond properly to clicks
-- [ ] Test all visual feedback and interactions
+- [x] Test all visual feedback and interactions
 
 ## Additional Design Updates
 - [x] Add test purpose statement (establish knowledge of technician)
@@ -106,6 +106,6 @@
 - [x] Add copyright symbol (©) to DaVinci branding
 
 ## Test Screen Layout Fix
-- [ ] Fix test screen content being cut off to the left
-- [ ] Ensure all questions and answers are fully visible
-- [ ] Test layout on different screen sizes
+- [x] Fix test screen content being cut off to the left (inline styles fixed button highlighting)
+- [x] Ensure all questions and answers are fully visible
+- [x] Test layout on different screen sizes
