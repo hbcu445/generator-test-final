@@ -321,7 +321,7 @@ function App() {
         <img 
           src="/DaVinciFinalLogo.PNG" 
           alt="DaVinci.AI Logo" 
-          className="w-16 h-auto"
+          style={{width: '64px', height: 'auto', maxWidth: '64px'}}
         />
         <span className="text-xs text-gray-600 font-medium">© Created with DaVinci.AI</span>
       </div>
@@ -337,7 +337,7 @@ function App() {
           <div className="max-w-4xl mx-auto">
             <Card className="shadow-2xl border-0 rounded-2xl overflow-hidden">
               <CardHeader className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 text-white py-12">
-                <CardTitle className="text-8xl font-black text-center tracking-tight leading-tight">
+                <CardTitle className="text-8xl font-black text-center tracking-tight leading-tight" style={{fontSize: '6rem', lineHeight: '1.1'}}>
                   Generator Technician Knowledge Test
                 </CardTitle>
               </CardHeader>

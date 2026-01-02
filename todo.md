@@ -185,3 +185,9 @@
 - [x] Make "Generator Technician Knowledge Test" title MUCH bigger (currently too small)
 - [x] Stack all input fields straight on top of each other (currently offset)
 - [x] Add more spacing between input fields (currently too cramped)
+
+## CRITICAL ISSUES - Current Live Site
+- [ ] Title "Generator Technician Knowledge Test" is TINY (needs to be MUCH bigger)
+- [ ] DaVinci logo is HUGE (taking up most of the screen - needs to be tiny)
+- [ ] Input fields are cramped and overlapping
+- [ ] Overall layout is broken - nothing from our changes is showing
