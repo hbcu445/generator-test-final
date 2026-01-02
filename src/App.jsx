@@ -321,7 +321,7 @@ function App() {
         <img 
           src="/DaVinciFinalLogo.PNG" 
           alt="DaVinci.AI Logo" 
-          className="w-32 h-auto"
+          className="w-16 h-auto"
         />
         <span className="text-xs text-gray-600 font-medium">© Created with DaVinci.AI</span>
       </div>

@@ -177,3 +177,6 @@
 - [ ] Remove Quick Demo button from test screen
 - [ ] Verify answer choice badges are displaying correctly
 - [ ] Test and deploy
+
+## Logo Size Fix
+- [ ] Resize DaVinci.AI logo to be much smaller (currently takes half the screen - should be small branding element)
