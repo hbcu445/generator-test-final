@@ -233,3 +233,7 @@
 - [x] Move Begin Test button to the RIGHT of Level 4 button (same row)
 - [x] Make buttons slightly smaller to fit Begin Test on the same line
 - [x] Fix input fields alignment (they look crooked/misaligned)
+
+## Spacing Requirements
+- [ ] Make input fields smaller so they don't touch each other
+- [ ] Ensure EVERY button and field has clear space around it (NO touching anywhere on page)

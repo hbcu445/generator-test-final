@@ -362,7 +362,7 @@ function App() {
                   </ul>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-8">
                   <div>
                     <Label htmlFor="name" className="text-base font-semibold text-gray-900 mb-2 block">
                       Full Name *
@@ -374,7 +374,7 @@ function App() {
                       value={applicantName}
                       onChange={(e) => setApplicantName(e.target.value)}
                       className="rounded-xl border-2 border-blue-700"
-                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem', backgroundColor: '#dbeafe'}}
+                      style={{fontSize: '1rem', padding: '0.6rem 0.9rem', backgroundColor: '#dbeafe', height: '45px'}}
                       required
                     />
                   </div>
@@ -390,7 +390,7 @@ function App() {
                       value={applicantEmail}
                       onChange={(e) => setApplicantEmail(e.target.value)}
                       className="rounded-xl border-2 border-blue-700"
-                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem', backgroundColor: '#dbeafe'}}
+                      style={{fontSize: '1rem', padding: '0.6rem 0.9rem', backgroundColor: '#dbeafe', height: '45px'}}
                       required
                     />
                   </div>
@@ -406,7 +406,7 @@ function App() {
                       value={applicantPhone}
                       onChange={(e) => setApplicantPhone(e.target.value)}
                       className="rounded-xl border-2 border-blue-700"
-                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem', backgroundColor: '#dbeafe'}}
+                      style={{fontSize: '1rem', padding: '0.6rem 0.9rem', backgroundColor: '#dbeafe', height: '45px'}}
                       required
                     />
                   </div>
