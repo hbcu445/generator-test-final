@@ -196,3 +196,6 @@
 - [x] Title "Generator Technician Knowledge Test" is WAY TOO BIG (needs to be smaller, professional size)
 - [x] DaVinci logo is missing from bottom right corner (only text showing)
 - [x] Input fields are too cramped (need more spacing between them)
+
+## Additional Spacing Improvements
+- [ ] Add more space between branch location buttons

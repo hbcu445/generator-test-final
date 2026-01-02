@@ -413,7 +413,7 @@ function App() {
                   <Label className="text-xl font-bold text-gray-900">
                     Select Your Branch *
                   </Label>
-                  <div className="grid grid-cols-2 gap-5">
+                  <div className="grid grid-cols-2 gap-6">
                     <button
                       type="button"
                       onClick={() => setBranch('Brighton, CO')}
