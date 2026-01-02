@@ -409,10 +409,7 @@ function App() {
                   </div>
                 </div>
 
-                <div className="space-y-5">
-                  <Label className="text-xl font-bold text-gray-900">
-                    Select Your Branch *
-                  </Label>
+                <div>
                   <div className="grid grid-cols-2 gap-6">
                     <button
                       type="button"
@@ -423,7 +420,7 @@ function App() {
                         borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
+                      className="p-5 rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
                       <div className="font-bold text-xl text-indigo-900">Brighton, CO</div>
                       <div className="text-base text-gray-600 mt-1">Colorado Branch</div>
@@ -437,7 +434,7 @@ function App() {
                         borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
+                      className="p-5 rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
                       <div className="font-bold text-xl text-indigo-900">Jacksonville, FL</div>
                       <div className="text-base text-gray-600 mt-1">Florida Branch</div>
@@ -451,7 +448,7 @@ function App() {
                         borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
+                      className="p-5 rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
                       <div className="font-bold text-xl text-indigo-900">Austin, TX</div>
                       <div className="text-base text-gray-600 mt-1">Texas Branch</div>
@@ -465,7 +462,7 @@ function App() {
                         borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
+                      className="p-5 rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
                       <div className="font-bold text-xl text-indigo-900">Pensacola, FL</div>
                       <div className="text-base text-gray-600 mt-1">Florida Branch</div>
@@ -473,11 +470,8 @@ function App() {
                   </div>
                 </div>
 
-                <div className="space-y-5" style={{marginTop: '3rem'}}>
-                  <Label className="text-xl font-bold text-gray-900">
-                    Select Your Skill Level *
-                  </Label>
-                  <div className="grid grid-cols-2 gap-5">
+                <div style={{marginTop: '2rem'}}>
+                  <div className="grid grid-cols-4 gap-4">
                     <button
                       type="button"
                       onClick={() => setSkillLevel('1')}
@@ -487,7 +481,7 @@ function App() {
                         borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
+                      className="p-5 rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
                       <div className="font-bold text-xl" style={{color: 'white'}}>Level 1</div>
                       <div className="text-base mt-1" style={{color: '#e5e7eb'}}>Beginner</div>
@@ -501,7 +495,7 @@ function App() {
                         borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
+                      className="p-5 rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
                       <div className="font-bold text-xl" style={{color: 'white'}}>Level 2</div>
                       <div className="text-base mt-1" style={{color: '#e5e7eb'}}>Advanced</div>
@@ -515,7 +509,7 @@ function App() {
                         borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
+                      className="p-5 rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
                       <div className="font-bold text-xl" style={{color: 'white'}}>Level 3</div>
                       <div className="text-base mt-1" style={{color: '#e5e7eb'}}>Pro</div>
@@ -529,7 +523,7 @@ function App() {
                         borderWidth: '3px',
                         borderStyle: 'solid'
                       }}
-                      className="p-6 rounded-2xl text-left transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
+                      className="p-5 rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                     >
                       <div className="font-bold text-xl" style={{color: 'white'}}>Level 4</div>
                       <div className="text-base mt-1" style={{color: '#e5e7eb'}}>Master</div>

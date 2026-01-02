@@ -203,3 +203,5 @@
 ## Logo and Button Spacing Improvements
 - [ ] Increase Generator Source logo by 25%
 - [ ] Add spacing between location and skill level button sections (separate them)
+- [ ] Remove "Select Your Branch *" label text
+- [ ] Make all branch and skill level buttons the same size
