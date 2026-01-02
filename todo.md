@@ -239,4 +239,4 @@
 - [x] Ensure EVERY button and field has clear space around it (NO touching anywhere on page)
 
 ## CRITICAL FIX
-- [ ] Move Begin Test button to SAME ROW as skill level buttons (currently below, should be to the right of Level 4)
+- [x] Move Begin Test button to SAME ROW as skill level buttons (currently below, should be to the right of Level 4)
