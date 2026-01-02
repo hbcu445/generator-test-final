@@ -210,3 +210,8 @@
 - [x] Arrange Name, Email, Phone fields horizontally in one row
 - [x] Make all contact fields same size
 - [x] Increase contact field size by 15%
+
+## CORRECTIONS NEEDED
+- [ ] Fix input fields - only 15% bigger, not tripled
+- [ ] Add proper spacing between branch and skill level button sections
+- [ ] Ensure all buttons (branch and skill level) are exactly the same size
