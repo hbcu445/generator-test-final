@@ -81,3 +81,13 @@
 - [ ] Update .gitignore to exclude node_modules
 - [ ] Remove node_modules from git tracking
 - [ ] Push clean repository for deployment
+
+## SendGrid Email Integration
+- [ ] Install SendGrid npm package
+- [ ] Configure SendGrid API key
+- [ ] Create email template for test results
+- [ ] Implement email sending in submit-test endpoint
+- [ ] Send results to applicant
+- [ ] Send results to branch manager
+- [ ] Send copy to emett@generatorsource.com
+- [ ] Test email delivery

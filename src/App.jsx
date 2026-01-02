@@ -72,7 +72,7 @@ function App() {
     }
   }
 
-  const handleTestSubmit = () => {
+  const handleTestSubmit = async () => {
     // Calculate results
     let correctAnswers = 0
     questions.forEach((question, index) => {
@@ -117,7 +117,7 @@ function App() {
       }
     })
 
-    setTestResults({
+    const results = {
       correctAnswers,
       totalQuestions: questions.length,
       percentage,
@@ -125,9 +125,43 @@ function App() {
       selfEvaluation,
       assessment,
       detailedResults
-    })
-    setCurrentScreen('results')
-    setTestStarted(false)
+    };
+    
+    setTestResults(results);
+    setCurrentScreen('results');
+    setTestStarted(false);
+    
+    // Submit results to backend for storage and email delivery
+    try {
+      const response = await fetch('/api/submit-test', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          applicantName,
+          applicantEmail,
+          applicantPhone,
+          branch,
+          skillLevel: selfEvaluation,
+          score: correctAnswers,
+          totalQuestions: questions.length,
+          percentage,
+          performanceLevel: actualLevel,
+          selfEvaluation,
+          assessment,
+          detailedResults
+        })
+      });
+      
+      if (response.ok) {
+        console.log('Test results submitted and emails sent successfully');
+      } else {
+        console.error('Failed to submit test results');
+      }
+    } catch (error) {
+      console.error('Error submitting test results:', error);
+    }
   }
 
   const generateCertificate = async () => {
