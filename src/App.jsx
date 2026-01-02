@@ -559,7 +559,7 @@ function App() {
           <div className="max-w-6xl mx-auto">
             {/* Progress Bar */}
             <div className="mb-8 bg-white p-6 rounded-2xl shadow-xl border-0">
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex justify-between items-center mb-4 flex-wrap gap-4">
                 <span className="text-lg font-bold text-gray-900">
                   Question {currentQuestionIndex + 1} of {questions.length}
                 </span>

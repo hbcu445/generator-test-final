@@ -131,3 +131,15 @@
 - [x] Rewrite App.css with modern design system
 - [ ] Deploy to Vercel
 - [ ] Verify modern design shows on production
+
+## Improve Answer Choice Styling
+- [x] Make answer choice buttons more visually interesting
+- [x] Replace plain black circles with colorful letter badges
+- [x] Test the new styling
+- [ ] Deploy to production
+
+## Fix Formatting and Contextual Issues
+- [x] Fix progress display formatting ("Question 3 of 1003%" → "Question 3 of 100 | 3% Complete")
+- [x] Enhanced answer choice buttons with colorful gradient badges
+- [ ] Test complete user flow
+- [ ] Deploy to production
