@@ -362,9 +362,9 @@ function App() {
                   </ul>
                 </div>
 
-                <div className="space-y-8">
+                <div className="grid grid-cols-3 gap-4">
                   <div>
-                    <Label htmlFor="name" className="text-xl font-bold text-gray-900 mb-3 block">
+                    <Label htmlFor="name" className="text-base font-semibold text-gray-900 mb-2 block">
                       Full Name *
                     </Label>
                     <Input
@@ -373,13 +373,14 @@ function App() {
                       placeholder="John Doe"
                       value={applicantName}
                       onChange={(e) => setApplicantName(e.target.value)}
-                      className="text-xl py-6 px-5 rounded-xl border-2 bg-blue-50 border-blue-700"
+                      className="text-lg py-7 px-5 rounded-xl border-2 bg-blue-50 border-blue-700"
+                      style={{fontSize: '1.15rem', padding: '1.75rem 1.25rem'}}
                       required
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="email" className="text-xl font-bold text-gray-900 mb-3 block">
+                    <Label htmlFor="email" className="text-base font-semibold text-gray-900 mb-2 block">
                       Email Address *
                     </Label>
                     <Input
@@ -388,13 +389,14 @@ function App() {
                       placeholder="john.doe@example.com"
                       value={applicantEmail}
                       onChange={(e) => setApplicantEmail(e.target.value)}
-                      className="text-xl py-6 px-5 rounded-xl border-2 bg-blue-50 border-blue-700"
+                      className="text-lg py-7 px-5 rounded-xl border-2 bg-blue-50 border-blue-700"
+                      style={{fontSize: '1.15rem', padding: '1.75rem 1.25rem'}}
                       required
                     />
                   </div>
 
                   <div>
-                    <Label htmlFor="phone" className="text-xl font-bold text-gray-900 mb-3 block">
+                    <Label htmlFor="phone" className="text-base font-semibold text-gray-900 mb-2 block">
                       Phone Number *
                     </Label>
                     <Input
@@ -403,7 +405,8 @@ function App() {
                       placeholder="(555) 123-4567"
                       value={applicantPhone}
                       onChange={(e) => setApplicantPhone(e.target.value)}
-                      className="text-xl py-6 px-5 rounded-xl border-2 bg-blue-50 border-blue-700"
+                      className="text-lg py-7 px-5 rounded-xl border-2 bg-blue-50 border-blue-700"
+                      style={{fontSize: '1.15rem', padding: '1.75rem 1.25rem'}}
                       required
                     />
                   </div>

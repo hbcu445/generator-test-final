@@ -205,3 +205,8 @@
 - [x] Add spacing between location and skill level button sections (separate them)
 - [x] Remove "Select Your Branch *" label text
 - [x] Make all branch and skill level buttons the same size
+
+## Contact Fields Layout
+- [ ] Arrange Name, Email, Phone fields horizontally in one row
+- [ ] Make all contact fields same size
+- [ ] Increase contact field size by 15%
