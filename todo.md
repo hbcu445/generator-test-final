@@ -180,3 +180,8 @@
 
 ## Logo Size Fix
 - [x] Resize DaVinci.AI logo to be much smaller (currently takes half the screen - should be small branding element)
+
+## Critical Layout Fixes (User Feedback)
+- [ ] Make "Generator Technician Knowledge Test" title MUCH bigger (currently too small)
+- [ ] Stack all input fields straight on top of each other (currently offset)
+- [ ] Add more spacing between input fields (currently too cramped)

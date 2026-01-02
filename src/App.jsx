@@ -337,7 +337,7 @@ function App() {
           <div className="max-w-4xl mx-auto">
             <Card className="shadow-2xl border-0 rounded-2xl overflow-hidden">
               <CardHeader className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 text-white py-12">
-                <CardTitle className="text-6xl font-black text-center tracking-tight">
+                <CardTitle className="text-8xl font-black text-center tracking-tight leading-tight">
                   Generator Technician Knowledge Test
                 </CardTitle>
               </CardHeader>
@@ -362,7 +362,7 @@ function App() {
                   </ul>
                 </div>
 
-                <div className="space-y-7">
+                <div className="space-y-10">
                   <div>
                     <Label htmlFor="name" className="text-xl font-bold text-gray-900 mb-3 block">
                       Full Name *
