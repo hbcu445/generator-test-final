@@ -373,8 +373,8 @@ function App() {
                       placeholder="John Doe"
                       value={applicantName}
                       onChange={(e) => setApplicantName(e.target.value)}
-                      className="rounded-xl border-2 bg-blue-50 border-blue-700"
-                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem'}}
+                      className="rounded-xl border-2 border-blue-700"
+                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem', backgroundColor: '#dbeafe'}}
                       required
                     />
                   </div>
@@ -389,8 +389,8 @@ function App() {
                       placeholder="john.doe@example.com"
                       value={applicantEmail}
                       onChange={(e) => setApplicantEmail(e.target.value)}
-                      className="rounded-xl border-2 bg-blue-50 border-blue-700"
-                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem'}}
+                      className="rounded-xl border-2 border-blue-700"
+                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem', backgroundColor: '#dbeafe'}}
                       required
                     />
                   </div>
@@ -405,8 +405,8 @@ function App() {
                       placeholder="(555) 123-4567"
                       value={applicantPhone}
                       onChange={(e) => setApplicantPhone(e.target.value)}
-                      className="rounded-xl border-2 bg-blue-50 border-blue-700"
-                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem'}}
+                      className="rounded-xl border-2 border-blue-700"
+                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem', backgroundColor: '#dbeafe'}}
                       required
                     />
                   </div>
