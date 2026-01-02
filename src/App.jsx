@@ -336,17 +336,17 @@ function App() {
         <div className="pt-32 pb-24 px-6">
           <div className="max-w-4xl mx-auto">
             <Card className="shadow-2xl border-0 rounded-2xl overflow-hidden">
-              <CardHeader className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 text-white py-12">
+              <CardHeader className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 text-white py-6">
                 <CardTitle className="text-3xl font-bold text-center" style={{fontSize: '1.75rem', lineHeight: '1.3'}}>
                   Generator Technician Knowledge Test
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-12 space-y-10">
-                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 border-l-4 border-indigo-500 p-8 rounded-xl">
-                  <h3 className="text-2xl font-bold text-indigo-900 mb-4">Test Purpose</h3>
-                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">This assessment is designed to establish and verify your knowledge and expertise as a generator technician.</p>
-                  <h3 className="text-2xl font-bold text-indigo-900 mb-5">Test Instructions</h3>
-                  <ul className="space-y-4 text-gray-700 text-lg">
+              <CardContent className="p-8 space-y-5">
+                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 border-l-4 border-indigo-500 p-5 rounded-xl">
+                  <h3 className="text-lg font-bold text-indigo-900 mb-2">Test Purpose</h3>
+                  <p className="text-gray-700 text-sm mb-3 leading-relaxed">This assessment is designed to establish and verify your knowledge and expertise as a generator technician.</p>
+                  <h3 className="text-lg font-bold text-indigo-900 mb-2">Test Instructions</h3>
+                  <ul className="space-y-2 text-gray-700 text-sm">
                     <li className="flex items-start gap-3">
                       <CheckCircle className="h-6 w-6 text-indigo-600 mt-1 flex-shrink-0" />
                       <span>You have <strong className="text-indigo-900">75 minutes</strong> to complete <strong className="text-indigo-900">100 questions</strong></span>
@@ -362,9 +362,9 @@ function App() {
                   </ul>
                 </div>
 
-                <div className="space-y-6">
-                  <div>
-                    <Label htmlFor="name" className="text-base font-semibold text-gray-900 mb-2 block">
+                <div className="space-y-5 max-w-2xl">
+                  <div className="flex items-center gap-6">
+                    <Label htmlFor="name" className="text-base font-semibold text-gray-900 w-32 text-right">
                       Full Name *
                     </Label>
                     <Input
@@ -373,15 +373,15 @@ function App() {
                       placeholder="John Doe"
                       value={applicantName}
                       onChange={(e) => setApplicantName(e.target.value)}
-                      className="rounded-xl border-2 border-blue-700"
-                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem', backgroundColor: '#dbeafe'}}
+                      className="rounded-xl border-2 border-blue-700 flex-1"
+                      style={{fontSize: '1rem', padding: '0.6rem 1rem', backgroundColor: '#dbeafe', height: '42px'}}
                       required
                     />
                   </div>
                   
-                  <div>
-                    <Label htmlFor="email" className="text-base font-semibold text-gray-900 mb-2 block">
-                      Email Address *
+                  <div className="flex items-center gap-6">
+                    <Label htmlFor="email" className="text-base font-semibold text-gray-900 w-32 text-right">
+                      Email *
                     </Label>
                     <Input
                       id="email"
@@ -389,15 +389,15 @@ function App() {
                       placeholder="john.doe@example.com"
                       value={applicantEmail}
                       onChange={(e) => setApplicantEmail(e.target.value)}
-                      className="rounded-xl border-2 border-blue-700"
-                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem', backgroundColor: '#dbeafe'}}
+                      className="rounded-xl border-2 border-blue-700 flex-1"
+                      style={{fontSize: '1rem', padding: '0.6rem 1rem', backgroundColor: '#dbeafe', height: '42px'}}
                       required
                     />
                   </div>
 
-                  <div>
-                    <Label htmlFor="phone" className="text-base font-semibold text-gray-900 mb-2 block">
-                      Phone Number *
+                  <div className="flex items-center gap-6">
+                    <Label htmlFor="phone" className="text-base font-semibold text-gray-900 w-32 text-right">
+                      Phone *
                     </Label>
                     <Input
                       id="phone"
@@ -405,22 +405,22 @@ function App() {
                       placeholder="(555) 123-4567"
                       value={applicantPhone}
                       onChange={(e) => setApplicantPhone(e.target.value)}
-                      className="rounded-xl border-2 border-blue-700"
-                      style={{fontSize: '1.15rem', padding: '0.75rem 1rem', backgroundColor: '#dbeafe'}}
+                      className="rounded-xl border-2 border-blue-700 flex-1"
+                      style={{fontSize: '1rem', padding: '0.6rem 1rem', backgroundColor: '#dbeafe', height: '42px'}}
                       required
                     />
                   </div>
                 </div>
 
-                <div>
-                  <div className="flex gap-4 justify-center">
+                <div style={{marginTop: '1.5rem'}}>
+                  <div className="flex gap-3 justify-center">
                     <button
                       type="button"
                       onClick={() => setBranch('Brighton, CO')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '155px',
+                        height: '60px',
                         backgroundColor: branch === 'Brighton, CO' ? '#1e40af' : '#fef08a',
                         borderColor: '#1e40af',
                         borderWidth: '3px',
@@ -436,8 +436,8 @@ function App() {
                       onClick={() => setBranch('Jacksonville, FL')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '155px',
+                        height: '60px',
                         backgroundColor: branch === 'Jacksonville, FL' ? '#1e40af' : '#fef08a',
                         borderColor: '#1e40af',
                         borderWidth: '3px',
@@ -453,8 +453,8 @@ function App() {
                       onClick={() => setBranch('Austin, TX')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '155px',
+                        height: '60px',
                         backgroundColor: branch === 'Austin, TX' ? '#1e40af' : '#fef08a',
                         borderColor: '#1e40af',
                         borderWidth: '3px',
@@ -470,8 +470,8 @@ function App() {
                       onClick={() => setBranch('Pensacola, FL')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '155px',
+                        height: '60px',
                         backgroundColor: branch === 'Pensacola, FL' ? '#1e40af' : '#fef08a',
                         borderColor: '#1e40af',
                         borderWidth: '3px',
@@ -485,15 +485,15 @@ function App() {
                   </div>
                 </div>
 
-                <div style={{marginTop: '2.5rem'}}>
+                <div style={{marginTop: '1.5rem'}}>
                   <div className="flex gap-4 items-center justify-center">
                     <button
                       type="button"
                       onClick={() => setSkillLevel('1')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '155px',
+                        height: '60px',
                         backgroundColor: skillLevel === '1' ? '#fef08a' : '#1e3a8a',
                         borderColor: '#fef08a',
                         borderWidth: '3px',
@@ -509,8 +509,8 @@ function App() {
                       onClick={() => setSkillLevel('2')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '155px',
+                        height: '60px',
                         backgroundColor: skillLevel === '2' ? '#fef08a' : '#1e3a8a',
                         borderColor: '#fef08a',
                         borderWidth: '3px',
@@ -526,8 +526,8 @@ function App() {
                       onClick={() => setSkillLevel('3')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '155px',
+                        height: '60px',
                         backgroundColor: skillLevel === '3' ? '#fef08a' : '#1e3a8a',
                         borderColor: '#fef08a',
                         borderWidth: '3px',
@@ -543,8 +543,8 @@ function App() {
                       onClick={() => setSkillLevel('4')}
                       className="rounded-2xl text-center transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       style={{
-                        width: '170px',
-                        height: '75px',
+                        width: '155px',
+                        height: '60px',
                         backgroundColor: skillLevel === '4' ? '#fef08a' : '#1e3a8a',
                         borderColor: '#fef08a',
                         borderWidth: '3px',
@@ -555,32 +555,30 @@ function App() {
                       <div className="font-bold text-xl" style={{color: skillLevel === '4' ? '#312e81' : 'white'}}>Level 4</div>
                       <div className="text-base mt-1" style={{color: skillLevel === '4' ? '#4b5563' : '#e5e7eb'}}>Master</div>
                     </button>
-                    <Button
-                      type="button"
-                      onClick={startTest}
-                      disabled={!applicantName.trim() || !applicantEmail.trim() || !applicantPhone.trim() || !branch || !skillLevel}
-                      style={{
-                        backgroundColor: '#22c55e',
-                        borderColor: '#166534',
-                        borderWidth: '3px',
-                        borderStyle: 'solid',
-                        color: 'white',
-                        width: '104px',
-                        height: '104px',
-                        borderRadius: '50%',
-                        marginLeft: '1rem',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexDirection: 'column',
-                        padding: '0'
-                      }}
-                      className="text-sm font-bold transition-all duration-300 shadow-2xl hover:shadow-green-500/50 hover:scale-110"
-                    >
-                      <Play style={{width: '24px', height: '24px', marginBottom: '4px'}} />
-                      <span>Begin Test</span>
-                    </Button>
                   </div>
+                </div>
+
+                <div style={{marginTop: '1.5rem'}}>
+                  <Button
+                    type="button"
+                    onClick={startTest}
+                    disabled={!applicantName.trim() || !applicantEmail.trim() || !applicantPhone.trim() || !branch || !skillLevel}
+                    style={{
+                      backgroundColor: '#22c55e',
+                      borderColor: '#166534',
+                      borderWidth: '3px',
+                      borderStyle: 'solid',
+                      color: 'white',
+                      width: '100%',
+                      height: '60px',
+                      borderRadius: '12px',
+                      fontSize: '1.25rem',
+                      fontWeight: 'bold'
+                    }}
+                    className="transition-all duration-300 shadow-xl hover:shadow-green-500/50 hover:scale-105"
+                  >
+                    CLICK HERE TO START
+                  </Button>
                 </div>
               </CardContent>
             </Card>

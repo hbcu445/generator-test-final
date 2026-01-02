@@ -233,3 +233,10 @@
 - [x] Move Begin Test button to the RIGHT of Level 4 button (same row)
 - [x] Make buttons slightly smaller to fit Begin Test on the same line
 - [x] Fix input fields alignment (they look crooked/misaligned)
+
+## NEW LAYOUT FROM SKETCH
+- [ ] Input fields: labels on LEFT, fields on RIGHT (Full Name | [____], Email | [____], Phone | [____])
+- [ ] Branch buttons: 4 buttons in a row with spacing
+- [ ] Level buttons: 4 buttons in a row with spacing  
+- [ ] Start button: Large "CLICK HERE TO START" button below level buttons (full width)
+- [ ] DaVinci logo: Small in bottom right corner
