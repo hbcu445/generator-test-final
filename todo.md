@@ -199,3 +199,7 @@
 
 ## Additional Spacing Improvements
 - [x] Add more space between branch location buttons
+
+## Logo and Button Spacing Improvements
+- [ ] Increase Generator Source logo by 25%
+- [ ] Add spacing between location and skill level button sections (separate them)

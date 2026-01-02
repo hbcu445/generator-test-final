@@ -280,7 +280,7 @@ function App() {
       <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
         {/* Generator Source Logo - Upper Left */}
         <div className="flex items-center">
-          <img src="/GSBlue180x55.jpg" alt="Generator Source" className="h-14" />
+          <img src="/GSBlue180x55.jpg" alt="Generator Source" className="h-18" style={{height: '70px'}} />
         </div>
         
         {/* Timer and Status - Upper Right (only during test) */}
@@ -473,7 +473,7 @@ function App() {
                   </div>
                 </div>
 
-                <div className="space-y-5">
+                <div className="space-y-5" style={{marginTop: '3rem'}}>
                   <Label className="text-xl font-bold text-gray-900">
                     Select Your Skill Level *
                   </Label>
