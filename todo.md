@@ -243,4 +243,4 @@
 - [x] Make everything fit on one page (compact spacing)
 
 ## Instruction Text Update
-- [ ] Add "choose your Location and Skill Level" to Test Instructions section
+- [x] Add "choose your Location and Skill Level" to Test Instructions section
