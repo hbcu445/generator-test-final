@@ -308,9 +308,8 @@ function App() {
   // Footer component used across all screens
   const Footer = () => (
     <div className="fixed bottom-0 right-0 p-4 z-50">
-      <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg border border-gray-200">
-        <span className="text-sm text-gray-600">Created with</span>
-        <img src="/DaVinciFinalLogo.PNG" alt="DaVinci.AI" className="h-8" />
+      <div className="flex items-center gap-1 bg-white/80 backdrop-blur-sm px-2 py-1 rounded">
+        <span className="text-[10px] text-gray-400">© Created with DaVinci.AI</span>
       </div>
     </div>
   )
@@ -330,6 +329,8 @@ function App() {
               </CardHeader>
               <CardContent className="p-8 space-y-8">
                 <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
+                  <h3 className="text-xl font-semibold text-blue-900 mb-3">Test Purpose</h3>
+                  <p className="text-gray-700 mb-4 italic">This assessment is designed to establish and verify your knowledge and expertise as a generator technician.</p>
                   <h3 className="text-xl font-semibold text-blue-900 mb-4">Test Instructions</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start gap-2">
@@ -358,7 +359,7 @@ function App() {
                       placeholder="John Doe"
                       value={applicantName}
                       onChange={(e) => setApplicantName(e.target.value)}
-                      className="h-14 text-lg border-2 border-gray-300 focus:border-blue-500 mt-2"
+                      className="h-14 text-lg border-2 border-gray-300 focus:border-blue-500 rounded-lg mt-2 px-4"
                       required
                     />
                   </div>
@@ -373,7 +374,7 @@ function App() {
                       placeholder="john.doe@example.com"
                       value={applicantEmail}
                       onChange={(e) => setApplicantEmail(e.target.value)}
-                      className="h-14 text-lg border-2 border-gray-300 focus:border-blue-500 mt-2"
+                      className="h-14 text-lg border-2 border-gray-300 focus:border-blue-500 rounded-lg mt-2 px-4"
                       required
                     />
                   </div>
@@ -388,7 +389,7 @@ function App() {
                       placeholder="(555) 123-4567"
                       value={applicantPhone}
                       onChange={(e) => setApplicantPhone(e.target.value)}
-                      className="h-14 text-lg border-2 border-gray-300 focus:border-blue-500 mt-2"
+                      className="h-14 text-lg border-2 border-gray-300 focus:border-blue-500 rounded-lg mt-2 px-4"
                       required
                     />
                   </div>
@@ -404,8 +405,8 @@ function App() {
                       onClick={() => setBranch('Brighton, CO')}
                       className={`p-4 border-2 rounded-lg text-left transition-all ${
                         branch === 'Brighton, CO'
-                          ? 'border-blue-600 bg-blue-50 shadow-md'
-                          : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'
+                          ? 'border-green-600 bg-green-50 shadow-md'
+                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
                       }`}
                     >
                       <div className="font-bold text-lg text-blue-900">Brighton, CO</div>
@@ -416,8 +417,8 @@ function App() {
                       onClick={() => setBranch('Jacksonville, FL')}
                       className={`p-4 border-2 rounded-lg text-left transition-all ${
                         branch === 'Jacksonville, FL'
-                          ? 'border-blue-600 bg-blue-50 shadow-md'
-                          : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'
+                          ? 'border-green-600 bg-green-50 shadow-md'
+                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
                       }`}
                     >
                       <div className="font-bold text-lg text-blue-900">Jacksonville, FL</div>
@@ -428,8 +429,8 @@ function App() {
                       onClick={() => setBranch('Austin, TX')}
                       className={`p-4 border-2 rounded-lg text-left transition-all ${
                         branch === 'Austin, TX'
-                          ? 'border-blue-600 bg-blue-50 shadow-md'
-                          : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'
+                          ? 'border-green-600 bg-green-50 shadow-md'
+                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
                       }`}
                     >
                       <div className="font-bold text-lg text-blue-900">Austin, TX</div>
@@ -440,8 +441,8 @@ function App() {
                       onClick={() => setBranch('Pensacola, FL')}
                       className={`p-4 border-2 rounded-lg text-left transition-all ${
                         branch === 'Pensacola, FL'
-                          ? 'border-blue-600 bg-blue-50 shadow-md'
-                          : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'
+                          ? 'border-green-600 bg-green-50 shadow-md'
+                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
                       }`}
                     >
                       <div className="font-bold text-lg text-blue-900">Pensacola, FL</div>
@@ -460,8 +461,8 @@ function App() {
                       onClick={() => setSkillLevel('1')}
                       className={`p-4 border-2 rounded-lg text-left transition-all ${
                         skillLevel === '1'
-                          ? 'border-blue-600 bg-blue-50 shadow-md'
-                          : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'
+                          ? 'border-green-600 bg-green-50 shadow-md'
+                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
                       }`}
                     >
                       <div className="font-bold text-lg text-blue-900">Level 1</div>
@@ -472,8 +473,8 @@ function App() {
                       onClick={() => setSkillLevel('2')}
                       className={`p-4 border-2 rounded-lg text-left transition-all ${
                         skillLevel === '2'
-                          ? 'border-blue-600 bg-blue-50 shadow-md'
-                          : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'
+                          ? 'border-green-600 bg-green-50 shadow-md'
+                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
                       }`}
                     >
                       <div className="font-bold text-lg text-blue-900">Level 2</div>
@@ -484,8 +485,8 @@ function App() {
                       onClick={() => setSkillLevel('3')}
                       className={`p-4 border-2 rounded-lg text-left transition-all ${
                         skillLevel === '3'
-                          ? 'border-blue-600 bg-blue-50 shadow-md'
-                          : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'
+                          ? 'border-green-600 bg-green-50 shadow-md'
+                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
                       }`}
                     >
                       <div className="font-bold text-lg text-blue-900">Level 3</div>
@@ -496,8 +497,8 @@ function App() {
                       onClick={() => setSkillLevel('4')}
                       className={`p-4 border-2 rounded-lg text-left transition-all ${
                         skillLevel === '4'
-                          ? 'border-blue-600 bg-blue-50 shadow-md'
-                          : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'
+                          ? 'border-green-600 bg-green-50 shadow-md'
+                          : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
                       }`}
                     >
                       <div className="font-bold text-lg text-blue-900">Level 4</div>

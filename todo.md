@@ -91,3 +91,21 @@
 - [ ] Send results to branch manager
 - [ ] Send copy to emett@generatorsource.com
 - [ ] Test email delivery
+
+## Design Fixes (User Feedback)
+- [x] Reduce DaVinci.AI logo size (too big currently)
+- [x] Improve input field styling (make more professional)
+- [x] Fix branch selection - add green color when selected
+- [x] Fix skill level selection - add green color when selected)
+- [x] Ensure branch buttons respond properly to clicks
+- [ ] Test all visual feedback and interactions
+
+## Additional Design Updates
+- [x] Add test purpose statement (establish knowledge of technician)
+- [x] Make DaVinci logo much smaller (copyright size) - FIXED: Now text-only
+- [x] Add copyright symbol (©) to DaVinci branding
+
+## Test Screen Layout Fix
+- [ ] Fix test screen content being cut off to the left
+- [ ] Ensure all questions and answers are fully visible
+- [ ] Test layout on different screen sizes
